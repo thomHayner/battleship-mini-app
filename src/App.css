@@ -1,0 +1,90 @@
+.App {
+  background-color: #282c34;
+  text-align: center;
+  /* justify-content: center; */
+  align-self: center;
+  align-content: center;
+  align-items: center;
+}
+
+.App-header {
+  height: 200px;
+  width: 800px;
+  margin: 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-main {
+  height: 90vh;
+  width: 800px;
+  display: grid;
+  grid-template-columns: 400px 400px;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+
+/* .App-link {
+  color: #61dafb;
+} */
+
+/* .player-area {
+
+} */
+
+.ship-list-area {
+  display: grid;
+  grid-template-columns: 175px 50px 175px;
+}
+
+.player-ship-list {
+  text-align: right;
+}
+
+.enemy-ship-list {
+  text-align: left;
+}
+
+.board {
+  padding: 25px;
+  width: 350px;
+  margin: 0;
+  /* background-color: lawngreen; */
+  display: grid;
+  grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
+  justify-content: center;
+}
+
+.index-square {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: lightsalmon;
+}
+
+.square {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: lightskyblue;
+}
+
+.confirmedHit {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: red;
+}
+
+.confirmedMiss {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: whitesmoke;
+}
