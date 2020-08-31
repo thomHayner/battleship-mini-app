@@ -10,6 +10,7 @@ import Battleship from './Ships/Battleship';
 import Destroyer from './Ships/Destroyer';
 import Submarine from './Ships/Submarine';
 import PatrolBoat from './Ships/PatrolBoat';
+import fireControlHandler from './Logic/FireControlHandler';
 import './App.css';
 
 class App extends React.Component {
