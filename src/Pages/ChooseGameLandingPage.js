@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Board from "../Components/Board/Board";
-import fireControlHandler from "../Logic/FireControlHandler";
+import FireControlHandler from "../Logic/FireControlHandler";
 
 function ChooseGame() {
   const [playerBoard, setPlayerBoard] = useState(
@@ -22,7 +22,7 @@ function ChooseGame() {
   
   return (
     <div>
-      <Board board={playerBoard} player={playerName} handleFire={ fireControlHandler } />
+      <Board board={playerBoard} player={playerName} handleFire={ FireControlHandler } />
     </div>
   )
 }
