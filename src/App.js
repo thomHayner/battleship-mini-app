@@ -1,17 +1,18 @@
 import React from 'react';
-import WhoseTurnIsItAnyway from './DisplayMessages/WhoseTurnIsItAnyway';
-import PlayerName from './DisplayMessages/PlayerName';
-import Board from './Board/Board';
-import Shot from './DisplayMessages/Shot';
-import Sinking from './DisplayMessages/Sinking';
-import Winner from './DisplayMessages/Winner';
-import Carrier from './Ships/Carrier';
-import Battleship from './Ships/Battleship';
-import Destroyer from './Ships/Destroyer';
-import Submarine from './Ships/Submarine';
-import PatrolBoat from './Ships/PatrolBoat';
+import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
+import PlayerName from './Components/DisplayMessages/PlayerName';
+import Board from './Components/Board/Board';
+import Shot from './Components/DisplayMessages/Shot';
+import Sinking from './Components/DisplayMessages/Sinking';
+import Winner from './Components/DisplayMessages/Winner';
+import Carrier from './Components/Ships/Carrier';
+import Battleship from './Components/Ships/Battleship';
+import Destroyer from './Components/Ships/Destroyer';
+import Submarine from './Components/Ships/Submarine';
+import PatrolBoat from './Components/Ships/PatrolBoat';
 import fireControlHandler from './Logic/FireControlHandler';
 import './App.css';
+import ChooseGame from './Pages/ChooseGameLandingPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -325,6 +326,9 @@ class App extends React.Component {
               </div>
             </div>
 
+          </div>
+          <div>
+            <ChooseGame/>
           </div>
 
         </div>
