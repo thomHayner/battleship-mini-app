@@ -5,7 +5,7 @@ const ship = [5,5];
 
 const Destroyer = (props) => {
     if (props.afloat === null) {
-        return (<div> { ship.map(x=><Square/>) } </div>)
+        return (<div style={{ display: 'flex' }}> { ship.map(x=><Square/>) } </div>)
     }
     if (props.afloat === true) {
         return (<div className='destroyer' >Destroyer</div>)

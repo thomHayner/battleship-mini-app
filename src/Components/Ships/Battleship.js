@@ -5,10 +5,7 @@ const ship = [2,2,2,2]
 
 const Battleship = (props) => {
     if (props.afloat === null) {
-        return (
-        <div>
-            { ship.map(x=><Square/>) }
-        </div>)
+        return (<div style={{ display: 'flex' }}> { ship.map(x=><Square />) } </div>)
     }
     if (props.afloat === true) {
         return (<div className='battleship' >Battleship</div>)
