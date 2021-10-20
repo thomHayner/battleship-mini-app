@@ -1,11 +1,17 @@
 import React from 'react';
+import Square from '../Board/Square';
 
-const PatrolBoat = (props) => {
+const ship = [3,3,3];
+
+const Cruiser = (props) => {
+    if (props.afloat === null) {
+        return (<div> { ship.map(x=><Square/>) } </div>)
+    }
     if (props.afloat === true) {
-        return (<div className='patrol-boat' >Patrol Boat</div>)
+        return (<div className='patrol-boat' >Cruiser</div>)
     } else {
-        return (<div className='patrol-boat' ><s>Patrol Boat</s></div>)
+        return (<div className='patrol-boat' ><s>Cruiser</s></div>)
     }
 }
 
-export default PatrolBoat;
+export default Cruiser;
