@@ -63,7 +63,7 @@ function ChooseGame() {
                   </div>
                 )}
               </Draggable>
-              <Draggable draggableId="draggable-1" index={0}>
+              <Draggable draggableId="draggable-2" index={0}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -74,7 +74,7 @@ function ChooseGame() {
                   </div>
                 )}
               </Draggable>
-              <Draggable draggableId="draggable-1" index={0}>
+              <Draggable draggableId="draggable-3" index={0}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -85,7 +85,7 @@ function ChooseGame() {
                   </div>
                 )}
               </Draggable>
-              <Draggable draggableId="draggable-1" index={0}>
+              <Draggable draggableId="draggable-4" index={0}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -96,7 +96,8 @@ function ChooseGame() {
                   </div>
                 )}
               </Draggable>
-              <Draggable draggableId="draggable-1" index={0}>
+              {provided.placeholder}
+              <Draggable draggableId="draggable-5" index={0}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
