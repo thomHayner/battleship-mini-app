@@ -27,7 +27,7 @@ function ChooseGame() {
   const [playerName, setPlayerName] = useState("Player 1");
   
   return (
-    <div>
+    <div style={{display: 'flex'}}>
       <DragDropContext onDragEnd={result=>console.log(result)}>
         <Droppable droppableId={'droppable-1'}>
           {(provided, snapshot) => (
@@ -111,13 +111,6 @@ function ChooseGame() {
             </div>
           )}
         </Droppable>
-        {/* <Droppable droppableId={'droppable-2'}>
-          <div id={"looseShipHolder"}>
-            <Draggable draggableId='draggable-1' index={0}>
-              <Submarine afloat={true} />
-            </Draggable>
-          </div>
-        </Droppable> */}
       </DragDropContext>
     </div>
   )
