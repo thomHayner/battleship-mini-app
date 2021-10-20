@@ -51,20 +51,62 @@ function ChooseGame() {
               style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
               {...provided.droppableProps}
             >
-              <h2>I am a droppable!</h2>
-              
+              <h2>I am the Ship List droppable!</h2>
               <Draggable draggableId="draggable-1" index={0}>
-              (provided, snapshot) => (
-              <div
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              >
-                    <h4>My draggable</h4>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Carrier afloat={true} />
+                  </div>
+                )}
+              </Draggable>;
+              <Draggable draggableId="draggable-1" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <BattleShip afloat={true} />
+                  </div>
+                )}
+              </Draggable>;
+              <Draggable draggableId="draggable-1" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
                     <Submarine afloat={true} />
                   </div>
                 )}
-            </Draggable>;
+              </Draggable>;
+              <Draggable draggableId="draggable-1" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Destroyer afloat={true} />
+                  </div>
+                )}
+              </Draggable>;
+              <Draggable draggableId="draggable-1" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <PatrolBoat afloat={true} />
+                  </div>
+                )}
+              </Draggable>;
               {provided.placeholder}
             </div>
           )}
