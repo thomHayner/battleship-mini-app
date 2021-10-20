@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Board from "../Components/Board/Board";
 import Carrier from "../Components/Ships/Carrier";
 import Destroyer from "../Components/Ships/Destroyer";
-import Cruiser from "../Components/Ships/PatrolBoat";
+import Cruiser from "../Components/Ships/Cruiser";
 import Submarine from "../Components/Ships/Submarine";
 import BattleShip from "../Components/Ships/Battleship";
 import ShipPlacer from "../Logic/ShipPlacer";

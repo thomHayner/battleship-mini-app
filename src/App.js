@@ -9,7 +9,7 @@ import Carrier from './Components/Ships/Carrier';
 import Battleship from './Components/Ships/Battleship';
 import Destroyer from './Components/Ships/Destroyer';
 import Submarine from './Components/Ships/Submarine';
-import PatrolBoat from './Components/Ships/PatrolBoat';
+import PatrolBoat from './Components/Ships/Cruiser';
 // import FireControlHandler from './Logic/FireControlHandler';
 import './App.css';
 import ChooseGame from './Pages/ChooseGameLandingPage';
