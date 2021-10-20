@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Board from "../Components/Board/Board";
 import Carrier from "../Components/Ships/Carrier";
 import Destroyer from "../Components/Ships/Destroyer";
-import PatrolBoat from "../Components/Ships/PatrolBoat";
+import Cruiser from "../Components/Ships/PatrolBoat";
 import Submarine from "../Components/Ships/Submarine";
 import BattleShip from "../Components/Ships/Battleship";
 import ShipPlacer from "../Logic/ShipPlacer";
@@ -59,7 +59,7 @@ function ChooseGame() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <Carrier afloat={true} />
+                    <Carrier afloat={null} />
                   </div>
                 )}
               </Draggable>
@@ -70,7 +70,18 @@ function ChooseGame() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <BattleShip afloat={true} />
+                    <BattleShip afloat={null} />
+                  </div>
+                )}
+              </Draggable>
+              <Draggable draggableId="draggable-1" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Cruiser afloat={true} />
                   </div>
                 )}
               </Draggable>
@@ -96,17 +107,7 @@ function ChooseGame() {
                   </div>
                 )}
               </Draggable>
-              <Draggable draggableId="draggable-1" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <PatrolBoat afloat={true} />
-                  </div>
-                )}
-              </Draggable>
+              
               {provided.placeholder}
             </div>
           )}
@@ -117,16 +118,3 @@ function ChooseGame() {
 }
 
 export default ChooseGame
-
-{/* <Draggable>
-            <Carrier />
-          </Draggable>
-          <Draggable>
-            <Destroyer />
-          </Draggable>
-          <Draggable>
-            <PatrolBoat />
-          </Draggable>
-          <Draggable>
-            <BattleShip />
-          </Draggable> */}
