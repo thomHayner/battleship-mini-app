@@ -60,6 +60,7 @@ function ChooseGame() {
                     {...provided.dragHandleProps}
                   >
                     <Carrier afloat={null} />
+                    <p>Add in onClick to change orientation</p>
                   </div>
                 )}
               </Draggable>
