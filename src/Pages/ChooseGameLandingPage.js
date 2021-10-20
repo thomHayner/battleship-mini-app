@@ -62,7 +62,7 @@ function ChooseGame() {
                     <Carrier afloat={true} />
                   </div>
                 )}
-              </Draggable>;
+              </Draggable>
               <Draggable draggableId="draggable-1" index={0}>
                 {(provided, snapshot) => (
                   <div
@@ -73,7 +73,7 @@ function ChooseGame() {
                     <BattleShip afloat={true} />
                   </div>
                 )}
-              </Draggable>;
+              </Draggable>
               <Draggable draggableId="draggable-1" index={0}>
                 {(provided, snapshot) => (
                   <div
@@ -84,7 +84,7 @@ function ChooseGame() {
                     <Submarine afloat={true} />
                   </div>
                 )}
-              </Draggable>;
+              </Draggable>
               <Draggable draggableId="draggable-1" index={0}>
                 {(provided, snapshot) => (
                   <div
@@ -95,7 +95,7 @@ function ChooseGame() {
                     <Destroyer afloat={true} />
                   </div>
                 )}
-              </Draggable>;
+              </Draggable>
               <Draggable draggableId="draggable-1" index={0}>
                 {(provided, snapshot) => (
                   <div
@@ -106,7 +106,7 @@ function ChooseGame() {
                     <PatrolBoat afloat={true} />
                   </div>
                 )}
-              </Draggable>;
+              </Draggable>
               {provided.placeholder}
             </div>
           )}
