@@ -1,11 +1,26 @@
 import React from 'react';
 import Square from '../Board/Square';
+import { Draggable } from 'react-beautiful-dnd';
 
 const ship = [1,1,1,1,1];
 
 const Carrier = (props) => {
     if (props.afloat === null) {
-        return (<div style={{ display: 'flex' }}> { ship.map(x=>[<Square/>]) } </div>)
+        return (
+            <Draggable draggableId='carrier'>
+                {(provided, snapshot) => (
+                    <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    >
+                        <div style={{ display: 'flex' }}>
+                            { ship.map(x=>[<Square/>]) }
+                        </div>
+                    </div>
+                )}
+            </Draggable>
+        )
     }
     if (props.afloat === true) {
         return (<div className='carrier' >Aircraft Carrier</div>)
