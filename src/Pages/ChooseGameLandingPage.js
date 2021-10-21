@@ -29,22 +29,22 @@ function ChooseGame() {
   return (
     <div style={{display: 'flex'}}>
       <DragDropContext onDragEnd={result=>console.log(result)}>
-        <Droppable droppableId={'droppable-1'}>
+        {/* <Droppable droppableId={'droppable-1'}>
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
               style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
               {...provided.droppableProps}
             >
-              <h2>I am a droppable!</h2>
-              <div>
+              <h2>I am a droppable!</h2> */}
+              {/* <div> */}
                 <Board board={playerBoard} player={playerName} handleFire={ ShipPlacer } onHover={ ShipPlacer }  />
-              </div>
-              {provided.placeholder}
+              {/* </div> */}
+              {/* {provided.placeholder}
             </div>
           )}
-        </Droppable>
-        <Droppable droppableId={'droppable-2'}>
+        </Droppable> */}
+        <Droppable droppableId={'droppable-1'}>
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
