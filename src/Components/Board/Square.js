@@ -10,7 +10,6 @@ const Square = (props) => {
             return(<div className="confirmedHit" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } ></div>)
         } else if (props.value === -3) {
             return(
-                // <DragDropContext onDragEnd={result=>console.log(result)}>
                     <Droppable droppableId={`droppable-${props.row}${props.col}`} className="square">
                         {(provided, snapshot) => (
                             <div
@@ -23,7 +22,6 @@ const Square = (props) => {
                         </div>
                         )}
                     </Droppable>
-                // </DragDropContext>
             )
         }else {
             return(<div className="square" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } ></div>)
