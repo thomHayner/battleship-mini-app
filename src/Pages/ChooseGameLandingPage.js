@@ -82,7 +82,7 @@ function ChooseGame() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <Cruiser afloat={true} />
+                    <Cruiser afloat={null} />
                   </div>
                 )}
               </Draggable>
@@ -93,7 +93,7 @@ function ChooseGame() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <Submarine afloat={true} />
+                    <Submarine afloat={null} />
                   </div>
                 )}
               </Draggable>
@@ -105,7 +105,7 @@ function ChooseGame() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <Destroyer afloat={true} />
+                    <Destroyer afloat={null} />
                   </div>
                 )}
               </Draggable>
