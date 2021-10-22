@@ -7,7 +7,7 @@ const ship = [1,1,1,1,1];
 const Carrier = (props) => {
     if (props.afloat === null) {
         return (
-            <Draggable draggableId='carrier' index={1} type='SHIP'>
+            <Draggable draggableId='carrier' index={0} type='SHIP'>
                 {(provided, snapshot) => (
                     <div
                     ref={provided.innerRef}
