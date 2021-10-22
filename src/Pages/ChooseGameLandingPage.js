@@ -54,52 +54,10 @@ function ChooseGame() {
             >
               <h2>I am the Ship List droppable!</h2>
               <Carrier afloat={null} />
-              <Draggable draggableId="draggable-2" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <BattleShip afloat={null} />
-                  </div>
-                )}
-              </Draggable>
-              <Draggable draggableId="draggable-3" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Cruiser afloat={null} />
-                  </div>
-                )}
-              </Draggable>
-              <Draggable draggableId="draggable-4" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Submarine afloat={null} />
-                  </div>
-                )}
-              </Draggable>
-              {provided.placeholder}
-              <Draggable draggableId="draggable-5" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Destroyer afloat={null} />
-                  </div>
-                )}
-              </Draggable>
-              
+              <BattleShip afloat={null} />
+              <Cruiser afloat={null} />
+              <Submarine afloat={null} />
+              <Destroyer afloat={null} />
               {provided.placeholder}
             </div>
           )}
