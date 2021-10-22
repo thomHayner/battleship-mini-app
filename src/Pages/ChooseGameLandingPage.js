@@ -9,6 +9,7 @@ import BattleShip from "../Components/Ships/Battleship";
 import ShipPlacer from "../Logic/ShipPlacer";
 
 function ChooseGame() {
+  const [playerName, setPlayerName] = useState("Player 1");
   const [playerBoard, setPlayerBoard] = useState(
     [
       ["","1","2","3","4","5","6","7","8","9","10",],
@@ -24,7 +25,15 @@ function ChooseGame() {
       ["J",-3,-3,-3,-3,-3,-3,-3,-3,-3,-3],
     ]
   );
-  const [playerName, setPlayerName] = useState("Player 1");
+  const [playerShips, setPlayerShips] = useState(
+    [
+      [1,1,1,1,1],
+      [2,2,2,2],
+      [3,3,3],
+      [4,4,4],
+      [5,5]
+    ]
+  );
   
   return (
     <div style={{display: 'flex'}}>
