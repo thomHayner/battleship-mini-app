@@ -29,21 +29,7 @@ function ChooseGame() {
   return (
     <div style={{display: 'flex'}}>
       <DragDropContext onDragEnd={result=>console.log(result)}>
-        {/* <Droppable droppableId={'droppable-1'}>
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
-              {...provided.droppableProps}
-            >
-              <h2>I am a droppable!</h2> */}
-              {/* <div> */}
-                <Board board={playerBoard} player={playerName} handleFire={ ShipPlacer } onHover={ ShipPlacer }  />
-              {/* </div> */}
-              {/* {provided.placeholder}
-            </div>
-          )}
-        </Droppable> */}
+        <Board board={playerBoard} player={playerName} handleFire={ ShipPlacer } onHover={ ShipPlacer }  />
         <Droppable droppableId={'droppable-1'}>
           {(provided, snapshot) => (
             <div
@@ -52,18 +38,7 @@ function ChooseGame() {
               {...provided.droppableProps}
             >
               <h2>I am the Ship List droppable!</h2>
-              {/* <Draggable draggableId="draggable-1" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  > */}
-                    <Carrier afloat={null} />
-                    {/* <p>Add in onClick to change orientation</p>
-                  </div>
-                )}
-              </Draggable> */}
+              <Carrier afloat={null} />
               <Draggable draggableId="draggable-2" index={0}>
                 {(provided, snapshot) => (
                   <div
