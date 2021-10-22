@@ -37,7 +37,13 @@ function ChooseGame() {
   
   return (
     <div style={{display: 'flex'}}>
-      <DragDropContext onDragEnd={result=>console.log(result)}>
+      <DragDropContext 
+        onBeforeCapture={result=>console.log(result)}
+        onBeforeDragStart={result=>console.log(result)}
+        onDragStart={result=>console.log(result)}
+        onDragUpdate={result=>console.log(result)}
+        onDragEnd={result=>console.log(result)}
+      >
         <Board board={playerBoard} player={playerName} handleFire={ ShipPlacer } onHover={ ShipPlacer }  />
         <Droppable droppableId={'droppable-1'}>
           {(provided, snapshot) => (
