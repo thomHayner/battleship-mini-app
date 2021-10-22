@@ -12,7 +12,7 @@ const Square = (props) => {
             return <div className="confirmedHit" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
         } else if (props.value === -3) { // -3 is used for the droppables screen
             return(
-                    <Droppable droppableId={`droppable-${props.row}-${props.col}`} className="square">
+                    <Droppable droppableId={`droppable-${props.row}-${props.col}`} type={'SHIP'} direction={'horizontal'}>
                         {(provided, snapshot) => (
                             <div
                             ref={provided.innerRef}
