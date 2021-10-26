@@ -7,7 +7,7 @@ const ship = [5,5];
 const Destroyer = (props) => {
     if (props.afloat === null) {
         return (
-            <Draggable draggableId='Destroyer' index={0} type='SHIP'>
+            <Draggable draggableId='destroyer' index={0} type='SHIP'>
                 {(provided, snapshot) => (
                     <div
                     ref={provided.innerRef}
@@ -15,7 +15,7 @@ const Destroyer = (props) => {
                     {...provided.dragHandleProps}
                     >
                         <div style={{ display: 'flex' }}>
-                            { ship.map(x=>[<Square/>]) }
+                            { ship.map(x=>[<Square value={5} afloat={null} />]) }
                         </div>
                     </div>
                 )}
