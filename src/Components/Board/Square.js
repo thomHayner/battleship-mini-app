@@ -3,9 +3,9 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Square = (props) => {
         if (props.afloat === null) {
-            return 
+            return <div className="square" />
         } else if (typeof props.value === 'string') {
-            return(<div className="index-square" >{props.value}</div>)
+            return <div className="index-square" >{props.value}</div>
         } else if (props.value === -2) {
             return <div className="confirmedMiss" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
         } else if (props.value === -1) {
@@ -15,13 +15,14 @@ const Square = (props) => {
                     <Droppable droppableId={`droppable-${props.row}-${props.col}`} type={'SHIP'} direction={'horizontal'}>
                         {(provided, snapshot) => (
                             <div
+                            className="confirmedHit"
                             ref={provided.innerRef}
-                            style={{ backgroundColor: snapshot.isDraggingOver ? 'green' : 'grey' }}
+                            style={{ backgroundColor: snapshot.isDraggingOver ? 'green' : 'blue' }}
                             {...provided.droppableProps}
                             {...provided.dragHandleProps} // is this necessary?
                             >
                                 {provided.placeholder}
-                                <div className="confirmedHit" onClick={ (e) => props.handleFire(()=>{}) } />
+                                {/* <div className="confirmedHit" onClick={ (e) => props.handleFire(()=>{}) } /> */}
                             </div>
                         )}
                     </Droppable>
