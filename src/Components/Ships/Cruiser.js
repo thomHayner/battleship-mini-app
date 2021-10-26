@@ -15,7 +15,7 @@ const Cruiser = (props) => {
                     {...provided.dragHandleProps}
                     >
                         <div style={{ display: 'flex' }}>
-                            { ship.map(x=>[<Square/>]) }
+                            { ship.map(x=>[<Square value={5} afloat={null} />]) }
                         </div>
                     </div>
                 )}
