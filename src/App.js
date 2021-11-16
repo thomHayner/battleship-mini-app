@@ -12,7 +12,7 @@ import Submarine from './Components/Ships/Submarine';
 import PatrolBoat from './Components/Ships/Cruiser';
 // import FireControlHandler from './Logic/FireControlHandler';
 import './App.css';
-import ChooseGame from './Pages/ChooseGameLandingPage';
+// import ChooseGame from './Pages/ChooseGameLandingPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -327,9 +327,9 @@ class App extends React.Component {
             </div>
 
           </div>
-          <div>
+          {/* <div>
             <ChooseGame/>
-          </div>
+          </div> */}
 
         </div>
       )
