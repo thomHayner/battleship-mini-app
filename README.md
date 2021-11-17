@@ -10,12 +10,9 @@
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
+### Tech Stack
+
 <details>
-  <summary>
-
-  ### Tech Stack
-
-  </summary>
 
 - JavaScript
 - React
