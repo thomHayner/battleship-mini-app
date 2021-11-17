@@ -15,22 +15,22 @@
  - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
 - #### Deployed to Heroku using the quick deploy feature
-  <p>
   1. Check if Heroku CLI is installed
+  <p>
   ```
   heroku --version
   ```
   Installed, update, and/or proceed.
   </p>
-  <p>
   2. Log in to Heroku through the CLI / browser
+  <p>
   ```
   heroku login
   ```
   Follow prompts and log in.
   </p>
-  <p>
   3. Create your Heruko App through the command line
+  <p>
   [https://blog.heroku.com/deploying-react-with-zero-configuration](Heroku Docs / C-R-A Deploy Instructions)
   ```
   heroku create -b https://github.com/mars/create-react-app-buildpack.git
@@ -53,7 +53,7 @@
       heroku open
       ```
       </p>
-      
+
     - #### Heroku
       - [Heroku.com](Heroku)
       - log in
