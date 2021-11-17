@@ -21,7 +21,8 @@
   heroku --version
   ```
   Installed, update, and/or proceed.
-  </br>
+  </p>
+  <p>
   2. Log in to Heroku through the CLI / browser
   ```
   heroku login
