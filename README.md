@@ -13,17 +13,22 @@
 ### Deployment
 - #### Current location
  - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
+
 - #### Deployed to Heroku using the quick deploy feature
+  <p>
   1. Check if Heroku CLI is installed
   ```
   heroku --version
   ```
   Installed, update, and/or proceed.
+  </br>
   2. Log in to Heroku through the CLI / browser
   ```
   heroku login
   ```
   Follow prompts and log in.
+  </p>
+  <p>
   3. Create your Heruko App through the command line
   [https://blog.heroku.com/deploying-react-with-zero-configuration](Heroku Docs / C-R-A Deploy Instructions)
   ```
@@ -33,6 +38,7 @@
   git push heroku master
   heroku open
   ```
+  </p>
 
 - #### CI / CD
   - none at this time
