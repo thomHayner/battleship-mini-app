@@ -56,12 +56,10 @@
 
     ##### CLI
 
-    <p>
     - In your terminal
     ```git push heroku master
     heroku open
     ```
-    </p>
 
     ##### Heroku
 
