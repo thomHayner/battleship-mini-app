@@ -16,21 +16,18 @@
 
 - #### Deployed to Heroku using the quick deploy feature
   1. Check if Heroku CLI is installed
-  <p>
   ```
   heroku --version
   ```
   Installed, update, and/or proceed.
-  </p>
+  </br>
   2. Log in to Heroku through the CLI / browser
-  <p>
   ```
   heroku login
   ```
   Follow prompts and log in.
-  </p>
+  </br>
   3. Create your Heruko App through the command line
-  <p>
   [https://blog.heroku.com/deploying-react-with-zero-configuration](Heroku Docs / C-R-A Deploy Instructions)
   ```
   heroku create -b https://github.com/mars/create-react-app-buildpack.git
@@ -39,7 +36,6 @@
   git push heroku master
   heroku open
   ```
-  </p>
 
 - #### CI / CD
   - none at this time
