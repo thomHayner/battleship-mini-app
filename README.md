@@ -10,12 +10,14 @@
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
-### Tech Stack
+<details><summary><h3>Tech Stack<h3><summary>
 
 - JavaScript
 - React
 - esLint
 - react-beautiful-dnd
+
+<details>
 
 ### Deployment
 
