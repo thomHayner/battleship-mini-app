@@ -11,10 +11,11 @@
 - react-beautiful-dnd
 
 ### Deployment
-- #### Current location
+#### Current location
  - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
-- #### Deployed to Heroku using the quick deploy feature
+#### Deployed to Heroku using the quick deploy feature
+
   1. Check if Heroku CLI is installed
   ```
   heroku --version
