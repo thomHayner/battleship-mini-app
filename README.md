@@ -47,9 +47,13 @@
   - this is an ittermittent app and likely won't need much maintainence, so manual will provide regular interaction / practice with maintainence processes
   - manual deployment through CLI or [Heroku.com](Heroku) dashboard is currently necessary
     - ##### CLI
-      - ```git push heroku master
+      <p>
+      - In your terminal
+      ```git push heroku master
       heroku open
       ```
+      </p>
+      
     - #### Heroku
       - [Heroku.com](Heroku)
       - log in
