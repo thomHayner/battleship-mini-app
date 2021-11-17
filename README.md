@@ -11,8 +11,8 @@
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
 ### Tech Stack
-
 <details>
+  <summary>Front End</summary>
 
 - JavaScript
 - React
