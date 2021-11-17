@@ -15,68 +15,68 @@
 
 ### Deployment
 
-#### Current location
+  #### Current location
 
- - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
+  - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
-#### Deployed to Heroku using the quick deploy feature
+  #### Deployed to Heroku using the quick deploy feature
 
-1. Check if Heroku CLI is installed, take necessary action, then login.
-```
-heroku --version
-```
-Installed, update, and/or proceed.
+  1. Check if Heroku CLI is installed, take necessary action, then login.
+  ```
+  heroku --version
+  ```
+  Installed, update, and/or proceed.
 
-</br>
+  </br>
 
-2. Log in to Heroku through the CLI / browser
-```
-heroku login
-```
-Follow prompts and log in.
+  2. Log in to Heroku through the CLI / browser
+  ```
+  heroku login
+  ```
+  Follow prompts and log in.
 
-</br>
+  </br>
 
-3. Create your Heruko App through the command line
-[Heroku Docs / C-R-A Deploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
-```
-heroku create -b https://github.com/mars/create-react-app-buildpack.git
-git add .
-git commit -m "react-create-app on Heroku"
-git push heroku master
-heroku open
-```
+  3. Create your Heruko App through the command line
+  [Heroku Docs / C-R-A Deploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
+  ```
+  heroku create -b https://github.com/mars/create-react-app-buildpack.git
+  git add .
+  git commit -m "react-create-app on Heroku"
+  git push heroku master
+  heroku open
+  ```
 
-#### CI / CD
+  #### CI / CD
 
-- none at this time
-- can be set up with webhook to auto-update with push to master on github
-- this is an ittermittent app and likely won't need much maintainence, so manual will provide regular interaction / practice with maintainence processes
-- manual deployment through CLI or [Heroku](Heroku.com) dashboard is currently necessary
+  - none at this time
+  - can be set up with webhook to auto-update with push to master on github
+  - this is an ittermittent app and likely won't need much maintainence, so manual will provide regular interaction / practice with maintainence processes
+  - manual deployment through CLI or [Heroku](Heroku.com) dashboard is currently necessary
 
-##### CLI
+    ##### CLI
 
-<p>
-- In your terminal
-```git push heroku master
-heroku open
-```
-</p>
+    <p>
+    - In your terminal
+    ```git push heroku master
+    heroku open
+    ```
+    </p>
 
-#### Heroku
+    ##### Heroku
 
-- [Heroku](Heroku.com)
-- log in
-- select your app
-- click deploy
--scroll down to bottom and click "Manual Deploy" button
+    - [Heroku](Heroku.com)
+    - log in
+    - select your app
+    - click deploy
+    -scroll down to bottom and click "Manual Deploy" button
 
 ### Background
 
-<p>
-This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement a 'board selection' feature at the time so the ships were not movable.
-</p>
+  <p>
+  This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement a 'board selection' feature at the time so the ships were not movable.
+  </p>
 
-<p>
-I have since done some work to refactor and compartmentalize the app.
-</p>
+  <p>
+  I have since done some work to refactor and compartmentalize the app.
+  </p>
