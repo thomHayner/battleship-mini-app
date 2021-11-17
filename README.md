@@ -6,6 +6,10 @@
 
 </div>
 
+### Current location
+
+- [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
+
 ### Tech Stack
 
 - JavaScript
@@ -14,10 +18,6 @@
 - react-beautiful-dnd
 
 ### Deployment
-
-  #### Current location
-
-  - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
 
   #### Deployed to Heroku using the quick deploy feature
 
