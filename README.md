@@ -1,8 +1,8 @@
-<p align="center" >
+<div align="center" >
 
 # BattleShip
 ## Based on The Classic Board Game
-</p>
+</div>
 
 ### Tech Stack
 - JavaScript
