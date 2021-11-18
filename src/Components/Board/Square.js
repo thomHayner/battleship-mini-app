@@ -10,26 +10,7 @@ const Square = (props) => {
             return <div className="confirmedMiss" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
         } else if (props.value === -1) {
             return <div className="confirmedHit" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
-        } 
-        // else if (props.value === -3) { // -3 is used for the droppables screen
-        //     return(
-        //             <Droppable droppableId={`droppable-${props.row}-${props.col}`} type={'SHIP'} direction={'horizontal'}>
-        //                 {(provided, snapshot) => (
-        //                     <div
-        //                     className="confirmedHit"
-        //                     ref={provided.innerRef}
-        //                     style={{ backgroundColor: snapshot.isDraggingOver ? 'green' : 'blue' }}
-        //                     {...provided.droppableProps}
-        //                     {...provided.dragHandleProps} // is this necessary?
-        //                     >
-        //                         {provided.placeholder}
-        //                         {/* <div className="confirmedHit" onClick={ (e) => props.handleFire(()=>{}) } /> */}
-        //                     </div>
-        //                 )}
-        //             </Droppable>
-        //     )
-        // }
-          else {
+        } else {
             return <div className="square" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
         }
 };
