@@ -1,5 +1,4 @@
 import React from 'react';
-// import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Square = (props) => {
         if (props.afloat === null) {
