@@ -4,9 +4,9 @@ import Board from "./Board/Board";
 import ScoreCard from './ScoreCard';
 import '../App.css';
 
-export default function PlayerDashboard({ player, opponent, handleFire }) {
-  // let player = name === "redPlayer" ? redPlayer : bluePlayer;
+// Takes in a player object (redPlayer or BluePlayer) and outputs a game board stacked on top of a scorecard
 
+export default function PlayerDashboard({ player, opponent, handleFire }) {
   return (
     <div>
       <PlayerName name={player.name} />
@@ -15,5 +15,3 @@ export default function PlayerDashboard({ player, opponent, handleFire }) {
     </div>
   )
 }
-
-// Takes in a player object (redPlayer or BluePlayer) and outputs a board stacked on top of a scorecard
