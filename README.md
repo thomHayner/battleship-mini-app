@@ -91,5 +91,5 @@
   </p>
 
   <p>
-  I have since done some work to refactor and compartmentalize the app.
+  I have since done some work to refactor and compartmentalize the app.<br>I plan to add player 'board selection', possibly using react-beautiful-dnd.<br>I plan to try and make it full stack, possibly by tweaking the scoring system and making with some sort of arcade game style score board component.
   </p>
