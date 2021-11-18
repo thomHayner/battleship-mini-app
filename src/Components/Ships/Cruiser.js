@@ -23,9 +23,9 @@ const Cruiser = (props) => {
         )
     }
     if (props.afloat === true) {
-        return (<div className='patrol-boat' >Cruiser</div>)
+        return (<div className='cruiser' >Cruiser</div>)
     } else {
-        return (<div className='patrol-boat' ><s>Cruiser</s></div>)
+        return (<div className='cruiser' ><s>Cruiser</s></div>)
     }
 }
 
