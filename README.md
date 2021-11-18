@@ -26,7 +26,7 @@
   <summary>Heroku Quick Deploy</summary>
 
   1. Check if Heroku CLI is installed, take necessary action, then login.
-  ```
+  ```shell
   heroku --version
   ```
   Installed, update, and/or proceed.
@@ -34,7 +34,7 @@
   </br>
 
   2. Log in to Heroku through the CLI / browser
-  ```
+  ```shell
   heroku login
   ```
   Follow prompts and log in.
@@ -43,7 +43,7 @@
 
   3. Create your Heruko App through the command line
   [Heroku Docs / C-R-A Deploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
-  ```
+  ```shell
   heroku create -b https://github.com/mars/create-react-app-buildpack.git
   git add .
   git commit -m "react-create-app on Heroku"
@@ -65,7 +65,8 @@
       <summary>CLI</summary>
 
       - In your terminal
-      ```git push heroku master
+      ```shell
+      git push heroku master
       heroku open
       ```
 
@@ -91,5 +92,11 @@
   </p>
 
   <p>
-  I have since done some work to refactor and compartmentalize the app.<br>I plan to add player 'board selection', possibly using react-beautiful-dnd.<br>I plan to try and make it full stack, possibly by tweaking the scoring system and making with some sort of arcade game style score board component.
+  Since there is no back end, I decided to just host it on Heroku as a front end only app.  This might change.
+  </p>
+
+  <p>
+  I have since done some work to refactor and compartmentalize the app.<br>
+  I plan to add player 'board selection', possibly using react-beautiful-dnd.<br>
+  I plan to try and make it full stack, possibly by tweaking the scoring system and making with some sort of arcade game style score board component.
   </p>
