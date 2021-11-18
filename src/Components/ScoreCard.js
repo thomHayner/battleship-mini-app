@@ -1,20 +1,19 @@
 import React from "react";
+import MessageBoard from "./MessageBoard";
 import ShipList from "./ShipList";
 import Shot from "./DisplayMessages/Shot";
 import Sinking from "./DisplayMessages/Sinking";
 import Winner from "./DisplayMessages/Winner";
 import '../App.css';
 
-export default function ScoreCard({ player, opponent }) {
+export default function ScoreCard({ player, opponentShips }) {
   return (
     <div>
-      <Shot shot={player.shot} />
-      <Sinking sinking={player.sinking} />
-      <Winner win={player.win} />
+      <MessageBoard messages={player.messages} />
       <div className="ship-list-area" >
-        <ShipList player={player} option={1} />
+        <ShipList ships={opponentShips} option={0} />
         <div/>
-        <ShipList player={opponent} option={0} />
+        <ShipList ships={player.ships} option={1} />
       </div>
     </div>
   )
