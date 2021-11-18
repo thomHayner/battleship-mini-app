@@ -1,5 +1,3 @@
-import React from 'react';
-
 let checkWinner = function(roundBoard) {
   let tracker = [0,0,0,0,0];
 
@@ -29,4 +27,4 @@ let checkWinner = function(roundBoard) {
   return tracker;
 }
 
-export default CheckWinner;
+export default checkWinner;
