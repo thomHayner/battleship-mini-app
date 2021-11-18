@@ -22,8 +22,8 @@
 </details>
 
 ### Deployment
-
-  #### Deployed to Heroku using the quick deploy feature
+<details>
+  <summary>Heroku Quick Deploy</summary>
 
   1. Check if Heroku CLI is installed, take necessary action, then login.
   ```
@@ -51,27 +51,39 @@
   heroku open
   ```
 
-  #### CI / CD
+</details>
 
-  - none at this time
+### CI / CD
+<details>
+  <summary>Heroku / Git Integration</summary>
+
+  - no major CI / CD at this time
   - can be set up with webhook to auto-update with push to master on github
   - this is an ittermittent app and likely won't need much maintainence, so manual will provide regular interaction / practice with maintainence processes
   - manual deployment through CLI or [Heroku](Heroku.com) dashboard is currently necessary
-
-    ##### CLI
+  
+  <details>
+  <summary>CLI</summary>
 
     - In your terminal
     ```git push heroku master
     heroku open
     ```
 
-    ##### Heroku
+    </details>
+
+  <details>
+  <summary>Heroku Dashboard</summary>
 
     - [Heroku](Heroku.com)
     - log in
     - select your app
     - click deploy
     -scroll down to bottom and click "Manual Deploy" button
+
+    </details>
+
+</details>
 
 ### Background
 
