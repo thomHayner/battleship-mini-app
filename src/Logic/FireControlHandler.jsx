@@ -1,4 +1,3 @@
-import React from'react';
 // import CheckWinner from './CheckWinner.jsx';
 
 const FireControlHandler = (row, col, player) => {
