@@ -1,22 +1,19 @@
 import React from 'react';
 import PlayerName from "./DisplayMessages/PlayerName";
 import Board from "./Board/Board";
-import Shot from "./DisplayMessages/Shot";
-import Sinking from "./DisplayMessages/Sinking";
-import Winner from "./DisplayMessages/Winner";
 import ScoreCard from './ScoreCard';
+import '../App.css';
 
-export default function PlayerDashboard({ name }) {
+export default function PlayerDashboard({ player, opponent, handleFire }) {
   // let player = name === "redPlayer" ? redPlayer : bluePlayer;
 
   return (
     <div>
-      <PlayerName name={this.state.bluePlayer.name} />
-      <Board board={this.state.bluePlayer.board} player={this.state.bluePlayer.name} handleFire={ this.fireControlHandler } />
-      <Shot shot={this.state.bluePlayer.shot} />
-      <Sinking sinking={this.state.bluePlayer.sinking} />
-      <Winner win={this.state.bluePlayer.win} />
-      <ScoreCard />
+      <PlayerName name={player.name} />
+      <Board board={player.board} name={player.name} handleFire={handleFire} />
+      <ScoreCard player={player} opponent={opponent} />
     </div>
   )
 }
+
+// Takes in a player object (redPlayer or BluePlayer) and outputs a board stacked on top of a scorecard
