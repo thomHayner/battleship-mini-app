@@ -38,19 +38,6 @@
 
 } */
 
-.ship-list-area {
-  display: grid;
-  grid-template-columns: 175px 50px 175px;
-}
-
-.player-ship-list {
-  text-align: right;
-}
-
-.enemy-ship-list {
-  text-align: left;
-}
-
 .board {
   padding: 25px;
   width: 350px;
@@ -87,4 +74,24 @@
   width: 25px;
   border: solid 1px black;
   background-color: whitesmoke;
+}
+
+.player-area- {
+}
+
+.player-area-parent {
+  display: flex;
+}
+
+.ship-list-area {
+  display: grid;
+  grid-template-columns: 175px 50px 175px;
+}
+
+.player-ship-list {
+  text-align: right;
+}
+
+.enemy-ship-list {
+  text-align: left;
 }

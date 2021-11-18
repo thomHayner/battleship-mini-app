@@ -1,10 +1,10 @@
 import React from 'react';
+import checkWinner from './Logic/CheckWinner';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
+import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
 // import ChooseGame from './Pages/ChooseGameLandingPage';
 // import fireControlHandler from './Logic/FireControlHandler';
-import checkWinner from './Logic/CheckWinner';
-import PlayerDashboard from './Components/PlayerDashboard';
 
 class App extends React.Component {
   constructor(props) {
@@ -74,6 +74,7 @@ class App extends React.Component {
     }
     this.fireControlHandler = this.fireControlHandler.bind(this);
   }
+  
   // add componentDidMount here to invoke fetch
   //    add fetch here to get scores
 
@@ -237,26 +238,24 @@ class App extends React.Component {
   }
 
   render() {
-      return (
-        <div className="App">
-          <header className="App-header" >
-            <h1>Battleship</h1>
-            <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
-          </header>
-          <div className="App-main" >
-            <div>
-              <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
-            </div>
-            <div>
-              <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
-            </div>
+    return (
+      <div className="App">
+        <header className="App-header" >
+          <h1>Battleship</h1>
+          <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
+        </header>
+        <div className="App-main" >
+          <div className="player-area-parent" >
+            <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
+            <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
           </div>
-          {/* <div>
-            <ChooseGame/>
-          </div> */}
         </div>
-      )
-    }
+        {/* <div>
+          <ChooseGame/>
+        </div> */}
+      </div>
+    )
+  }
 }
 
 export default App;
