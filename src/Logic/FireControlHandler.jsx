@@ -1,4 +1,4 @@
-// import CheckWinner from './CheckWinner.jsx';
+import checkWinner from './CheckWinner.jsx';
 
 const FireControlHandler = (row, col, player) => {
   if (this.state.playerShot !== 'VICTORY!' && this.state.enemyShot !== 'VICTORY!') {
@@ -63,35 +63,36 @@ const FireControlHandler = (row, col, player) => {
         newShot = 'You have already fired on this location. Try Again.';
       }
 
-      let checkWinner = function(roundBoard) {
-        let tracker = [0,0,0,0,0];
+//  =========---------everything BELOW this line (until the next similar comment break point) is already inside it's own file---------=========
+      // let checkWinner = function(roundBoard) {
+      //   let tracker = [0,0,0,0,0];
 
-        for (let i = 1; i < 11; i++) {
-          for (let j = 1; j < 11; j++) {
-            switch ( roundBoard[i][j] ) {
-              case 1:
-                tracker[0]++
-                break;
-              case 2:
-                tracker[1]++
-                break;
-              case 3:
-                tracker[2]++
-                break;
-              case 4:
-                tracker[3]++
-                break;
-              case 5:
-                tracker[4]++
-                break;
-              default:
-                ;
-            }
-          }
-        }
-        return tracker;
-      }
-
+      //   for (let i = 1; i < 11; i++) {
+      //     for (let j = 1; j < 11; j++) {
+      //       switch ( roundBoard[i][j] ) {
+      //         case 1:
+      //           tracker[0]++
+      //           break;
+      //         case 2:
+      //           tracker[1]++
+      //           break;
+      //         case 3:
+      //           tracker[2]++
+      //           break;
+      //         case 4:
+      //           tracker[3]++
+      //           break;
+      //         case 5:
+      //           tracker[4]++
+      //           break;
+      //         default:
+      //           ;
+      //       }
+      //     }
+      //   }
+      //   return tracker;
+      // }
+//  ^^^^^^^^^---------everything ABOVE this line (until the next similar comment break point) is already inside it's pwn file---------^^^^^^^^^
       let tracker = checkWinner(roundBoard);
 
       if (tracker[0] === 0 && carrier === true) {
