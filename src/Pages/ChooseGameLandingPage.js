@@ -9,7 +9,7 @@
 // import ShipPlacer from "../Logic/ShipPlacer";
 
 // function ChooseGame() {
-//   const [playerName, setPlayerName] = useState("Player 1");
+//   const [playerName, setPlayerName] = useState("redPlayer");
 //   const [playerBoard, setPlayerBoard] = useState(
 //     [
 //       ["","1","2","3","4","5","6","7","8","9","10",],
