@@ -25,15 +25,19 @@ class App extends React.Component {
           ["I",0,0,0,0,0,0,0,0,0,0],
           ["J",1,1,1,1,1,0,0,0,5,5],
         ],
-        shot: "Ready to fire. Awaiting your orders, Sir!",
-        sinking: "The Enemy's fleet is near.",
-        win: 'There are still more ships to sink.',
+        messages: {
+          shot: "Ready to fire. Awaiting your orders, Sir!",
+          sinking: "The Enemy's fleet is near.",
+          win: 'There are still more ships to sink.',
+        },
         score: 0,
-        carrierAfloat: true,
-        battleshipAfloat: true,
-        cruiserAfloat: true,
-        submarineAfloat: true,
-        destroyerAfloat: true,
+        ships: {
+          carrierAfloat: true,
+          battleshipAfloat: true,
+          cruiserAfloat: true,
+          submarineAfloat: true,
+          destroyerAfloat: true,
+        },
       },
       bluePlayer: {
         name: "bluePlayer",
@@ -50,15 +54,19 @@ class App extends React.Component {
           ["I",1,1,1,1,1,0,0,0,5,5],
           ["J",0,0,0,0,0,0,0,0,0,0],
         ],
-        shot: "The Enemy is targeting us, Sir!",
-        sinking: "The Enemy's fleet is near.",
-        win: "There are still more ships to sink.",
+        messages: {
+          shot: "The Enemy is targeting us, Sir!",
+          sinking: "The Enemy's fleet is near.",
+          win: "There are still more ships to sink.",
+        },
         score: 0,
-        carrierAfloat: true,
-        battleshipAfloat: true,
-        cruiserAfloat: true,
-        submarineAfloat: true,
-        destroyerAfloat: true,
+        ships: {
+          carrierAfloat: true,
+          battleshipAfloat: true,
+          cruiserAfloat: true,
+          submarineAfloat: true,
+          destroyerAfloat: true,
+        },
       },
       highScores: [],
       turnNumber: 0,
@@ -85,17 +93,17 @@ class App extends React.Component {
       let opposingShotDisplay = 'Ready to fire. Awaiting your orders, Sir!';
       let nowSinking = 'The Enemy\'s fleet is near.';
       let roundBoard = this.state.isBluePlayerFiring ? this.state.bluePlayer.board.slice() : this.state.redPlayer.board.slice();
-      let newShot = this.state.isBluePlayerFiring ? this.state.bluePlayer.shot : this.state.redPlayer.shot;
-      let newWin = this.state.isBluePlayerFiring ? this.state.bluePlayer.win : this.state.redPlayer.win;
+      let newShot = this.state.isBluePlayerFiring ? this.state.bluePlayer.messages.shot : this.state.redPlayer.messages.shot;
+      let newWin = this.state.isBluePlayerFiring ? this.state.bluePlayer.messages.win : this.state.redPlayer.messages.win;
       let score = this.state.isBluePlayerFiring ? this.state.bluePlayer.score : this.state.redPlayer.score;
-      let carrier = this.state.isBluePlayerFiring ? this.state.bluePlayer.carrierAfloat : this.state.redPlayer.carrierAfloat;
-      let battleship = this.state.isBluePlayerFiring ? this.state.bluePlayer.battleshipAfloat : this.state.redPlayer.battleshipAfloat;
-      let cruiser = this.state.isBluePlayerFiring ? this.state.bluePlayer.cruiserAfloat : this.state.redPlayer.cruiserAfloat;
-      let submarine = this.state.isBluePlayerFiring ? this.state.bluePlayer.submarineAfloat : this.state.redPlayer.submarineAfloat;
-      let destroyer = this.state.isBluePlayerFiring ? this.state.bluePlayer.destroyerAfloat : this.state.redPlayer.destroyerAfloat;
+      let carrier = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.carrierAfloat : this.state.redPlayer.ships.carrierAfloat;
+      let battleship = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.battleshipAfloat : this.state.redPlayer.ships.battleshipAfloat;
+      let cruiser = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.cruiserAfloat : this.state.redPlayer.ships.cruiserAfloat;
+      let submarine = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.submarineAfloat : this.state.redPlayer.ships.submarineAfloat;
+      let destroyer = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.destroyerAfloat : this.state.redPlayer.ships.destroyerAfloat;
       let opponentScore = this.state.isBluePlayerFiring ? this.state.redPlayer.score : this.state.bluePlayer.score;
-      let opponentSinking = this.state.isBluePlayerFiring ? this.state.redPlayer.sinking : this.state.bluePlayer.sinking;
-      let opponentWin = this.state.isBluePlayerFiring ? this.state.redPlayer.win : this.state.bluePlayer.win;
+      let opponentSinking = this.state.isBluePlayerFiring ? this.state.redPlayer.messages.sinking : this.state.bluePlayer.messages.sinking;
+      let opponentWin = this.state.isBluePlayerFiring ? this.state.redPlayer.messages.win : this.state.bluePlayer.messages.win;
 
       if ((player === 'bluePlayer' && this.state.isBluePlayerFiring === true) || (player === 'redPlayer' && this.state.isBluePlayerFiring === false)) {
 
@@ -166,44 +174,56 @@ class App extends React.Component {
           this.setState({ 
             bluePlayer: {
               ...this.state.bluePlayer,
-              board: roundBoard, 
-              shot: newShot, 
-              sinking: nowSinking, 
-              win: newWin,
+              board: roundBoard,
+              messages: {
+                shot: newShot,
+                sinking: nowSinking,
+                win: newWin,
+              },
               score: score,
-              carrierAfloat: carrier,
-              battleshipAfloat: battleship,
-              cruiserAfloat: cruiser,
-              submarineAfloat: submarine,
-              destroyerAfloat: destroyer,
+              ships: {
+                carrierAfloat: carrier,
+                battleshipAfloat: battleship,
+                cruiserAfloat: cruiser,
+                submarineAfloat: submarine,
+                destroyerAfloat: destroyer,
+              },
             },
             redPlayer: {
               ...this.state.redPlayer,
-              shot: opposingShotDisplay,
-              sinking: opponentSinking,
-              win: opponentWin,
-            }
+              messages: {
+                shot: opposingShotDisplay,
+                sinking: opponentSinking,
+                win: opponentWin,
+              },
+            },
           });
         } else {
           this.setState({ 
             redPlayer: {
               ...this.state.redPlayer,
-              board: roundBoard, 
-              shot: newShot, 
-              sinking: nowSinking, 
-              win: newWin,
+              board: roundBoard,
+              messages: {
+                shot: newShot,
+                sinking: nowSinking,
+                win: newWin,
+              },
               score: score,
-              carrierAfloat: carrier,
-              battleshipAfloat: battleship,
-              ruiserAfloat: cruiser,
-              submarineAfloat: submarine,
-              destroyerAfloat: destroyer,
+              ships: {
+                carrierAfloat: carrier,
+                battleshipAfloat: battleship,
+                cruiserAfloat: cruiser,
+                submarineAfloat: submarine,
+                destroyerAfloat: destroyer,
+              }
             },
             bluePlayer: {
               ...this.state.bluePlayer,
-              shot: opposingShotDisplay,
-              sinking: opponentSinking,
-              win: opponentWin,
+              messages: {
+                shot: opposingShotDisplay,
+                sinking: opponentSinking,
+                win: opponentWin,
+              }
             }
           });
         }
@@ -225,10 +245,10 @@ class App extends React.Component {
           </header>
           <div className="App-main" >
             <div>
-              <PlayerDashboard className="player-area" player={this.state.redPlayer} opponent={this.state.bluePlayer} handleFire={ this.fireControlHandler } />
+              <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
             </div>
             <div>
-              <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponent={this.state.redPlayer} handleFire={ this.fireControlHandler } />
+              <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
             </div>
           </div>
           {/* <div>
