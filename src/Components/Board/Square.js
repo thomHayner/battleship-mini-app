@@ -6,11 +6,11 @@ const Square = (props) => {
         } else if (typeof props.value === 'string') {
             return <div className="index-square" >{props.value}</div>
         } else if (props.value === -2) {
-            return <div className="confirmedMiss" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
+            return <div className="confirmedMiss" onClick={ (e) => props.handleFire( props.row, props.col, props.name ) } />
         } else if (props.value === -1) {
-            return <div className="confirmedHit" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
+            return <div className="confirmedHit" onClick={ (e) => props.handleFire( props.row, props.col, props.name ) } />
         } else {
-            return <div className="square" onClick={ (e) => props.handleFire( props.row, props.col, props.player ) } />
+            return <div className="square" onClick={ (e) => props.handleFire( props.row, props.col, props.name ) } />
         }
 };
 

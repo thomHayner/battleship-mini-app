@@ -10,7 +10,7 @@ const Board = (props) =>
                     value={props.board[row][col]} 
                     row={row} 
                     col={col} 
-                    player={props.player} 
+                    name={props.name} 
                     handleFire={props.handleFire} 
                 />
             ))
