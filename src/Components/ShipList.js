@@ -6,15 +6,15 @@ import Submarine from "./Ships/Submarine";
 import Cruiser from "./Ships/Cruiser";
 import '../App.css';
 
-export default function ShipList({ player, option }) {
+export default function ShipList({ ships, option }) {
   return (
-    <div className={option === 1 ? "player-ship-list" : "enemy-ship-list" } >
-      <div><strong>{option === 1 ? "My Ships:" : "Enemy Ships:"}</strong></div>
-      <Carrier afloat={player.carrierAfloat} />
-      <Battleship afloat={player.battleshipAfloat} />
-      <Destroyer afloat={player.cruiserAfloat} />
-      <Submarine afloat={player.submarineAfloat} />
-      <Cruiser afloat={player.destroyerAfloat} />
+    <div className={option === 0 ? "player-ship-list" : "enemy-ship-list" } >
+      <div><strong>{option === 0 ? "My Ships:" : "Enemy Ships:"}</strong></div>
+      <Carrier afloat={ships.carrierAfloat} />
+      <Battleship afloat={ships.battleshipAfloat} />
+      <Destroyer afloat={ships.cruiserAfloat} />
+      <Submarine afloat={ships.submarineAfloat} />
+      <Cruiser afloat={ships.destroyerAfloat} />
     </div>
   )
 }
