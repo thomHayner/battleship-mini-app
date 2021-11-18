@@ -61,27 +61,27 @@
   - can be set up with webhook to auto-update with push to master on github
   - this is an ittermittent app and likely won't need much maintainence, so manual will provide regular interaction / practice with maintainence processes
   - manual deployment through CLI or [Heroku](Heroku.com) dashboard is currently necessary
-  <details>
-    <summary>CLI</summary>
+    <details>
+      <summary>CLI</summary>
 
-    - In your terminal
-    ```git push heroku master
-    heroku open
-    ```
+      - In your terminal
+      ```git push heroku master
+      heroku open
+      ```
 
-  </details>
+    </details>
 
-  <details>
-    <summary>Heroku Dashboard</summary>
+    <details>
+      <summary>Heroku Dashboard</summary>
 
-    - [Heroku](Heroku.com)
-    - log in
-    - select your app
-    - click deploy
-    - scroll down to bottom and click "Manual Deploy" button
+      - [Heroku](Heroku.com)
+      - log in
+      - select your app
+      - click deploy
+      - scroll down to bottom and click "Manual Deploy" button
 
-  </details>
-  
+    </details>
+
 </details>
 
 ### Background
