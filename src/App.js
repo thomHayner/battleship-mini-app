@@ -92,25 +92,25 @@ class App extends React.Component {
     if (this.state.redPlayer.shot !== 'VICTORY!' && this.state.bluePlayer.shot !== 'VICTORY!') {
       let turnPlayer = this.state.redPlayer;
       let opponent = this.state.bluePlayer;
-      // if (this.state.isBluePlayerFiring) {
-        // turnPlayer = this.state.bluePlayer;
-        // opponent = this.state.redPlayer;
-      // }
+      if (this.state.isBluePlayerFiring) {
+        turnPlayer = this.state.bluePlayer;
+        opponent = this.state.redPlayer;
+      }
       let newTurnNumber = this.state.turnNumber + 1;
       let opposingShotDisplay = 'Ready to fire. Awaiting your orders, Sir!';
       let nowSinking = 'The Enemy\'s fleet is near.';
-      let roundBoard = this.state.isBluePlayerFiring ? this.state.bluePlayer.board.slice() : this.state.redPlayer.board.slice();
-      let newShot = this.state.isBluePlayerFiring ? this.state.bluePlayer.messages.shot : this.state.redPlayer.messages.shot;
-      let newWin = this.state.isBluePlayerFiring ? this.state.bluePlayer.messages.win : this.state.redPlayer.messages.win;
-      let score = this.state.isBluePlayerFiring ? this.state.bluePlayer.score : this.state.redPlayer.score;
-      let carrier = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.carrierAfloat : this.state.redPlayer.ships.carrierAfloat;
-      let battleship = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.battleshipAfloat : this.state.redPlayer.ships.battleshipAfloat;
-      let cruiser = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.cruiserAfloat : this.state.redPlayer.ships.cruiserAfloat;
-      let submarine = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.submarineAfloat : this.state.redPlayer.ships.submarineAfloat;
-      let destroyer = this.state.isBluePlayerFiring ? this.state.bluePlayer.ships.destroyerAfloat : this.state.redPlayer.ships.destroyerAfloat;
-      let opponentScore = this.state.isBluePlayerFiring ? this.state.redPlayer.score : this.state.bluePlayer.score;
-      let opponentSinking = this.state.isBluePlayerFiring ? this.state.redPlayer.messages.sinking : this.state.bluePlayer.messages.sinking;
-      let opponentWin = this.state.isBluePlayerFiring ? this.state.redPlayer.messages.win : this.state.bluePlayer.messages.win;
+      let roundBoard = turnPlayer.board.slice();
+      let newShot = turnPlayer.messages.shot;
+      let newWin = turnPlayer.messages.win;
+      let score = turnPlayer.score;
+      let carrier = turnPlayer.ships.carrierAfloat;
+      let battleship = turnPlayer.ships.battleshipAfloat;
+      let cruiser = turnPlayer.ships.cruiserAfloat;
+      let submarine = turnPlayer.ships.submarineAfloat;
+      let destroyer = turnPlayer.ships.destroyerAfloat;
+      let opponentScore = opponent.score;
+      let opponentSinking = opponent.messages.sinking;
+      let opponentWin = opponent.messages.win;
 
       if ((player === 'bluePlayer' && this.state.isBluePlayerFiring === true) || (player === 'redPlayer' && this.state.isBluePlayerFiring === false)) {
 
