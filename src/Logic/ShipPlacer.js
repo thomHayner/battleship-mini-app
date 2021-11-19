@@ -70,7 +70,7 @@ function tryToPlaceAPiece(piece, placementBoard) {
   return tryToPlaceAPiece(piece, placementBoard);
 };
 
-export default function opponentShipPlacer() {
+export default function shipPlacer() {
   //0 start with:
   //0 an empty board,
   let placementBoard = [
@@ -103,6 +103,4 @@ export default function opponentShipPlacer() {
 
   //0 return a new board wih all of the pieces placed
   return placementBoard
-  
 }
-

@@ -1,4 +1,5 @@
 import React from 'react';
+import shipPlacer from './Logic/shipPlacer';
 import checkWinner from './Logic/checkWinner';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
@@ -39,19 +40,7 @@ class App extends React.Component {
       },
       bluePlayer: {
         name: "bluePlayer",
-        board: [
-          ["","1","2","3","4","5","6","7","8","9","10",],
-          ["A",0,2,0,0,0,0,0,0,4,0],
-          ["B",0,2,0,0,0,0,0,0,4,0],
-          ["C",0,2,0,0,0,0,0,0,4,0],
-          ["D",0,2,0,0,0,0,0,0,0,0],
-          ["E",0,0,0,0,0,0,0,0,0,0],
-          ["F",3,3,3,0,0,0,0,0,0,0],
-          ["G",0,0,0,0,0,0,0,0,0,0],
-          ["H",0,0,0,0,0,0,0,0,0,0],
-          ["I",1,1,1,1,1,0,0,0,5,5],
-          ["J",0,0,0,0,0,0,0,0,0,0],
-        ],
+        board: shipPlacer(),
         messages: {
           score: 0,
           shot: "The Enemy is targeting us, Sir!",
