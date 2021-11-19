@@ -1,3 +1,5 @@
+// This currently only does horizontal ships, need to implement logic for vertical placement
+
 // declare your picker functions
 let orientationPicker = () => Math.random() < 0.5;
 
