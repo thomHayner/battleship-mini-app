@@ -1,5 +1,3 @@
-// This currently only does horizontal ships, need to implement logic for vertical placement
-
 //0 Declare your picker functions for orientation and starting square
 let orientationPicker = () => Math.random() < 0.5;
 let squarePicker = () => Math.floor(Math.random() * (121 - 11) + 11);
@@ -44,23 +42,31 @@ function placeAPiece(piece, placementBoard) {
   //1 else, if orientation is false, ( orientation === 0 ), check the col
   } else {
     //2 if the piece fits before hitting the edge of the board
-    if (col + piece.length <= 11) {
+    if (row + piece.length <= 11) {
       //3 see if there are any collisions along the path
-      if (placementBoard[row].slice(col, col + piece.length).reduce((a,b) => a+b ) === 0) {
+      let tempArr = []
+      for (let i = row; i < row + piece.length; i++) {
+        tempArr.push(placementBoard[i][col])
+      }
+      if (tempArr.reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
-        for (let i = col; i < col + piece.length; i++) {
-          placementBoard[row][i] = piece[0]
+        for (let i = row; i < row + piece.length; i++) {
+          placementBoard[i][col] = piece[0]
         }
         //4 and mark the piece as placed
         return placementBoard
       }
-    //2 else, check for collisions in the other direction on the same row
+    //2 else, check for collisions in the other direction on the same col
     } else {
       //3 see if there are any collisions along the path
-      if (placementBoard[row].slice(col + 1 - piece.length, col + 1).reduce((a,b) => a+b ) === 0) {
+      let tempArr = []
+      for (let i = row + 1 - piece.length; i <= row; i++) {
+        tempArr.push(placementBoard[i][col])
+      }
+      if (tempArr.reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
-        for (let i = col + 1 - piece.length; i < col + 1; i++) {
-          placementBoard[row][i] = piece[0]
+        for (let i = row + 1 - piece.length; i <= row; i++) {
+          placementBoard[i][col] = piece[0]
         }
         //4 and mark the piece as placed
         return placementBoard
