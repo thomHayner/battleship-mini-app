@@ -179,6 +179,7 @@ class App extends React.Component {
                 shot: opposingShotDisplay,
                 sinking: opponentSinking,
                 win: opponentWin,
+                score: opponentScore,
               },
             },
           });
@@ -207,6 +208,7 @@ class App extends React.Component {
                 shot: opposingShotDisplay,
                 sinking: opponentSinking,
                 win: opponentWin,
+                score: opponentScore,
               }
             }
           });
