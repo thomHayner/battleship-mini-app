@@ -3,8 +3,6 @@ import checkWinner from './Logic/checkWinner';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
-// import ChooseGame from './Pages/ChooseGameLandingPage';
-// import fireControlHandler from './Logic/FireControlHandler';
 
 class App extends React.Component {
   constructor(props) {
@@ -75,102 +73,90 @@ class App extends React.Component {
     this.fireControlHandler = this.fireControlHandler.bind(this);
   }
 
-  // add componentDidMount here to invoke fetch
-  //    add fetch here to get scores
-
-  // componentDidMount() {
-  //   fetch('http://localhost:8080')
-  //     .then(res => {
-  //       return ;
-  //     })
-  //     .then(data => {
-  //       this.setState({ highScores: data }) ;
-  //     })
-  // }
-
   fireControlHandler = (row, col, player) => {
     if (this.state.redPlayer.shot !== 'VICTORY!' && this.state.bluePlayer.shot !== 'VICTORY!') {
-      let turnPlayer = this.state.redPlayer;
-      let opponent = this.state.bluePlayer;
+      let roundBoard = this.state.ships.redPlayer.board.slice();
+      let turnPlayerShips = this.state.ships.redPlayer;
+      let turnPlayerMessages = this.state.redPlayer;
+      let opponentMessages = this.state.bluePlayer;
       if (this.state.isBluePlayerFiring) {
-        turnPlayer = this.state.bluePlayer;
-        opponent = this.state.redPlayer;
+        roundBoard = this.state.bluePlayerboard.slice();
+        turnPlayerShips = this.state.ships.bluePlayer;
+        turnPlayerMessages = this.state.messages.bluePlayer;
+        opponentMessages = this.state.messages.redPlayer;
       }
       let newTurnNumber = this.state.turnNumber + 1;
       let opposingShotDisplay = 'Ready to fire. Awaiting your orders, Sir!';
-      let nowSinking = 'The Enemy\'s fleet is near.';
-      let roundBoard = turnPlayer.board.slice();
-      let newShot = turnPlayer.messages.shot;
-      let newWin = turnPlayer.messages.win;
-      let score = turnPlayer.messages.score;
-      let shipsArray = [turnPlayer.ships];
-      console.log(shipsArray)
-      let carrier = turnPlayer.ships.carrierAfloat;
-      let battleship = turnPlayer.ships.battleshipAfloat;
-      let cruiser = turnPlayer.ships.cruiserAfloat;
-      let submarine = turnPlayer.ships.submarineAfloat;
-      let destroyer = turnPlayer.ships.destroyerAfloat;
-      let opponentScore = opponent.messages.score;
-      let opponentSinking = opponent.messages.sinking;
-      let opponentWin = opponent.messages.win;
+      let playerSinking = 'The Enemy\'s fleet is near.';
+      let playerShot = turnPlayerMessages.shot;
+      let playerWin = turnPlayerMessages.win;
+      let playerScore = turnPlayerMessages.score;
+      let carrier = turnPlayerShips.carrierAfloat;
+      let battleship = turnPlayerShips.battleshipAfloat;
+      let cruiser = turnPlayerShips.cruiserAfloat;
+      let submarine = turnPlayerShips.submarineAfloat;
+      let destroyer = turnPlayerShips.destroyerAfloat;
+      let opponentScore = opponentMessages.score;
+      let opponentSinking = opponentMessages.sinking;
+      let opponentWin = opponentMessages.win;
 
       if ((player === 'bluePlayer' && this.state.isBluePlayerFiring === true) || (player === 'redPlayer' && this.state.isBluePlayerFiring === false)) {
 
         if (roundBoard[row][col] > 0) {
-          score += 5;
+          playerScore += 5;
           roundBoard[row][col] = -1;
-          newShot = 'Firing on ' + roundBoard[row][0] + col + '...Direct Hit!';
+          playerShot = 'Firing on ' + roundBoard[row][0] + col + '...Direct Hit!';
         }
         else if (roundBoard[row][col] === 0) {
-          score -= 1;
+          playerScore -= 1;
           roundBoard[row][col] = -2;
-          newShot = 'Firing on ' + roundBoard[row][0] + col + '...Miss!';
+          playerShot = 'Firing on ' + roundBoard[row][0] + col + '...Miss!';
         }
         else if (roundBoard[row][col] < 0) {
-          score -= 3;
-          newShot = 'You have already fired on this location. Try Again.';
-        }
+          playerScore -= 3;
+          playerShot = 'You have already fired on this location. Try Again.';
+        };
 
-        // This returns a check of the board to see if it is now a winner
+        // This returns a check of the board to see if there is now a winner
         let tracker = checkWinner(roundBoard);
 
         if (tracker[0] === 0 && carrier === true) {
-          score += 3;
-          nowSinking = "The enemy's Aircraft Carrier is sinking!";
+          playerScore += 3;
+          playerSinking = "The enemy's Aircraft Carrier is sinking!";
           carrier= false;
         };
         if (tracker[1] === 0 && battleship === true) {
-          score += 3;
-          nowSinking = "The enemy's Battleship is sinking!";
+          playerScore += 3;
+          playerSinking = "The enemy's Battleship is sinking!";
           battleship = false;
         };
         if (tracker[2] === 0 && cruiser === true) {
-          score += 3;
-          nowSinking = "The enemy's Cruiser is sinking!";
+          playerScore += 3;
+          playerSinking = "The enemy's Cruiser is sinking!";
           cruiser = false;
         };
         if (tracker[3] === 0 && submarine === true) {
-          score += 3;
-          nowSinking = "The enemy's Submarine is sinking!";
+          playerScore += 3;
+          playerSinking = "The enemy's Submarine is sinking!";
           submarine = false;
         };
         if (tracker[4] === 0 && destroyer === true) {
-          score += 3;
-          nowSinking = "The enemy's Destroyer is sinking!";
+          playerScore += 3;
+          playerSinking = "The enemy's Destroyer is sinking!";
           destroyer = false;
         };
         if (tracker.reduce(((a, b) => a+b), 0) === 0) {
-          if (score <= 0) {
-            score = 0;
+          if (playerScore <= 0) {
+            playerScore = 0;
           }
-          score *= 100;
+          playerScore *= 100;
           if (opponentScore <= 0) {
             opponentScore = 0;
           }
           opponentScore *= 100;
-          newShot = 'VICTORY!';
-          newWin = 'You have sunk all of the enemy\'s ships!';
-          nowSinking = `SCORE: ${score}`;
+          playerShot = 'VICTORY!';
+          playerWin = 'You have sunk all of the enemy\'s ships!';
+          playerSinking = `SCORE: ${playerScore}`;
           opponentSinking = `SCORE: ${opponentScore}`;
           opposingShotDisplay = 'DEFEAT!';
           opponentWin = 'All of your ships have been sunk!';
@@ -178,20 +164,17 @@ class App extends React.Component {
         };
         
         // This part finishes up by setting the new state values
-        // if (this.state.isBluePlayerFiring === true ) {
-          // let player = bluePlayer;
-          // let opponent =
         if (this.state.isBluePlayerFiring === true ) {
           this.setState({ 
             bluePlayer: {
               ...this.state.bluePlayer,
               board: roundBoard,
               messages: {
-                shot: newShot,
-                sinking: nowSinking,
-                win: newWin,
+                shot: playerShot,
+                sinking: playerSinking,
+                win: playerWin,
+                score: playerScore,
               },
-              score: score,
               ships: {
                 carrierAfloat: carrier,
                 battleshipAfloat: battleship,
@@ -215,11 +198,11 @@ class App extends React.Component {
               ...this.state.redPlayer,
               board: roundBoard,
               messages: {
-                shot: newShot,
-                sinking: nowSinking,
-                win: newWin,
+                shot: playerShot,
+                sinking: playerSinking,
+                win: playerWin,
+                score: playerScore,
               },
-              score: score,
               ships: {
                 carrierAfloat: carrier,
                 battleshipAfloat: battleship,
@@ -265,26 +248,9 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        {/* <div>
-          <ChooseGame/>
-        </div> */}
       </div>
     )
   }
 }
 
 export default App;
-
-// design a modal to pop up and either (new game / set pieces) or (load previous game) at start
-
-// build schema
-// build ExampleData object
-// link client / router / db
-
-// make game persistent
-// store high scores arcade game style
-
-// make responsive for mobile or web deployment
-// make a computer/AI to play against
-
-// componentDidMount() {}
