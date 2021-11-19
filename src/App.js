@@ -90,6 +90,12 @@ class App extends React.Component {
 
   fireControlHandler = (row, col, player) => {
     if (this.state.redPlayer.shot !== 'VICTORY!' && this.state.bluePlayer.shot !== 'VICTORY!') {
+      let turnPlayer = this.state.redPlayer;
+      let opponent = this.state.bluePlayer;
+      // if (this.state.isBluePlayerFiring) {
+        // turnPlayer = this.state.bluePlayer;
+        // opponent = this.state.redPlayer;
+      // }
       let newTurnNumber = this.state.turnNumber + 1;
       let opposingShotDisplay = 'Ready to fire. Awaiting your orders, Sir!';
       let nowSinking = 'The Enemy\'s fleet is near.';
@@ -126,32 +132,79 @@ class App extends React.Component {
         // This returns a check of the board to see if it is now a winner
         let tracker = checkWinner(roundBoard);
 
-        // 
-        if (tracker[0] === 0 && carrier === true) {
-          score += 3;
-          nowSinking = 'The enemy\'s Aircraft Carrier is sinking!';
-          carrier= false;
-        };
-        if (tracker[1] === 0 && battleship === true) {
-          score += 3;
-          nowSinking = 'The enemy\'s Battleship is sinking!';
-          battleship = false;
-        };
-        if (tracker[2] === 0 && cruiser === true) {
-          score += 3;
-          nowSinking = 'The enemy\'s Destroyer is sinking!';
-          cruiser = false;
-        };
-        if (tracker[3] === 0 && submarine === true) {
-          score += 3;
-          nowSinking = 'The enemy\'s Submarine is sinking!';
-          submarine = false;
-        };
-        if (tracker[4] === 0 && destroyer === true) {
-          score += 3;
-          nowSinking = 'The enemy\'s Patrol Boat is sinking!';
-          destroyer = false;
-        };
+        switch (true) {
+          case(tracker[0] === 0 && carrier === true):
+            score += 3;
+            nowSinking = "The enemy's Aircraft Carrier is sinking!";
+            carrier= false;
+            break;
+          case(tracker[1] === 0 && battleship === true):
+            score += 3;
+            nowSinking = "The enemy's Battleship is sinking!";
+            battleship= false;
+            break;
+          case(tracker[2] === 0 && cruiser === true):
+            score += 3;
+            nowSinking = "The enemy's Destroyer is sinking!";
+            cruiser= false;
+            break;
+          case(tracker[3] === 0 && submarine === true):
+            score += 3;
+            nowSinking = "The enemy's Submarine is sinking!";
+            submarine= false;
+            break;
+          case(tracker[4] === 0 && destroyer === true):
+            score += 3;
+            nowSinking = "The enemy's Destroyer' is sinking!";
+            destroyer= false;
+            break;
+          default:
+            if (tracker.reduce(((a, b) => a+b), 0) === 0) {
+              if (tracker.reduce(((a, b) => a+b), 0) === 0) {
+                if (score <= 0) {
+                  score = 0;
+                }
+                score *= 100;
+                if (opponentScore <= 0) {
+                  opponentScore = 0;
+                }
+                opponentScore *= 100;
+                newShot = 'VICTORY!';
+                newWin = 'You have sunk all of the enemy\'s ships!';
+                nowSinking = `SCORE: ${score}`;
+                opponentSinking = `SCORE: ${opponentScore}`;
+                opposingShotDisplay = 'DEFEAT!';
+                opponentWin = 'All of your ships have been sunk!';
+                // add fetch here to POST Scores
+              };
+            };
+        }
+
+        // if (tracker[0] === 0 && carrier === true) {
+        //   score += 3;
+        //   nowSinking = 'The enemy\'s Aircraft Carrier is sinking!';
+        //   carrier= false;
+        // };
+        // if (tracker[1] === 0 && battleship === true) {
+        //   score += 3;
+        //   nowSinking = 'The enemy\'s Battleship is sinking!';
+        //   battleship = false;
+        // };
+        // if (tracker[2] === 0 && cruiser === true) {
+        //   score += 3;
+        //   nowSinking = 'The enemy\'s Destroyer is sinking!';
+        //   cruiser = false;
+        // };
+        // if (tracker[3] === 0 && submarine === true) {
+        //   score += 3;
+        //   nowSinking = 'The enemy\'s Submarine is sinking!';
+        //   submarine = false;
+        // };
+        // if (tracker[4] === 0 && destroyer === true) {
+        //   score += 3;
+        //   nowSinking = 'The enemy\'s Patrol Boat is sinking!';
+        //   destroyer = false;
+        // };
         if (tracker.reduce(((a, b) => a+b), 0) === 0) {
           if (score <= 0) {
             score = 0;
@@ -171,6 +224,9 @@ class App extends React.Component {
         };
         
         // This part finishes up by setting the new state values
+        // if (this.state.isBluePlayerFiring === true ) {
+          // let player = bluePlayer;
+          // let opponent =
         if (this.state.isBluePlayerFiring === true ) {
           this.setState({ 
             bluePlayer: {
