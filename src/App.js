@@ -10,7 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       redPlayer: {
-        name: "redPlayer",
+        id: 1,
+        name: "Player",
         board: [
           ["","1","2","3","4","5","6","7","8","9","10",],
           ["A",2,0,0,0,0,0,0,4,4,4],
@@ -39,7 +40,8 @@ class App extends React.Component {
         },
       },
       bluePlayer: {
-        name: "bluePlayer",
+        id: 2,
+        name: "Computer",
         board: shipPlacer(),
         messages: {
           score: 0,
@@ -63,7 +65,7 @@ class App extends React.Component {
   }
 
   fireControlHandler = (row, col, player) => {
-    if (this.state.redPlayer.shot !== "VICTORY!" && this.state.bluePlayer.shot !== "VICTORY!") {
+    if (this.state.redPlayer.messages.shot !== "VICTORY!" && this.state.bluePlayer.messages.shot !== "VICTORY!") {
       let newTurnNumber = this.state.turnNumber + 1;
       let roundBoard = this.state.redPlayer.board.slice();
       let turnPlayerShips = this.state.redPlayer.ships;
@@ -89,7 +91,7 @@ class App extends React.Component {
       let opponentSinking = opponentMessages.sinking;
       let opponentWin = opponentMessages.win;
 
-      if ((player === "bluePlayer" && this.state.isBluePlayerFiring === true) || (player === "redPlayer" && this.state.isBluePlayerFiring === false)) {
+      if ((player === "Computer" && this.state.isBluePlayerFiring === true) || (player === "Player" && this.state.isBluePlayerFiring === false)) {
 
         if (roundBoard[row][col] > 0) {
           playerScore += 5;
