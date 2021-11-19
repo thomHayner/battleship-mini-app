@@ -1,17 +1,17 @@
 import React from 'react';
 import Square from './Square.js';
 
-const Board = (props) => 
+const Board = ({ board, playerId, handleFire }) => 
     <div className="board" >
-        {props.board.map( (i, row) => 
-            props.board.map( (j, col) => (
+        {board.map( (i, row) => 
+            board.map( (j, col) => (
                 <Square 
                     key={[row, col]} 
-                    value={props.board[row][col]} 
+                    value={board[row][col]} 
                     row={row} 
                     col={col} 
-                    name={props.name} 
-                    handleFire={props.handleFire} 
+                    playerId={playerId} 
+                    handleFire={handleFire} 
                 />
             ))
         )}

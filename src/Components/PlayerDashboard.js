@@ -10,7 +10,7 @@ export default function PlayerDashboard({ playerData, opponentShips, handleFire 
   return (
     <div>
       <PlayerName name={playerData.name} />
-      <Board board={playerData.board} playerId={playerData.id} name={playerData.name} handleFire={handleFire} />
+      <Board board={playerData.board} playerId={playerData.id} handleFire={handleFire} />
       <ScoreCard playerData={playerData} opponentShips={opponentShips} />
     </div>
   )
