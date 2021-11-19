@@ -60,9 +60,9 @@ class App extends React.Component {
       highScores: [],
       turnNumber: 0,
       isBluePlayerFiring: false,
-    }
+    };
     this.fireControlHandler = this.fireControlHandler.bind(this);
-  }
+  };
 
   fireControlHandler = (row, col, player) => {
     if (this.state.redPlayer.messages.shot !== "VICTORY!" && this.state.bluePlayer.messages.shot !== "VICTORY!") {
@@ -76,7 +76,7 @@ class App extends React.Component {
         turnPlayerShips = this.state.bluePlayer.ships;
         turnPlayerMessages = this.state.bluePlayer.messages;
         opponentMessages = this.state.redPlayer.messages;
-      }
+      };
       let playerScore = turnPlayerMessages.score;
       let playerShot = turnPlayerMessages.shot;
       let playerSinking = "The Enemy's fleet is near.";
@@ -139,11 +139,11 @@ class App extends React.Component {
         if (tracker.reduce(((a, b) => a+b), 0) === 0) {
           if (playerScore <= 0) {
             playerScore = 0;
-          }
+          };
           playerScore *= 100;
           if (opponentScore <= 0) {
             opponentScore = 0;
-          }
+          };
           opponentScore *= 100;
           playerShot = "VICTORY!";
           playerWin = "You have sunk all of the enemy's ships!";
@@ -212,15 +212,15 @@ class App extends React.Component {
               }
             }
           });
-        }
+        };
 
         this.setState({ 
           turnNumber: newTurnNumber, 
           isBluePlayerFiring: !this.state.isBluePlayerFiring, 
         });
-      }
-    }
-  }
+      };
+    };
+  };
 
   render() {
     return (
@@ -241,8 +241,8 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default App;
