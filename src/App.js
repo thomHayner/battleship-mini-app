@@ -4,6 +4,7 @@ import checkWinner from './Logic/checkWinner';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
+import squareCoordsPicker from './Logic/squareCoordsPicker';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class App extends React.Component {
       },
       highScores: [],
       turnNumber: 0,
-      isBluePlayerFiring: false,
+      isComputerFiring: false,
     };
     this.fireControlHandler = this.fireControlHandler.bind(this);
   };
@@ -71,7 +72,7 @@ class App extends React.Component {
       let turnPlayerShips = this.state.redPlayer.ships;
       let turnPlayerMessages = this.state.redPlayer.messages;
       let opponentMessages = this.state.bluePlayer.messages;
-      if (this.state.isBluePlayerFiring) {
+      if (this.state.isComputerFiring) {
         roundBoard = this.state.bluePlayer.board.slice();
         turnPlayerShips = this.state.bluePlayer.ships;
         turnPlayerMessages = this.state.bluePlayer.messages;
@@ -91,7 +92,7 @@ class App extends React.Component {
       let opponentSinking = opponentMessages.sinking;
       let opponentWin = opponentMessages.win;
 
-      if ((player === "Computer" && this.state.isBluePlayerFiring === true) || (player === "Player" && this.state.isBluePlayerFiring === false)) {
+      if ((playerId === 2 && this.state.isComputerFiring === true) || (playerId === 1 && this.state.isComputerFiring === false)) {
 
         if (roundBoard[row][col] > 0) {
           playerScore += 5;
@@ -154,7 +155,7 @@ class App extends React.Component {
         };
         
         // This part finishes up by setting the new state values
-        if (this.state.isBluePlayerFiring === true ) {
+        if (this.state.isComputerFiring === true ) {
           this.setState({ 
             bluePlayer: {
               ...this.state.bluePlayer,
@@ -216,7 +217,7 @@ class App extends React.Component {
 
         this.setState({ 
           turnNumber: newTurnNumber, 
-          isBluePlayerFiring: !this.state.isBluePlayerFiring, 
+          isComputerFiring: !this.state.isComputerFiring, 
         });
       };
     };
@@ -232,7 +233,7 @@ class App extends React.Component {
         <div className="container-equivalent App-main" >
           <div className="row-equivalent" >
             <div className="col-equivalent whose-turn-banner" >
-              <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
+              <WhoseTurnIsItAnyway turn={this.state.isComputerFiring} />
             </div>
             <div className="col-equivalent player-area-parent" >
               <PlayerDashboard className="player-area" playerData={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
