@@ -63,9 +63,18 @@ class App extends React.Component {
       isComputerFiring: false,
     };
     this.fireControlHandler = this.fireControlHandler.bind(this);
+    this.subController = this.subController.bind(this);
   };
 
-  fireControlHandler = (row, col, player) => {
+  fireControlHandler = (row, col, playerId) => {
+    let square = squareCoordsPicker();
+    this.subController(row, col, playerId)
+    if (playerId === 1) {
+      this.subController(square[1], square[0], 2)
+    }
+  };
+
+  subController = (row,col, playerId) => {
     if (this.state.redPlayer.messages.shot !== "VICTORY!" && this.state.bluePlayer.messages.shot !== "VICTORY!") {
       let newTurnNumber = this.state.turnNumber + 1;
       let roundBoard = this.state.redPlayer.board.slice();
