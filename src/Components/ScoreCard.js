@@ -3,14 +3,14 @@ import MessageBoard from "./MessageBoard";
 import ShipList from "./ShipList";
 import '../App.css';
 
-export default function ScoreCard({ player, opponentShips }) {
+export default function ScoreCard({ playerData, opponentShips }) {
   return (
     <div>
-      <MessageBoard messages={player.messages} />
+      <MessageBoard messages={playerData.messages} />
       <div className="ship-list-area" >
         <ShipList ships={opponentShips} option={0} />
         <div/>
-        <ShipList ships={player.ships} option={1} />
+        <ShipList ships={playerData.ships} option={1} />
       </div>
     </div>
   )

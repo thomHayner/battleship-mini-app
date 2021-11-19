@@ -200,7 +200,7 @@ class App extends React.Component {
                 cruiserAfloat: cruiser,
                 submarineAfloat: submarine,
                 destroyerAfloat: destroyer,
-              }
+              },
             },
             bluePlayer: {
               ...this.state.bluePlayer,
@@ -209,8 +209,8 @@ class App extends React.Component {
                 sinking: opponentSinking,
                 win: opponentWin,
                 score: opponentScore,
-              }
-            }
+              },
+            },
           });
         };
 
@@ -235,8 +235,8 @@ class App extends React.Component {
               <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
             </div>
             <div className="col-equivalent player-area-parent" >
-              <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
-              <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
+              <PlayerDashboard className="player-area" playerData={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
+              <PlayerDashboard className="player-area" playerData={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
             </div>
           </div>
         </div>
