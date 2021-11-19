@@ -16,7 +16,6 @@
 
 - JavaScript
 - React
-- esLint
 - react-beautiful-dnd
 
 </details>
@@ -42,7 +41,7 @@
   </br>
 
   3. Create your Heruko App through the command line
-  [Heroku Docs / C-R-A Deploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
+  [Heroku Docs / C-R-A Runtime QuickDeploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
   ```shell
   heroku create -b https://github.com/mars/create-react-app-buildpack.git
   git add .
@@ -88,15 +87,21 @@
 ### Background
 
   <p>
-  This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement a 'board selection' feature at the time so the ships were not movable.
+  This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement a 'board selection' feature at the time so the ships were not movable and the board configuration (where the ships were plced) never changed.
   </p>
 
   <p>
-  Since there is no back end, I decided to just host it on Heroku as a front end only app.  This might change.
+  The app is mostly vanilla JavaScript, with a little bit of React to make the UI.<br>
+  There is a recursive function in 'src/Logic/shipPlacer.js'.
   </p>
 
   <p>
   I have since done some work to refactor and compartmentalize the app.<br>
+  I also added a randomizer for the board configuration.<br>
   I plan to add player 'board selection', possibly using react-beautiful-dnd.<br>
-  I plan to try and make it full stack, possibly by tweaking the scoring system and making with some sort of arcade game style score board component.
+  </p>
+
+  <p>
+  Since there is no back end, I decided to just host it on Heroku as a front end only app.<br>
+  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in thiddle and then come back to it, however, I doubt that many people will ever play this, so I will porbably just leave it as a portfolio project displaying an app written in JavaScript.
   </p>
