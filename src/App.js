@@ -74,47 +74,47 @@ class App extends React.Component {
   }
 
   fireControlHandler = (row, col, player) => {
-    if (this.state.redPlayer.shot !== 'VICTORY!' && this.state.bluePlayer.shot !== 'VICTORY!') {
-      let roundBoard = this.state.ships.redPlayer.board.slice();
-      let turnPlayerShips = this.state.ships.redPlayer;
-      let turnPlayerMessages = this.state.redPlayer;
-      let opponentMessages = this.state.bluePlayer;
-      if (this.state.isBluePlayerFiring) {
-        roundBoard = this.state.bluePlayerboard.slice();
-        turnPlayerShips = this.state.ships.bluePlayer;
-        turnPlayerMessages = this.state.messages.bluePlayer;
-        opponentMessages = this.state.messages.redPlayer;
-      }
+    if (this.state.redPlayer.shot !== "VICTORY!" && this.state.bluePlayer.shot !== "VICTORY!") {
       let newTurnNumber = this.state.turnNumber + 1;
-      let opposingShotDisplay = 'Ready to fire. Awaiting your orders, Sir!';
-      let playerSinking = 'The Enemy\'s fleet is near.';
-      let playerShot = turnPlayerMessages.shot;
-      let playerWin = turnPlayerMessages.win;
+      let roundBoard = this.state.redPlayer.board.slice();
+      let turnPlayerShips = this.state.redPlayer.ships;
+      let turnPlayerMessages = this.state.redPlayer.messages;
+      let opponentMessages = this.state.bluePlayer.messages;
+      if (this.state.isBluePlayerFiring) {
+        roundBoard = this.state.bluePlayer.board.slice();
+        turnPlayerShips = this.state.bluePlayer.ships;
+        turnPlayerMessages = this.state.bluePlayer.messages;
+        opponentMessages = this.state.redPlayer.messages;
+      }
       let playerScore = turnPlayerMessages.score;
+      let playerShot = turnPlayerMessages.shot;
+      let playerSinking = "The Enemy's fleet is near.";
+      let playerWin = turnPlayerMessages.win;
       let carrier = turnPlayerShips.carrierAfloat;
       let battleship = turnPlayerShips.battleshipAfloat;
       let cruiser = turnPlayerShips.cruiserAfloat;
       let submarine = turnPlayerShips.submarineAfloat;
       let destroyer = turnPlayerShips.destroyerAfloat;
       let opponentScore = opponentMessages.score;
+      let opposingShotDisplay = "Ready to fire. Awaiting your orders, Sir!";
       let opponentSinking = opponentMessages.sinking;
       let opponentWin = opponentMessages.win;
 
-      if ((player === 'bluePlayer' && this.state.isBluePlayerFiring === true) || (player === 'redPlayer' && this.state.isBluePlayerFiring === false)) {
+      if ((player === "bluePlayer" && this.state.isBluePlayerFiring === true) || (player === "redPlayer" && this.state.isBluePlayerFiring === false)) {
 
         if (roundBoard[row][col] > 0) {
           playerScore += 5;
           roundBoard[row][col] = -1;
-          playerShot = 'Firing on ' + roundBoard[row][0] + col + '...Direct Hit!';
+          playerShot = "Firing on " + roundBoard[row][0] + col + "...Direct Hit!";
         }
         else if (roundBoard[row][col] === 0) {
           playerScore -= 1;
           roundBoard[row][col] = -2;
-          playerShot = 'Firing on ' + roundBoard[row][0] + col + '...Miss!';
+          playerShot = "Firing on " + roundBoard[row][0] + col + "...Miss!";
         }
         else if (roundBoard[row][col] < 0) {
           playerScore -= 3;
-          playerShot = 'You have already fired on this location. Try Again.';
+          playerShot = "You have already fired on this location. Try Again.";
         };
 
         // This returns a check of the board to see if there is now a winner
@@ -154,13 +154,12 @@ class App extends React.Component {
             opponentScore = 0;
           }
           opponentScore *= 100;
-          playerShot = 'VICTORY!';
-          playerWin = 'You have sunk all of the enemy\'s ships!';
+          playerShot = "VICTORY!";
+          playerWin = "You have sunk all of the enemy's ships!";
           playerSinking = `SCORE: ${playerScore}`;
           opponentSinking = `SCORE: ${opponentScore}`;
-          opposingShotDisplay = 'DEFEAT!';
-          opponentWin = 'All of your ships have been sunk!';
-          // add fetch here to POST Scores
+          opposingShotDisplay = "DEFEAT!";
+          opponentWin = "All of your ships have been sunk!";
         };
         
         // This part finishes up by setting the new state values
