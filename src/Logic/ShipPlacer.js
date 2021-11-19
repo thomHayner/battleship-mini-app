@@ -1,11 +1,12 @@
 // This currently only does horizontal ships, need to implement logic for vertical placement
 
-// declare your picker functions
+//0 Declare your picker functions for orientation and starting square
 let orientationPicker = () => Math.random() < 0.5;
-
 let squarePicker = () => Math.floor(Math.random() * (121 - 11) + 11);
 
-function tryToPlaceAPiece(piece, placementBoard) { 
+//0 Declare a recursive function that takes a piece and a board, and returns the board with
+//0 the piece placed in a valid/legal position on the board
+function placeAPiece(piece, placementBoard) { 
   let square = squarePicker();
   //1 top-index-squares are already excluded, but you still need to check and make sure it is not 
   //1 one of the left-index-squares, if it is, advance to the next square
@@ -66,13 +67,14 @@ function tryToPlaceAPiece(piece, placementBoard) {
       }
     }
   }
-  //1 if the piece was not placed, recurse with new square
-  return tryToPlaceAPiece(piece, placementBoard);
+  //1 if the piece was not placed, recurse with new starting square
+  return placeAPiece(piece, placementBoard);
 };
 
+//0 Tie it all together to make a gameplay board with all of the ship pieces placed on it
 export default function shipPlacer() {
-  //0 start with:
-  //0 an empty board,
+  //1 start with:
+  //1 an empty board,
   let placementBoard = [
     ["","1","2","3","4","5","6","7","8","9","10",],
     ["A",0,0,0,0,0,0,0,0,0,0],
@@ -86,7 +88,7 @@ export default function shipPlacer() {
     ["I",0,0,0,0,0,0,0,0,0,0],
     ["J",0,0,0,0,0,0,0,0,0,0],
   ];
-  //0 and an array of 5 ship pieces.
+  //1 and an array of 5 ship pieces.
   let shipPieces = [
     [1,1,1,1,1],
     [2,2,2,2],
@@ -95,12 +97,12 @@ export default function shipPlacer() {
     [5,5]
   ];
 
-  //0 Now you have 5 pieces, a board, and a way to pick an orientation and a placement square.
+  //1 Now you have 5 pieces, a board, and a way to pick an orientation and a placement square.
   for (let i = 0; i < shipPieces.length; i++) {
-    //1 Loop through the shipPieces array and place each of the pieces.
-    placementBoard = tryToPlaceAPiece(shipPieces[i], placementBoard);
+    //2 Loop through the shipPieces array and place each of the pieces.
+    placementBoard = placeAPiece(shipPieces[i], placementBoard);
   }
 
-  //0 return a new board wih all of the pieces placed
+  //1 return a new board wih all of the pieces placed
   return placementBoard
 }
