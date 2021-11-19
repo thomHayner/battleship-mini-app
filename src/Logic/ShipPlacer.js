@@ -1,18 +1,14 @@
-//0 Declare your picker functions for orientation and starting square
+import squareCoordsPicker from './squareCoordsPicker';
+
+//0 Declare your picker functions for the orientation to use when placing the shipPieces.
 let orientationPicker = () => Math.random() < 0.5;
-let squarePicker = () => Math.floor(Math.random() * (121 - 11) + 11);
 
 //0 Declare a recursive function that takes a piece and a board, and returns the board with
 //0 the piece placed in a valid/legal position on the board
 function placeAPiece(piece, placementBoard) { 
-  let square = squarePicker();
-  //1 top-index-squares are already excluded, but you still need to check and make sure it is not 
-  //1 one of the left-index-squares, if it is, advance to the next square
-  if (square % 11 === 0) {
-    square++
-  }
-  let row = (square - (square % 11))/11
-  let col = square % 11
+  let square = squareCoordsPicker();
+  let col = square[0];
+  let row = square[1];
 
   //1 if orientation is true, ( orientation === 1 ), check the row
   if (orientationPicker()) {
@@ -22,10 +18,10 @@ function placeAPiece(piece, placementBoard) {
       if (placementBoard[row].slice(col, col + piece.length).reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
         for (let i = col; i < col + piece.length; i++) {
-          placementBoard[row][i] = piece[0]
-        }
+          placementBoard[row][i] = piece[0];
+        };
         //4 and mark the piece as placed
-        return placementBoard
+        return placementBoard;
       }
     //2 else, check for collisions in the other direction on the same row
     } else {
@@ -33,10 +29,10 @@ function placeAPiece(piece, placementBoard) {
       if (placementBoard[row].slice(col + 1 - piece.length, col + 1).reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
         for (let i = col + 1 - piece.length; i < col + 1; i++) {
-          placementBoard[row][i] = piece[0]
+          placementBoard[row][i] = piece[0];
         }
         //4 and mark the piece as placed
-        return placementBoard
+        return placementBoard;
       }
     }
   //1 else, if orientation is false, ( orientation === 0 ), check the col
@@ -44,32 +40,32 @@ function placeAPiece(piece, placementBoard) {
     //2 if the piece fits before hitting the edge of the board
     if (row + piece.length <= 11) {
       //3 see if there are any collisions along the path
-      let tempArr = []
+      let tempArr = [];
       for (let i = row; i < row + piece.length; i++) {
-        tempArr.push(placementBoard[i][col])
+        tempArr.push(placementBoard[i][col]);
       }
       if (tempArr.reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
         for (let i = row; i < row + piece.length; i++) {
-          placementBoard[i][col] = piece[0]
+          placementBoard[i][col] = piece[0];
         }
         //4 and mark the piece as placed
-        return placementBoard
+        return placementBoard;
       }
     //2 else, check for collisions in the other direction on the same col
     } else {
       //3 see if there are any collisions along the path
-      let tempArr = []
+      let tempArr = [];
       for (let i = row + 1 - piece.length; i <= row; i++) {
-        tempArr.push(placementBoard[i][col])
+        tempArr.push(placementBoard[i][col]);
       }
       if (tempArr.reduce((a,b) => a+b ) === 0) {
         //4 if no collisions, place the piece
         for (let i = row + 1 - piece.length; i <= row; i++) {
-          placementBoard[i][col] = piece[0]
+          placementBoard[i][col] = piece[0];
         }
         //4 and mark the piece as placed
-        return placementBoard
+        return placementBoard;
       }
     }
   }
@@ -103,12 +99,12 @@ export default function shipPlacer() {
     [5,5]
   ];
 
-  //1 Now you have 5 pieces, a board, and a way to pick an orientation and a placement square.
+  //1 Now you have 5 pieces, a board, and ways to pick an orientation and a placement square.
   for (let i = 0; i < shipPieces.length; i++) {
     //2 Loop through the shipPieces array and place each of the pieces.
     placementBoard = placeAPiece(shipPieces[i], placementBoard);
   }
 
   //1 return a new board wih all of the pieces placed
-  return placementBoard
+  return placementBoard;
 }
