@@ -74,7 +74,7 @@ class App extends React.Component {
     }
     this.fireControlHandler = this.fireControlHandler.bind(this);
   }
-  
+
   // add componentDidMount here to invoke fetch
   //    add fetch here to get scores
 
@@ -239,15 +239,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header" >
-          <h1>Battleship</h1>
-          <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
+      <div className="App" >
+        <header className="container-equivalent App-header" >
+          <h1 className="row-equivalent" >Battleship</h1>
+          <h2 className="row-equivalent" >Based on the Classic Board Game</h2>
         </header>
-        <div className="App-main" >
-          <div className="player-area-parent" >
-            <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
-            <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
+        <div className="container-equivalent App-main" >
+          <div className="row-equivalent" >
+            <div className="col-equivalent whose-turn-banner" >
+              <WhoseTurnIsItAnyway turn={this.state.isBluePlayerFiring} />
+            </div>
+            <div className="col-equivalent player-area-parent" >
+              <PlayerDashboard className="player-area" player={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
+              <PlayerDashboard className="player-area" player={this.state.bluePlayer} opponentShips={this.state.redPlayer.ships} handleFire={ this.fireControlHandler } />
+            </div>
           </div>
         </div>
         {/* <div>
@@ -262,7 +267,6 @@ export default App;
 
 // design a modal to pop up and either (new game / set pieces) or (load previous game) at start
 
-// build router ?react router? --- no, react reouter is not a server, do NOT research this till later
 // build schema
 // build ExampleData object
 // link client / router / db
@@ -272,7 +276,5 @@ export default App;
 
 // make responsive for mobile or web deployment
 // make a computer/AI to play against
-
-// deploy to AWS
 
 // componentDidMount() {}
