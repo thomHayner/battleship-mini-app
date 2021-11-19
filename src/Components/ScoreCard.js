@@ -1,9 +1,6 @@
 import React from "react";
 import MessageBoard from "./MessageBoard";
 import ShipList from "./ShipList";
-import Shot from "./DisplayMessages/Shot";
-import Sinking from "./DisplayMessages/Sinking";
-import Winner from "./DisplayMessages/Winner";
 import '../App.css';
 
 export default function ScoreCard({ player, opponentShips }) {
