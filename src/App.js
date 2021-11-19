@@ -1,5 +1,5 @@
 import React from 'react';
-import checkWinner from './Logic/CheckWinner';
+import checkWinner from './Logic/checkWinner';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
@@ -26,11 +26,11 @@ class App extends React.Component {
           ["J",1,1,1,1,1,0,0,0,5,5],
         ],
         messages: {
+          score: 0,
           shot: "Ready to fire. Awaiting your orders, Sir!",
           sinking: "The Enemy's fleet is near.",
           win: 'There are still more ships to sink.',
         },
-        score: 0,
         ships: {
           carrierAfloat: true,
           battleshipAfloat: true,
@@ -55,11 +55,11 @@ class App extends React.Component {
           ["J",0,0,0,0,0,0,0,0,0,0],
         ],
         messages: {
+          score: 0,
           shot: "The Enemy is targeting us, Sir!",
           sinking: "The Enemy's fleet is near.",
           win: "There are still more ships to sink.",
         },
-        score: 0,
         ships: {
           carrierAfloat: true,
           battleshipAfloat: true,
@@ -102,13 +102,15 @@ class App extends React.Component {
       let roundBoard = turnPlayer.board.slice();
       let newShot = turnPlayer.messages.shot;
       let newWin = turnPlayer.messages.win;
-      let score = turnPlayer.score;
+      let score = turnPlayer.messages.score;
+      let shipsArray = [turnPlayer.ships];
+      console.log(shipsArray)
       let carrier = turnPlayer.ships.carrierAfloat;
       let battleship = turnPlayer.ships.battleshipAfloat;
       let cruiser = turnPlayer.ships.cruiserAfloat;
       let submarine = turnPlayer.ships.submarineAfloat;
       let destroyer = turnPlayer.ships.destroyerAfloat;
-      let opponentScore = opponent.score;
+      let opponentScore = opponent.messages.score;
       let opponentSinking = opponent.messages.sinking;
       let opponentWin = opponent.messages.win;
 
@@ -132,79 +134,31 @@ class App extends React.Component {
         // This returns a check of the board to see if it is now a winner
         let tracker = checkWinner(roundBoard);
 
-        switch (true) {
-          case(tracker[0] === 0 && carrier === true):
-            score += 3;
-            nowSinking = "The enemy's Aircraft Carrier is sinking!";
-            carrier= false;
-            break;
-          case(tracker[1] === 0 && battleship === true):
-            score += 3;
-            nowSinking = "The enemy's Battleship is sinking!";
-            battleship= false;
-            break;
-          case(tracker[2] === 0 && cruiser === true):
-            score += 3;
-            nowSinking = "The enemy's Destroyer is sinking!";
-            cruiser= false;
-            break;
-          case(tracker[3] === 0 && submarine === true):
-            score += 3;
-            nowSinking = "The enemy's Submarine is sinking!";
-            submarine= false;
-            break;
-          case(tracker[4] === 0 && destroyer === true):
-            score += 3;
-            nowSinking = "The enemy's Destroyer' is sinking!";
-            destroyer= false;
-            break;
-          default:
-            if (tracker.reduce(((a, b) => a+b), 0) === 0) {
-              if (tracker.reduce(((a, b) => a+b), 0) === 0) {
-                if (score <= 0) {
-                  score = 0;
-                }
-                score *= 100;
-                if (opponentScore <= 0) {
-                  opponentScore = 0;
-                }
-                opponentScore *= 100;
-                newShot = 'VICTORY!';
-                newWin = 'You have sunk all of the enemy\'s ships!';
-                nowSinking = `SCORE: ${score}`;
-                opponentSinking = `SCORE: ${opponentScore}`;
-                opposingShotDisplay = 'DEFEAT!';
-                opponentWin = 'All of your ships have been sunk!';
-                // add fetch here to POST Scores
-              };
-            };
-        }
-
-        // if (tracker[0] === 0 && carrier === true) {
-        //   score += 3;
-        //   nowSinking = 'The enemy\'s Aircraft Carrier is sinking!';
-        //   carrier= false;
-        // };
-        // if (tracker[1] === 0 && battleship === true) {
-        //   score += 3;
-        //   nowSinking = 'The enemy\'s Battleship is sinking!';
-        //   battleship = false;
-        // };
-        // if (tracker[2] === 0 && cruiser === true) {
-        //   score += 3;
-        //   nowSinking = 'The enemy\'s Destroyer is sinking!';
-        //   cruiser = false;
-        // };
-        // if (tracker[3] === 0 && submarine === true) {
-        //   score += 3;
-        //   nowSinking = 'The enemy\'s Submarine is sinking!';
-        //   submarine = false;
-        // };
-        // if (tracker[4] === 0 && destroyer === true) {
-        //   score += 3;
-        //   nowSinking = 'The enemy\'s Patrol Boat is sinking!';
-        //   destroyer = false;
-        // };
+        if (tracker[0] === 0 && carrier === true) {
+          score += 3;
+          nowSinking = "The enemy's Aircraft Carrier is sinking!";
+          carrier= false;
+        };
+        if (tracker[1] === 0 && battleship === true) {
+          score += 3;
+          nowSinking = "The enemy's Battleship is sinking!";
+          battleship = false;
+        };
+        if (tracker[2] === 0 && cruiser === true) {
+          score += 3;
+          nowSinking = "The enemy's Cruiser is sinking!";
+          cruiser = false;
+        };
+        if (tracker[3] === 0 && submarine === true) {
+          score += 3;
+          nowSinking = "The enemy's Submarine is sinking!";
+          submarine = false;
+        };
+        if (tracker[4] === 0 && destroyer === true) {
+          score += 3;
+          nowSinking = "The enemy's Destroyer is sinking!";
+          destroyer = false;
+        };
         if (tracker.reduce(((a, b) => a+b), 0) === 0) {
           if (score <= 0) {
             score = 0;
