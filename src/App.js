@@ -31,19 +31,20 @@ class App extends React.Component {
       bluePlayer: {
         id: 2,
         name: "Computer",
-        board: [
-          ["","1","2","3","4","5","6","7","8","9","10",],
-          ["A",2,0,0,0,0,0,0,4,4,4],
-          ["B",2,0,0,0,0,0,0,0,0,3],
-          ["C",2,0,0,0,0,0,0,0,0,3],
-          ["D",2,0,0,0,0,0,0,0,0,3],
-          ["E",0,0,0,0,0,0,0,0,0,0],
-          ["F",0,0,0,0,0,0,0,0,0,0],
-          ["G",0,0,0,0,0,0,0,0,0,0],
-          ["H",0,0,0,0,0,0,0,0,0,0],
-          ["I",0,0,0,0,0,0,0,0,0,5],
-          ["J",1,1,1,1,1,0,0,0,0,5],
-        ],
+        board: shipPlacer(),
+        // [
+          // ["","1","2","3","4","5","6","7","8","9","10",],
+          // ["A",2,0,0,0,0,0,0,4,4,4],
+          // ["B",2,0,0,0,0,0,0,0,0,3],
+          // ["C",2,0,0,0,0,0,0,0,0,3],
+          // ["D",2,0,0,0,0,0,0,0,0,3],
+          // ["E",0,0,0,0,0,0,0,0,0,0],
+          // ["F",0,0,0,0,0,0,0,0,0,0],
+          // ["G",0,0,0,0,0,0,0,0,0,0],
+          // ["H",0,0,0,0,0,0,0,0,0,0],
+          // ["I",0,0,0,0,0,0,0,0,0,5],
+          // ["J",1,1,1,1,1,0,0,0,0,5],
+        // ],
         messages: {
           score: 0,
           shot: "The Enemy is targeting us, Sir!",
@@ -61,6 +62,7 @@ class App extends React.Component {
       highScores: [],
       turnNumber: 0,
       isComputerFiring: false,
+      gameOver: false
     };
     this.fireControlHandler = this.fireControlHandler.bind(this);
     this.subController = this.subController.bind(this);
@@ -68,7 +70,7 @@ class App extends React.Component {
   };
 
   fireControlHandler = (row, col, playerId) => {
-    if (this.state.redPlayer.messages.shot !== "VICTORY!" && this.state.bluePlayer.messages.shot !== "VICTORY!") {
+    if (this.state.gameOver === false) {
       if ((playerId === 1 && this.state.isComputerFiring === false)) {
         this.computerTurn(row, col)
           .then(res => this.subController(res[1], res[0], 2))
@@ -81,7 +83,7 @@ class App extends React.Component {
       let square = squareCoordsPicker();
       this.subController(row, col, 1);
       setTimeout(() => resolve(square), 2000)
-      
+
     })
   }
 
@@ -110,6 +112,7 @@ class App extends React.Component {
     let opposingShotDisplay = "Ready to fire. Awaiting your orders, Sir!";
     let opponentSinking = opponentMessages.sinking;
     let opponentWin = opponentMessages.win;
+    let gameOver = false;
 
     if (roundBoard[row][col] > 0) {
       playerScore += 5;
@@ -169,6 +172,7 @@ class App extends React.Component {
       opponentSinking = `SCORE: ${opponentScore}`;
       opposingShotDisplay = "DEFEAT!";
       opponentWin = "All of your ships have been sunk!";
+      gameOver = true;
     };
     
     // This part finishes up by setting the new state values
@@ -200,6 +204,7 @@ class App extends React.Component {
             score: opponentScore,
           },
         },
+        gameOver: gameOver,
       });
     } else {
       this.setState({
@@ -229,6 +234,7 @@ class App extends React.Component {
             score: opponentScore,
           },
         },
+        gameOver: gameOver,
       });
     };
 
