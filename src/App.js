@@ -13,20 +13,20 @@ class App extends React.Component {
       redPlayer: {
         id: 1,
         name: "Player",
-        board: //shipPlacer(),
-        [
-          ["","1","2","3","4","5","6","7","8","9","10",],
-          ["A",2,0,0,0,0,0,0,4,4,4],
-          ["B",2,0,0,0,0,0,0,0,0,3],
-          ["C",2,0,0,0,0,0,0,0,0,3],
-          ["D",2,0,0,0,0,0,0,0,0,3],
-          ["E",0,0,0,0,0,0,0,0,0,0],
-          ["F",0,0,0,0,0,0,0,0,0,0],
-          ["G",0,0,0,0,0,0,0,0,0,0],
-          ["H",0,0,0,0,0,0,0,0,0,0],
-          ["I",0,0,0,0,0,0,0,0,0,5],
-          ["J",1,1,1,1,1,0,0,0,0,5],
-        ],
+        board: shipPlacer(),
+        // [
+        //   ["","1","2","3","4","5","6","7","8","9","10",],
+        //   ["A",2,0,0,0,0,0,0,4,4,4],
+        //   ["B",2,0,0,0,0,0,0,0,0,3],
+        //   ["C",2,0,0,0,0,0,0,0,0,3],
+        //   ["D",2,0,0,0,0,0,0,0,0,3],
+        //   ["E",0,0,0,0,0,0,0,0,0,0],
+        //   ["F",0,0,0,0,0,0,0,0,0,0],
+        //   ["G",0,0,0,0,0,0,0,0,0,0],
+        //   ["H",0,0,0,0,0,0,0,0,0,0],
+        //   ["I",0,0,0,0,0,0,0,0,0,5],
+        //   ["J",1,1,1,1,1,0,0,0,0,5],
+        // ],
         messages: {
           score: 0,
           shot: "Ready to fire. Awaiting your orders, Sir!",
@@ -45,19 +45,6 @@ class App extends React.Component {
         id: 2,
         name: "Computer",
         board: shipPlacer(),
-        // [
-        //   ["","1","2","3","4","5","6","7","8","9","10",],
-        //   ["A",2,0,0,0,0,0,0,4,4,4],
-        //   ["B",2,0,0,0,0,0,0,0,0,3],
-        //   ["C",2,0,0,0,0,0,0,0,0,3],
-        //   ["D",2,0,0,0,0,0,0,0,0,3],
-        //   ["E",0,0,0,0,0,0,0,0,0,0],
-        //   ["F",0,0,0,0,0,0,0,0,0,0],
-        //   ["G",0,0,0,0,0,0,0,0,0,0],
-        //   ["H",0,0,0,0,0,0,0,0,0,0],
-        //   ["I",0,0,0,0,0,0,0,0,0,5],
-        //   ["J",1,1,1,1,1,0,0,0,0,5],
-        // ],
         messages: {
           score: 0,
           shot: "The Enemy is targeting us, Sir!",
@@ -123,7 +110,7 @@ class App extends React.Component {
       let submarine = turnPlayerShips.submarineAfloat;
       let destroyer = turnPlayerShips.destroyerAfloat;
       let opponentScore = opponentMessages.score;
-      let opposingShotDisplay = this.state.isComputerFiring ? "Ready to fire. Awaiting your orders, Sir!" : "Preparing to fire.";
+      let opposingShotDisplay = this.state.isComputerFiring ? "Ready to fire. Awaiting your orders, Sir!" : "Acquiring target.";
       let opponentSinking = opponentMessages.sinking;
       let opponentWin = opponentMessages.win;
 
