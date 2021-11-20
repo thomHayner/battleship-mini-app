@@ -9,7 +9,7 @@
 ### Current location
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
-- Heroku free-tier hosting, since it is free the app shuts down after 30 minutes so it may take a few seconds to load when you first visit the page.
+- Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it may take a few seconds to load when you first visit the page.
 
 ### Tech Stack
 <details>
@@ -87,28 +87,24 @@
 
 ### Background
 
-  <p>
-  This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement 'board selection' or 'single player' features in time so the ships were not movable the board configuration (where the ships were placed) never changed, and you needed two people (or a single player clicking on both boards).
-  </p>
+<p>
+  This was originally a one day app challenge.  The gameboard, scoreboards and announcements all rendered and functioned correctly for gameplay, but I was not able to implement 'board selection' or 'single player' features in time so the ships were not movable, the board configuration (where the ships were placed) never changed, and you needed two people (or a single player clicking on both boards).
+</p>
 
-  <p>
+<p>
+  I have since done some work to refactor and compartmentalize the app.  I also added a randomizer for the board configurations and a 'computer player' as an automated opponent.
+  I plan to add player 'board selection', maybe using click handlers or possibly react-beautiful-dnd.<br>
+</p>
+
+<p>
   The app is mostly vanilla JavaScript, with a little bit of React to make the UI.  As I went through the refactoring process and started adding features I realized that this app was a great opportunity to show knowledge of fundamentals such as classes, asyncronous programming, and recursion, as well as newer concepts like destructuring and the spread operator.  Thus, even though it is a simple app, I decided to make it a portfolio piece.
-  </p>
-  <p>
+</p>
+<p>
 
   [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.<br>
-  [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise.<br>
+  [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js)).<br>
+</p>
 
-  </p>
-
-  <p>
-  I have since done some work to refactor and compartmentalize the app.<br>
-  I also added a randomizer for the board configurations.<br>
-  I also added a 'computer player' as an automated opponent.<br>
-  I plan to add player 'board selection', maybe using click handlers or possibly react-beautiful-dnd.<br>
-  </p>
-
-  <p>
-  Since there is no back end, I decided to just host it on Heroku as a front end only app.<br>
-  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in thiddle and then come back to it, however, I doubt that many people will ever play this, so I will porbably just leave it as a portfolio project displaying an app for vanilla JavaScript and React classes.
-  </p>
+<p>
+  Since there is no back end, I decided to just host it on Heroku as a front end only app.  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in the middle and then come back to it later, however, I doubt that many people will ever play this, so I will probably just leave it as a portfolio project displaying an app with vanilla JavaScript and React classes.
+</p>
