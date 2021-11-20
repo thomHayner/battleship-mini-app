@@ -203,15 +203,16 @@ class App extends React.Component {
         opposingShotDisplay = "DEFEAT!";
         opponentWin = "All of your ships have been sunk!";
         // Putting setState here shuts the game down immediately after a win, preventing the computer
-        // player from automatically taking their turn, it also limits the gameOver property to a very
-        // specific scope, declared once at the start of the game, and updated only once at the end.
+        // player from automatically taking their turn, it also limits the gameOver property to a
+        // specific scope, declared once at the start of the game and updated only once at the end.
         this.setState({ gameOver: true });
       };
       
-      // This part finishes up by setting the new state values
+      // This part finishes up by setting the new state values.
       if (this.state.isComputerFiring === true ) {
         this.setState({
           bluePlayer: {
+            // When updating some nested props but not all nested props, you need to use spread operator.
             ...this.state.bluePlayer,
             board: roundBoard,
             messages: {
@@ -221,6 +222,7 @@ class App extends React.Component {
               score: playerScore,
             },
             ships: {
+              // Here, all nested props are being updated, so the spread operator is not necessary.
               carrierAfloat: carrier,
               battleshipAfloat: battleship,
               cruiserAfloat: cruiser,
