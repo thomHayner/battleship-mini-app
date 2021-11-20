@@ -1,7 +1,7 @@
 import React from 'react';
 import shipPlacer from './Logic/shipPlacer';
 import checkWinner from './Logic/checkWinner';
-import squareCoordsPicker from './Logic/squareCoordsPicker';
+import computerTurn from './Logic/computerTurn';
 import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
@@ -79,12 +79,11 @@ class App extends React.Component {
     };
     this.fireControlHandler = this.fireControlHandler.bind(this);
     this.subController = this.subController.bind(this);
-    this.computerTurn = this.computerTurn.bind(this);
   };
 
   fireControlHandler = (row, col, playerId) => {
     if (this.state.gameOver === false && this.state.isComputerFiring === false && playerId === 1) {
-      this.computerTurn(row, col)
+      computerTurn(row, col, this.subController)
         .then(res => this.subController(res[1], res[0]))
         .catch(err => {
           this.setState({
@@ -99,18 +98,6 @@ class App extends React.Component {
           })
         });
     };
-  };
-
-  computerTurn = (row, col) => {
-    return new Promise((resolve, reject) => {
-      let square = squareCoordsPicker();
-      this.subController(row, col);
-      if (true) {
-        setTimeout(() => resolve(square), 2000);
-      } else {
-        reject("ERROR");
-      };
-    });
   };
 
   subController = (row, col) => {
