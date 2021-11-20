@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Shot = (props) => <div >{props.shot}</div>;
+const Shot = (props) => <div className='shot' ><p>{props.shot}</p></div>;
 
 export default Shot;
