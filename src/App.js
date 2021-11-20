@@ -73,7 +73,7 @@ class App extends React.Component {
     if (this.state.gameOver === false) {
       if ((playerId === 1 && this.state.isComputerFiring === false)) {
         this.computerTurn(row, col)
-          .then(res => this.subController(res[1], res[0], 2))
+          .then(res => this.subController(res[1], res[0]))
       };
     };
   };
@@ -81,9 +81,8 @@ class App extends React.Component {
   computerTurn = (row, col) => {
     return new Promise((resolve, reject) => {
       let square = squareCoordsPicker();
-      this.subController(row, col, 1);
-      setTimeout(() => resolve(square), 2000)
-
+      this.subController(row, col);
+      setTimeout(() => resolve(square), 2000);
     })
   }
 
@@ -129,7 +128,8 @@ class App extends React.Component {
       playerShot = "You have already fired on this location. Try Again.";
     };
 
-    // This returns a check of the board to see if there is now a winner
+    // This returns a check of the board to see if a ship was just sunk, and to keep track of 
+    // previously sunken ships.
     let tracker = checkWinner(roundBoard);
 
     if (tracker[0] === 0 && carrier === true) {
@@ -157,6 +157,8 @@ class App extends React.Component {
       playerSinking = "The enemy's Destroyer is sinking!";
       destroyer = false;
     };
+
+    // This part actually checks if there is winner.
     if (tracker.reduce(((a, b) => a+b), 0) === 0) {
       if (playerScore <= 0) {
         playerScore = 0;
