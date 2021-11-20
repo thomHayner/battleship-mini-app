@@ -79,8 +79,9 @@ class App extends React.Component {
   computerTurn = (row, col) => {
     return new Promise((resolve, reject) => {
       let square = squareCoordsPicker();
-      this.subController(row, col, 1)
-      resolve(square)
+      this.subController(row, col, 1);
+      setTimeout(() => resolve(square), 2000)
+      
     })
   }
 
