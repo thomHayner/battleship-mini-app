@@ -13,7 +13,20 @@ class App extends React.Component {
       redPlayer: {
         id: 1,
         name: "Player",
-        board: shipPlacer(),
+        board: //shipPlacer(),
+        [
+          ["","1","2","3","4","5","6","7","8","9","10",],
+          ["A",2,0,0,0,0,0,0,4,4,4],
+          ["B",2,0,0,0,0,0,0,0,0,3],
+          ["C",2,0,0,0,0,0,0,0,0,3],
+          ["D",2,0,0,0,0,0,0,0,0,3],
+          ["E",0,0,0,0,0,0,0,0,0,0],
+          ["F",0,0,0,0,0,0,0,0,0,0],
+          ["G",0,0,0,0,0,0,0,0,0,0],
+          ["H",0,0,0,0,0,0,0,0,0,0],
+          ["I",0,0,0,0,0,0,0,0,0,5],
+          ["J",1,1,1,1,1,0,0,0,0,5],
+        ],
         messages: {
           score: 0,
           shot: "Ready to fire. Awaiting your orders, Sir!",
@@ -33,17 +46,17 @@ class App extends React.Component {
         name: "Computer",
         board: shipPlacer(),
         // [
-          // ["","1","2","3","4","5","6","7","8","9","10",],
-          // ["A",2,0,0,0,0,0,0,4,4,4],
-          // ["B",2,0,0,0,0,0,0,0,0,3],
-          // ["C",2,0,0,0,0,0,0,0,0,3],
-          // ["D",2,0,0,0,0,0,0,0,0,3],
-          // ["E",0,0,0,0,0,0,0,0,0,0],
-          // ["F",0,0,0,0,0,0,0,0,0,0],
-          // ["G",0,0,0,0,0,0,0,0,0,0],
-          // ["H",0,0,0,0,0,0,0,0,0,0],
-          // ["I",0,0,0,0,0,0,0,0,0,5],
-          // ["J",1,1,1,1,1,0,0,0,0,5],
+        //   ["","1","2","3","4","5","6","7","8","9","10",],
+        //   ["A",2,0,0,0,0,0,0,4,4,4],
+        //   ["B",2,0,0,0,0,0,0,0,0,3],
+        //   ["C",2,0,0,0,0,0,0,0,0,3],
+        //   ["D",2,0,0,0,0,0,0,0,0,3],
+        //   ["E",0,0,0,0,0,0,0,0,0,0],
+        //   ["F",0,0,0,0,0,0,0,0,0,0],
+        //   ["G",0,0,0,0,0,0,0,0,0,0],
+        //   ["H",0,0,0,0,0,0,0,0,0,0],
+        //   ["I",0,0,0,0,0,0,0,0,0,5],
+        //   ["J",1,1,1,1,1,0,0,0,0,5],
         // ],
         messages: {
           score: 0,
@@ -70,23 +83,21 @@ class App extends React.Component {
   };
 
   fireControlHandler = (row, col, playerId) => {
-    if (this.state.gameOver === false) {
-      if ((playerId === 1 && this.state.isComputerFiring === false)) {
-        this.computerTurn(row, col)
-          .then(res => this.subController(res[1], res[0]))
-          .catch(err => {
-            this.setState({
-              bluePlayer: {
-                ...this.state.bluePlayer,
-                messages: {
-                  shot: "ERROR",
-                  sinking: "If game is not functioning,",
-                  win: "reload page and start over.",
-                }
+    if (this.state.gameOver === false && this.state.isComputerFiring === false && playerId === 1) {
+      this.computerTurn(row, col)
+        .then(res => this.subController(res[1], res[0]))
+        .catch(err => {
+          this.setState({
+            bluePlayer: {
+              ...this.state.bluePlayer,
+              messages: {
+                shot: err,
+                sinking: "If game is not functioning,",
+                win: "reload page and start over.",
               }
-            })
-          });
-      };
+            }
+          })
+        });
     };
   };
 
@@ -97,176 +108,173 @@ class App extends React.Component {
       if (true) {
         setTimeout(() => resolve(square), 2000);
       } else {
-        reject("err");
+        reject("ERROR");
       };
     });
   };
 
   subController = (row, col) => {
-    let newTurnNumber = this.state.turnNumber + 1;
-    let roundBoard = this.state.redPlayer.board.slice();
-    let turnPlayerShips = this.state.redPlayer.ships;
-    let turnPlayerMessages = this.state.redPlayer.messages;
-    let opponentMessages = this.state.bluePlayer.messages;
-    if (this.state.isComputerFiring) {
-      roundBoard = this.state.bluePlayer.board.slice();
-      turnPlayerShips = this.state.bluePlayer.ships;
-      turnPlayerMessages = this.state.bluePlayer.messages;
-      opponentMessages = this.state.redPlayer.messages;
-    };
-    let playerScore = turnPlayerMessages.score;
-    let playerShot = turnPlayerMessages.shot;
-    let playerSinking = "The Enemy's fleet is near.";
-    let playerWin = turnPlayerMessages.win;
-    let carrier = turnPlayerShips.carrierAfloat;
-    let battleship = turnPlayerShips.battleshipAfloat;
-    let cruiser = turnPlayerShips.cruiserAfloat;
-    let submarine = turnPlayerShips.submarineAfloat;
-    let destroyer = turnPlayerShips.destroyerAfloat;
-    let opponentScore = opponentMessages.score;
-    let opposingShotDisplay = "Ready to fire. Awaiting your orders, Sir!";
-    let opponentSinking = opponentMessages.sinking;
-    let opponentWin = opponentMessages.win;
-    let gameOver = false;
-
-
-    //  This part determines what type of a square you hit (each square has a value, with different
-    //  values representing each ship, empty squares, or previous hits and misses).
-    if (roundBoard[row][col] > 0) {
-      playerScore += 5;
-      roundBoard[row][col] = -1;
-      playerShot = "Firing on " + roundBoard[row][0] + col + "...Direct Hit!";
-    }
-    else if (roundBoard[row][col] === 0) {
-      playerScore -= 1;
-      roundBoard[row][col] = -2;
-      playerShot = "Firing on " + roundBoard[row][0] + col + "...Miss!";
-    }
-    else if (roundBoard[row][col] < 0) {
-      playerScore -= 3;
-      playerShot = "You have already fired on this location. Try Again.";
-    };
-
-    // This returns a check of the board to see if a ship was just sunk, and to keep track of 
-    // previously sunken ships, it doesn't actually check for a winner.
-    let tracker = checkWinner(roundBoard);
-
-    if (tracker[0] === 0 && carrier === true) {
-      playerScore += 3;
-      playerSinking = "The enemy's Aircraft Carrier is sinking!";
-      carrier= false;
-    };
-    if (tracker[1] === 0 && battleship === true) {
-      playerScore += 3;
-      playerSinking = "The enemy's Battleship is sinking!";
-      battleship = false;
-    };
-    if (tracker[2] === 0 && cruiser === true) {
-      playerScore += 3;
-      playerSinking = "The enemy's Cruiser is sinking!";
-      cruiser = false;
-    };
-    if (tracker[3] === 0 && submarine === true) {
-      playerScore += 3;
-      playerSinking = "The enemy's Submarine is sinking!";
-      submarine = false;
-    };
-    if (tracker[4] === 0 && destroyer === true) {
-      playerScore += 3;
-      playerSinking = "The enemy's Destroyer is sinking!";
-      destroyer = false;
-    };
-
-    // This part actually checks if there is winner.
-    if (tracker.reduce(((a, b) => a+b), 0) === 0) {
-      if (playerScore <= 0) {
-        playerScore = 0;
+    if (this.state.gameOver === false) {
+      let newTurnNumber = this.state.turnNumber + 1;
+      let roundBoard = this.state.redPlayer.board.slice();
+      let turnPlayerShips = this.state.redPlayer.ships;
+      let turnPlayerMessages = this.state.redPlayer.messages;
+      let opponentMessages = this.state.bluePlayer.messages;
+      if (this.state.isComputerFiring) {
+        roundBoard = this.state.bluePlayer.board.slice();
+        turnPlayerShips = this.state.bluePlayer.ships;
+        turnPlayerMessages = this.state.bluePlayer.messages;
+        opponentMessages = this.state.redPlayer.messages;
       };
-      playerScore *= 100;
-      if (opponentScore <= 0) {
-        opponentScore = 0;
-      };
-      opponentScore *= 100;
-      playerShot = "VICTORY!";
-      playerWin = "You have sunk all of the enemy's ships!";
-      playerSinking = `SCORE: ${playerScore}`;
-      opponentSinking = `SCORE: ${opponentScore}`;
-      opposingShotDisplay = "DEFEAT!";
-      opponentWin = "All of your ships have been sunk!";
-      gameOver = true;
-    };
-    
-    // This part finishes up by setting the new state values
-    if (this.state.isComputerFiring === true ) {
-      this.setState({
-        bluePlayer: {
-          ...this.state.bluePlayer,
-          board: roundBoard,
-          messages: {
-            shot: playerShot,
-            sinking: playerSinking,
-            win: playerWin,
-            score: playerScore,
-          },
-          ships: {
-            carrierAfloat: carrier,
-            battleshipAfloat: battleship,
-            cruiserAfloat: cruiser,
-            submarineAfloat: submarine,
-            destroyerAfloat: destroyer,
-          },
-        },
-        redPlayer: {
-          ...this.state.redPlayer,
-          messages: {
-            shot: opposingShotDisplay,
-            sinking: opponentSinking,
-            win: opponentWin,
-            score: opponentScore,
-          },
-        },
-        gameOver: gameOver,
-      });
-    } else {
-      this.setState({
-        redPlayer: {
-          ...this.state.redPlayer,
-          board: roundBoard,
-          messages: {
-            shot: playerShot,
-            sinking: playerSinking,
-            win: playerWin,
-            score: playerScore,
-          },
-          ships: {
-            carrierAfloat: carrier,
-            battleshipAfloat: battleship,
-            cruiserAfloat: cruiser,
-            submarineAfloat: submarine,
-            destroyerAfloat: destroyer,
-          },
-        },
-        bluePlayer: {
-          ...this.state.bluePlayer,
-          messages: {
-            shot: opposingShotDisplay,
-            sinking: opponentSinking,
-            win: opponentWin,
-            score: opponentScore,
-          },
-        },
-      });
-    };
+      let playerScore = turnPlayerMessages.score;
+      let playerShot = turnPlayerMessages.shot;
+      let playerSinking = "The Enemy's fleet is near.";
+      let playerWin = turnPlayerMessages.win;
+      let carrier = turnPlayerShips.carrierAfloat;
+      let battleship = turnPlayerShips.battleshipAfloat;
+      let cruiser = turnPlayerShips.cruiserAfloat;
+      let submarine = turnPlayerShips.submarineAfloat;
+      let destroyer = turnPlayerShips.destroyerAfloat;
+      let opponentScore = opponentMessages.score;
+      let opposingShotDisplay = this.state.isComputerFiring ? "Ready to fire. Awaiting your orders, Sir!" : "Preparing to fire.";
+      let opponentSinking = opponentMessages.sinking;
+      let opponentWin = opponentMessages.win;
 
-    this.setState({
-      turnNumber: newTurnNumber,
-      isComputerFiring: !this.state.isComputerFiring,
-      gameOver: gameOver,
-    });
-    
-    // This 'return true' is here to make sure that the Promise correctly fires and that
-    // error handling is done correctly.
-    return true
+      //  This part determines what type of a square you hit (each square has a value, with different
+      //  values representing each ship, empty squares, or previous hits and misses).
+      if (roundBoard[row][col] > 0) {
+        playerScore += 5;
+        roundBoard[row][col] = -1;
+        playerShot = "Firing on " + roundBoard[row][0] + col + "...Direct Hit!";
+      }
+      else if (roundBoard[row][col] === 0) {
+        playerScore -= 1;
+        roundBoard[row][col] = -2;
+        playerShot = "Firing on " + roundBoard[row][0] + col + "...Miss!";
+      }
+      else if (roundBoard[row][col] < 0) {
+        playerScore -= 3;
+        playerShot = "You have already fired on this location. Try Again.";
+      };
+
+      // This returns a check of the board to see if a ship was just sunk, and to keep track of 
+      // previously sunken ships, it doesn't actually check for a winner.
+      let tracker = checkWinner(roundBoard);
+      if (tracker[0] === 0 && carrier === true) {
+        playerScore += 3;
+        playerSinking = "The enemy's Aircraft Carrier is sinking!";
+        carrier= false;
+      };
+      if (tracker[1] === 0 && battleship === true) {
+        playerScore += 3;
+        playerSinking = "The enemy's Battleship is sinking!";
+        battleship = false;
+      };
+      if (tracker[2] === 0 && cruiser === true) {
+        playerScore += 3;
+        playerSinking = "The enemy's Cruiser is sinking!";
+        cruiser = false;
+      };
+      if (tracker[3] === 0 && submarine === true) {
+        playerScore += 3;
+        playerSinking = "The enemy's Submarine is sinking!";
+        submarine = false;
+      };
+      if (tracker[4] === 0 && destroyer === true) {
+        playerScore += 3;
+        playerSinking = "The enemy's Destroyer is sinking!";
+        destroyer = false;
+      };
+
+      // This part actually checks if there is winner.
+      if (tracker.reduce(((a, b) => a+b), 0) === 0) {
+        if (playerScore <= 0) {
+          playerScore = 0;
+        };
+        playerScore *= 100;
+        if (opponentScore <= 0) {
+          opponentScore = 0;
+        };
+        opponentScore *= 100;
+        playerShot = "VICTORY!";
+        playerWin = "You have sunk all of the enemy's ships!";
+        playerSinking = `SCORE: ${playerScore}`;
+        opponentSinking = `SCORE: ${opponentScore}`;
+        opposingShotDisplay = "DEFEAT!";
+        opponentWin = "All of your ships have been sunk!";
+        this.setState({ gameOver: true });
+      };
+      
+      // This part finishes up by setting the new state values
+      if (this.state.isComputerFiring === true ) {
+        this.setState({
+          bluePlayer: {
+            ...this.state.bluePlayer,
+            board: roundBoard,
+            messages: {
+              shot: playerShot,
+              sinking: playerSinking,
+              win: playerWin,
+              score: playerScore,
+            },
+            ships: {
+              carrierAfloat: carrier,
+              battleshipAfloat: battleship,
+              cruiserAfloat: cruiser,
+              submarineAfloat: submarine,
+              destroyerAfloat: destroyer,
+            },
+          },
+          redPlayer: {
+            ...this.state.redPlayer,
+            messages: {
+              shot: opposingShotDisplay,
+              sinking: opponentSinking,
+              win: opponentWin,
+              score: opponentScore,
+            },
+          },
+        });
+      } else {
+        this.setState({
+          redPlayer: {
+            ...this.state.redPlayer,
+            board: roundBoard,
+            messages: {
+              shot: playerShot,
+              sinking: playerSinking,
+              win: playerWin,
+              score: playerScore,
+            },
+            ships: {
+              carrierAfloat: carrier,
+              battleshipAfloat: battleship,
+              cruiserAfloat: cruiser,
+              submarineAfloat: submarine,
+              destroyerAfloat: destroyer,
+            },
+          },
+          bluePlayer: {
+            ...this.state.bluePlayer,
+            messages: {
+              shot: opposingShotDisplay,
+              sinking: opponentSinking,
+              win: opponentWin,
+              score: opponentScore,
+            },
+          },
+        });
+      };
+
+      this.setState({
+        turnNumber: newTurnNumber,
+        isComputerFiring: !this.state.isComputerFiring,
+      });
+      
+      // This 'return true' is here to make sure that the Promise correctly fires and that
+      // error handling is done correctly.
+      return true
+    };
   };
 
   render() {
