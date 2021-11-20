@@ -74,6 +74,18 @@ class App extends React.Component {
       if ((playerId === 1 && this.state.isComputerFiring === false)) {
         this.computerTurn(row, col)
           .then(res => this.subController(res[1], res[0]))
+          .catch(err => {
+            this.setState({
+              bluePlayer: {
+                ...this.state.bluePlayer,
+                messages: {
+                  shot: "ERROR",
+                  sinking: "If game is not functioning,",
+                  win: "reload page and start over.",
+                }
+              }
+            })
+          });
       };
     };
   };
@@ -82,9 +94,13 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       let square = squareCoordsPicker();
       this.subController(row, col);
-      setTimeout(() => resolve(square), 2000);
-    })
-  }
+      if (true) {
+        setTimeout(() => resolve(square), 2000);
+      } else {
+        reject("err");
+      };
+    });
+  };
 
   subController = (row, col) => {
     let newTurnNumber = this.state.turnNumber + 1;
@@ -244,6 +260,10 @@ class App extends React.Component {
       turnNumber: newTurnNumber,
       isComputerFiring: !this.state.isComputerFiring,
     });
+    
+    // This 'return true' is here to make sure that the Promise correctly fires and that
+    // error handling is done correctly.
+    return true
   };
 
   render() {
