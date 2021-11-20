@@ -5,6 +5,7 @@ import computerTurn from './Logic/computerTurn';
 import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
+import squareCoordsPicker from './Logic/squareCoordsPicker';
 
 class App extends React.Component {
   constructor(props) {
@@ -131,6 +132,12 @@ class App extends React.Component {
       }
       // If the square's value is less than 0, that means that the square has already been fired upon.
       else if (roundBoard[row][col] < 0) {
+        // This makes the computer smarter by preventing it from firing repeatedly at the same square.
+        if (this.state.isComputerFiring && Math.random() < 0.95) {
+          let square = squareCoordsPicker() 
+          this.subController(square[1], square[0])
+          return;
+        }
         playerScore -= 3;
         playerShot = "You have already fired on this location. Try Again.";
       };
