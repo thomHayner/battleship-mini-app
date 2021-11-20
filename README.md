@@ -4,6 +4,8 @@
 
 ## Based on The Classic Board Game
 
+<img alt="Battleship Screen Shot" src="./Screen-Shot.png" width="500" />
+
 </div>
 
 ### Current location
