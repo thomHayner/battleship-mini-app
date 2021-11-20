@@ -129,6 +129,9 @@ class App extends React.Component {
     let opponentWin = opponentMessages.win;
     let gameOver = false;
 
+
+    //  This part determines what type of a square you hit (each square has a value, with different
+    //  values representing each ship, empty squares, or previous hits and misses).
     if (roundBoard[row][col] > 0) {
       playerScore += 5;
       roundBoard[row][col] = -1;
@@ -145,7 +148,7 @@ class App extends React.Component {
     };
 
     // This returns a check of the board to see if a ship was just sunk, and to keep track of 
-    // previously sunken ships.
+    // previously sunken ships, it doesn't actually check for a winner.
     let tracker = checkWinner(roundBoard);
 
     if (tracker[0] === 0 && carrier === true) {
@@ -252,13 +255,13 @@ class App extends React.Component {
             score: opponentScore,
           },
         },
-        gameOver: gameOver,
       });
     };
 
     this.setState({
       turnNumber: newTurnNumber,
       isComputerFiring: !this.state.isComputerFiring,
+      gameOver: gameOver,
     });
     
     // This 'return true' is here to make sure that the Promise correctly fires and that
