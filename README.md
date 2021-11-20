@@ -103,6 +103,7 @@
 
   [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.<br>
   [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js)).<br>
+  Components are destructured, Elements use props.<br>
 </p>
 
 <p>
