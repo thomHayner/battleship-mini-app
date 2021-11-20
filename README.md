@@ -11,7 +11,7 @@
 ### Current location
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
-- Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it may take a few seconds to load when you first visit the page.
+- Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it will take a few seconds to load when you first visit the page.
 
 ### Tech Stack
 <details>
@@ -19,7 +19,6 @@
 
 - JavaScript
 - React
-- react-beautiful-dnd
 
 </details>
 
@@ -101,12 +100,10 @@
 <p>
   The app is mostly vanilla JavaScript, with a little bit of React to make the UI.  As I went through the refactoring process and started adding features I realized that this app was a great opportunity to show knowledge of fundamentals such as classes, asyncronous programming, and recursion, as well as newer concepts like destructuring and the spread operator.  Thus, even though it is a simple app, I decided to make it a portfolio piece.
 </p>
-<p>
 
-  [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.<br>
-  [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js)).<br>
-  Components are destructured, Elements use props.<br>
-</p>
+- [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
+- [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js)).
+- Components are destructured, Elements use props.
 
 <p>
   Since there is no back end, I decided to just host it on Heroku as a front end only app.  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in the middle and then come back to it later, however, I doubt that many people will ever play this, so I will probably just leave it as a portfolio project displaying an app with vanilla JavaScript and React classes.
