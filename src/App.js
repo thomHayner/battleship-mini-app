@@ -1,8 +1,8 @@
 import React from 'react';
 import shipPlacer from './Logic/shipPlacer';
-import checkWinner from './Logic/checkWinner';
+import checkBoard from './Logic/checkBoard';
 import computerTurn from './Logic/computerTurn';
-import WhoseTurnIsItAnyway from './Components/DisplayMessages/WhoseTurnIsItAnyway';
+import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
 
@@ -129,24 +129,35 @@ class App extends React.Component {
 
       //  This part determines what type of a square you hit (each square has a value, with different
       //  values representing each ship, empty squares, or previous hits and misses).
+
+      // If the square's value is greater than 0, that means that the square containes a ship piece.
       if (roundBoard[row][col] > 0) {
         playerScore += 5;
         roundBoard[row][col] = -1;
         playerShot = "Firing on " + roundBoard[row][0] + col + "...Direct Hit!";
       }
+      // If the square's value is equal to 0, that means that the square is empty.
       else if (roundBoard[row][col] === 0) {
         playerScore -= 1;
         roundBoard[row][col] = -2;
         playerShot = "Firing on " + roundBoard[row][0] + col + "...Miss!";
       }
+      // If the square's value is less than 0, that means that the square has already been fired upon.
       else if (roundBoard[row][col] < 0) {
         playerScore -= 3;
         playerShot = "You have already fired on this location. Try Again.";
       };
 
       // This returns a check of the board to see if a ship was just sunk, and to keep track of 
-      // previously sunken ships, it doesn't actually check for a winner.
-      let tracker = checkWinner(roundBoard);
+      // previously sunken ships.  tracker is an array of 5 integers, one integer for each ship.
+      // The total value of a ship is it's size * it's value, i.e. battleship = 4 squares * 2 value.
+      // When a ship square is hit, it's square value changes to -1, and that square is no longer
+      // tracked.  So, a battleship with on 'hit' is an array ((3 squares * 2 value) + (1 square with
+      // a -1 value)).  When the tracker function runs it count's all of the squares with a 2 value on
+      // the board and it store that sum in the 1 index of the tracker return array, that is the check
+      // for a battleship, if the 1 index of the tracker return array is 0, that means that there are 
+      // no more 2 value squares on the board, thus there is no battleshipand it can be marked as sunk.
+      let tracker = checkBoard(roundBoard);
       if (tracker[0] === 0 && carrier === true) {
         playerScore += 3;
         playerSinking = "The enemy's Aircraft Carrier is sinking!";
@@ -173,11 +184,13 @@ class App extends React.Component {
         destroyer = false;
       };
 
-      // This part actually checks if there is winner.
+      // This part checks if there is winner.
       if (tracker.reduce(((a, b) => a+b), 0) === 0) {
+        // No negative scores allowed.
         if (playerScore <= 0) {
           playerScore = 0;
         };
+        // 100x multiplier to make scores look bigger/higher and more appealing.
         playerScore *= 100;
         if (opponentScore <= 0) {
           opponentScore = 0;
@@ -189,6 +202,9 @@ class App extends React.Component {
         opponentSinking = `SCORE: ${opponentScore}`;
         opposingShotDisplay = "DEFEAT!";
         opponentWin = "All of your ships have been sunk!";
+        // Putting setState here shuts the game down immediately after a win, preventing the computer
+        // player from automatically taking their turn, it also limits the gameOver property to a very
+        // specific scope, declared once at the start of the game, and updated only once at the end.
         this.setState({ gameOver: true });
       };
       
