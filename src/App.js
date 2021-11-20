@@ -286,7 +286,7 @@ class App extends React.Component {
         <div className="container-equivalent App-main" >
           <div className="row-equivalent" >
             <div className="col-equivalent whose-turn-banner" >
-              <WhoseTurnIsItAnyway turn={this.state.isComputerFiring} />
+              <WhoseTurnIsItAnyway turn={this.state.isComputerFiring} gameOver={this.state.gameOver} />
             </div>
             <div className="col-equivalent player-area-parent" >
               <PlayerDashboard className="player-area" playerData={this.state.redPlayer} opponentShips={this.state.bluePlayer.ships} handleFire={ this.fireControlHandler } />
