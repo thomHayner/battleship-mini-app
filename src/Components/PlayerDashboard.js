@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayerName from "./DisplayMessages/PlayerName";
-import Board from "./Board/Board";
+import PlayerName from "./Elements/DisplayMessages/PlayerName";
+import Board from "./Board";
 import ScoreCard from './ScoreCard';
 import '../App.css';
 

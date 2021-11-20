@@ -1,9 +1,9 @@
 import React from "react";
-import Carrier from "./Ships/Carrier";
-import Battleship from "./Ships/Battleship";
-import Destroyer from "./Ships/Destroyer";
-import Submarine from "./Ships/Submarine";
-import Cruiser from "./Ships/Cruiser";
+import Carrier from "./Elements/Ships/Carrier";
+import Battleship from "./Elements/Ships/Battleship";
+import Destroyer from "./Elements/Ships/Destroyer";
+import Submarine from "./Elements/Ships/Submarine";
+import Cruiser from "./Elements/Ships/Cruiser";
 import '../App.css';
 
 export default function ShipList({ ships, option }) {

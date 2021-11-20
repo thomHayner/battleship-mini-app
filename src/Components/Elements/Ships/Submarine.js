@@ -1,13 +1,13 @@
 import React from 'react';
-import Square from '../Board/Square';
+import Square from '../../Elements/Square';
 import { Draggable } from 'react-beautiful-dnd';
 
-const ship = [1,1,1,1,1];
+const ship = [[4],[4],[4]];
 
-const Carrier = (props) => {
+const Submarine = (props) => {
     if (props.afloat === null) {
         return (
-            <Draggable draggableId='carrier' index={0} type='SHIP'>
+            <Draggable draggableId='submarine' index={0} type='SHIP'>
                 {(provided, snapshot) => (
                     <div
                     ref={provided.innerRef}
@@ -23,9 +23,10 @@ const Carrier = (props) => {
         )
     }
     if (props.afloat === true) {
-        return (<div className='carrier' >Aircraft Carrier</div>)
+        return (<div className='submarine' >Submarine</div>)
     } else {
-        return (<div className='carrier' ><s>Aircraft Carrier</s></div>)
+        return (<div className='submarine' ><s>Submarine</s></div>)
     }
 }
-export default Carrier;
+
+export default Submarine;

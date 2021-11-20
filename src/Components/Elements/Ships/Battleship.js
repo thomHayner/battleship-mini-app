@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from '../Board/Square';
+import Square from '../../Elements/Square';
 import { Draggable } from 'react-beautiful-dnd';
 
 const ship = [2,2,2,2]
