@@ -1,4 +1,4 @@
-let checkWinner = function(roundBoard) {
+let checkBoard = function(roundBoard) {
   let tracker = [0,0,0,0,0];
 
   for (let i = 1; i < 11; i++) {
@@ -27,4 +27,4 @@ let checkWinner = function(roundBoard) {
   return tracker;
 }
 
-export default checkWinner;
+export default checkBoard;
