@@ -13,12 +13,10 @@
 ### Current location
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
-<br>
-
 - Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it will take a few seconds to load when you first visit the page.
 <br>
 
-- This is NOT a UI / UX focused app, it is not responsive to screen size.
+- This is NOT a UI / UX focused app, it is not responsive to screen size, WYSIWYG.
 <br>
 
 - [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
