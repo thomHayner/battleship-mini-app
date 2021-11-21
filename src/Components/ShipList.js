@@ -9,12 +9,14 @@ import '../App.css';
 export default function ShipList({ ships, option }) {
   return (
     <div className={option === 0 ? "player-ship-list" : "enemy-ship-list" } >
-      <div><strong>{option === 0 ? "My Ships:" : "Enemy Ships:"}</strong></div>
-      <Carrier afloat={ships.carrierAfloat} />
-      <Battleship afloat={ships.battleshipAfloat} />
-      <Destroyer afloat={ships.cruiserAfloat} />
-      <Submarine afloat={ships.submarineAfloat} />
-      <Cruiser afloat={ships.destroyerAfloat} />
+      <ul>
+        <div><strong>{option === 0 ? "My Ships:" : "Enemy Ships:"}</strong></div>
+        <li><Carrier afloat={ships.carrierAfloat} /></li>
+        <li><Battleship afloat={ships.battleshipAfloat} /></li>
+        <li><Destroyer afloat={ships.cruiserAfloat} /></li>
+        <li><Submarine afloat={ships.submarineAfloat} /></li>
+        <li><Cruiser afloat={ships.destroyerAfloat} /></li>
+      </ul>
     </div>
   )
 }

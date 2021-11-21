@@ -8,7 +8,7 @@ import '../App.css';
 
 export default function PlayerDashboard({ playerData, opponentShips, handleFire }) {
   return (
-    <div>
+    <div className="player-dashboard" >
       <PlayerName name={playerData.name} />
       <Board board={playerData.board} playerId={playerData.id} handleFire={handleFire} />
       <ScoreCard playerData={playerData} opponentShips={opponentShips} />
