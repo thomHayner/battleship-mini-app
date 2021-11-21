@@ -13,13 +13,26 @@
 ### Current location
 
 - [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
-- Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it will take a few seconds to load when you first visit the page.
-- [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
-- [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js)).
-- The main component, src/App.js, is a statefull class component, all of the other components and elements are stateless functional components
-- Components are destructured, Elements use props.
+<br>
 
-</br>
+- Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it will take a few seconds to load when you first visit the page.
+<br>
+
+- This is NOT a UI / UX focused app, it is not responsive to screen size.
+<br>
+
+- [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
+<br>
+
+- [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js).
+<br>
+
+- The main component, [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), is a statefull class component which uses the super constructor, all of the other components and elements are stateless functional components, no hooks were used.
+<br>
+
+- Components are destructured, Elements use 'props', mostly just because it's an organized way to present a variety of techniques.
+
+<br>
 
 ### Tech Stack
 <details>
@@ -27,10 +40,11 @@
 
 - JavaScript
 - React
+- CSS
 
 </details>
 
-</br>
+<br>
 
 ### Background
 
@@ -51,7 +65,7 @@
   Since there is no back end, I decided to just host it on Heroku as a front end only app.  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in the middle and then come back to it later, however, I doubt that many people will ever play this, so I will probably just leave it as a portfolio project displaying an app with vanilla JavaScript and React classes.
 </p>
 
-</br>
+<br>
 
 ### Deployment
 <details>
@@ -63,7 +77,7 @@
   ```
   Installed, update, and/or proceed.
 
-  </br>
+  <br>
 
   2. Log in to Heroku through the CLI / browser
   ```shell
@@ -71,7 +85,7 @@
   ```
   Follow prompts and log in.
 
-  </br>
+  <br>
 
   3. Create your Heruko App through the command line
   [Heroku Docs / C-R-A Runtime QuickDeploy Instructions](https://blog.heroku.com/deploying-react-with-zero-configuration)
@@ -85,7 +99,7 @@
 
 </details>
 
-</br>
+<br>
 
 ### CI / CD
 <details>
