@@ -1,3 +1,11 @@
+h1,h2,h4,p {
+  margin: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
 .App {
   height: 100%;
   max-width: 1280px;
@@ -19,12 +27,17 @@
 
 .player-area-parent {
   display: flex;
+  
+}
+
+.player-dashboard {
+  justify-content: center;
 }
 
 .board {
-  padding: 25px;
+  /* padding-left: 25px; */
   width: 350px;
-  margin: 0;
+  margin: 0px;
   display: grid;
   grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
   justify-content: center;
@@ -63,8 +76,11 @@
 }
 
 .ship-list-area {
-  display: grid;
-  grid-template-columns: 175px 50px 175px;
+  padding-right: 40px;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  grid-template-columns: 137px 40px 137px;
 }
 
 .player-ship-list {
@@ -85,6 +101,7 @@
   position: fixed;
   right: 15px;
   bottom: 1rem;
+  opacity: 80%;
 }
 
 .code-link-svg {
