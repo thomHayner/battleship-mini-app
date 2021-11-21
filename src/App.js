@@ -140,7 +140,7 @@ class App extends React.Component {
           return;
         }
         playerScore -= 3;
-        playerShot = "You have already fired on this location. Try Again.";
+        playerShot = "Oops, you've already fired on this location.";
       };
 
       // This returns a check of the board to see if a ship was just sunk, and to keep track of 

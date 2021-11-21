@@ -36,7 +36,6 @@ ul {
 }
 
 .board {
-  /* padding-left: 25px; */
   width: 350px;
   margin: 0px;
   display: grid;
