@@ -71,3 +71,22 @@
 .enemy-ship-list {
   text-align: left;
 }
+
+.code-link-button {
+  border-width: 1px;
+  border-radius: 100%;
+  margin: 0px;
+  padding: 1px 0px 0px 0px;
+  height: 64px;
+  width: 64px;
+  position: fixed;
+  right: 15px;
+  bottom: 1rem;
+}
+
+.code-link-svg {
+  position: sticky;
+  border-width: 1px;
+  border-radius: 100%;
+  margin: 0px;
+}
