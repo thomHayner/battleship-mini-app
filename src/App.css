@@ -36,6 +36,9 @@
   border: solid 1px black;
   background-color: lightsalmon;
   top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .square {
