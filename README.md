@@ -22,14 +22,16 @@
 - [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
 <br>
 
-- [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js).
+- [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), error handling is done correctly and apropriately.
 <br>
 
-- The main component, [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), is a statefull class component which uses the super constructor, all of the other components and elements are stateless functional components, no hooks were used.
+- The main component, [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), is a statefull class component which uses the super constructor, all of the other components and elements are stateless functional components.
 <br>
 
 - Components are destructured, Elements use 'props', mostly just because it's an organized way to present a variety of techniques.
+<br>
 
+- There are also examples of pure functions, higher order functions, there is an additional recursion that will prevent the computer from firing on the same tile multiple times (95% of the time it will recurse and pick a new tile to fire upon, the other 5% of the time it will allow the computer to waste it's turn 'accidentally')
 <br>
 
 ### Tech Stack
