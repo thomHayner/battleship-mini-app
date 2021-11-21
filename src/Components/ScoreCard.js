@@ -5,7 +5,7 @@ import '../App.css';
 
 export default function ScoreCard({ playerData, opponentShips }) {
   return (
-    <div>
+    <div className="scorecard" >
       <MessageBoard messages={playerData.messages} />
       <div className="ship-list-area" >
         <ShipList ships={opponentShips} option={0} />

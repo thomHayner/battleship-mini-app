@@ -4,6 +4,7 @@ h1,h2,h4,p {
 
 ul {
   list-style: none;
+  margin-top: 0px;
 }
 
 .App {
@@ -75,12 +76,16 @@ ul {
   background-color: whitesmoke;
 }
 
+.scorecard {
+  margin: 15px 0px;
+}
+
 .ship-list-area {
+  margin: 15px 0px;
   padding-right: 40px;
   justify-content: center;
   display: flex;
-  margin: auto;
-  grid-template-columns: 137px 40px 137px;
+  grid-template-columns: 140px 45px 140px;
 }
 
 .player-ship-list {
