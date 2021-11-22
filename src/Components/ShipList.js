@@ -13,9 +13,9 @@ export default function ShipList({ ships, option }) {
         <div><strong>{option === 0 ? "My Ships:" : "Enemy Ships:"}</strong></div>
         <li><Carrier afloat={ships.carrierAfloat} /></li>
         <li><Battleship afloat={ships.battleshipAfloat} /></li>
-        <li><Destroyer afloat={ships.cruiserAfloat} /></li>
+        <li><Cruiser afloat={ships.cruiserAfloat} /></li>
         <li><Submarine afloat={ships.submarineAfloat} /></li>
-        <li><Cruiser afloat={ships.destroyerAfloat} /></li>
+        <li><Destroyer afloat={ships.destroyerAfloat} /></li>
       </ul>
     </div>
   )
