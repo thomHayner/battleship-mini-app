@@ -61,14 +61,14 @@ ul {
   background-color: lightskyblue;
 }
 
-.confirmedHit {
+.confirmed-hit {
   height: 25px;
   width: 25px;
   border: solid 1px black;
   background-color: red;
 }
 
-.confirmedMiss {
+.confirmed-miss {
   height: 25px;
   width: 25px;
   border: solid 1px black;
