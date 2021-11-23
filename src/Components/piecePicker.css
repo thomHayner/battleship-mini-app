@@ -33,3 +33,28 @@
 .invisible {
   display: none;
 }
+
+.outer-drop-zone {
+  display: inline-flex;
+}
+
+.placement-square-empty {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: purple;
+}
+
+.placement-square-fill {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: pink;
+}
+
+.placement-square-draggable {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: yellowgreen;
+}
