@@ -4,6 +4,7 @@ import checkBoard from './Logic/checkBoard';
 import computerTurn from './Logic/computerTurn';
 import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
+import PiecePicker from './Components/PiecePicker';
 import CodeLinkButton from './Components/CodeLinkButton';
 import './App.css';
 import squareCoordsPicker from './Logic/squareCoordsPicker';
@@ -295,6 +296,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <PiecePicker />
         <CodeLinkButton />
       </div>
     );
