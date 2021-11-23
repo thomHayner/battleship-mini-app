@@ -123,20 +123,20 @@ class App extends React.Component {
       // If the square's value is greater than 0, that means that the square containes a ship piece.
       if (roundBoard[row][col] > 0) {
         playerScore += 5;
-        roundBoard[row][col] = -1;
+        roundBoard[row][col] = -3;
         playerShot = "Firing on " + roundBoard[row][0] + col + "...Direct Hit!";
       }
       // If the square's value is equal to 0, that means that the square is empty.
       else if (roundBoard[row][col] === 0) {
         playerScore -= 1;
-        roundBoard[row][col] = -2;
+        roundBoard[row][col] = -4;
         playerShot = "Firing on " + roundBoard[row][0] + col + "...Miss!";
       }
       // If the square's value is less than 0, that means that the square has already been fired upon.
       else if (roundBoard[row][col] < 0) {
         // This makes the computer smarter by preventing it from firing repeatedly at the same square.
         if (this.state.isComputerFiring && Math.random() < 0.95) {
-          let square = squareCoordsPicker() 
+          let square = squareCoordsPicker()
           this.subController(square[1], square[0])
           return;
         }
