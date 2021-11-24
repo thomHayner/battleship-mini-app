@@ -69,7 +69,7 @@ class DragDiv extends React.Component {
     let className = e.target.className;
     setTimeout(()=>{}, 0);
     if (className === 'placement-square-empty'){
-      className = "placement-square-fill";
+      className = "placement-square-hovered";
       e.target.className = className;
     };
   };
@@ -79,7 +79,7 @@ class DragDiv extends React.Component {
     e.stopPropagation();
     console.log('Leave');
     let className = e.target.className;
-    if (className === 'placement-square-fill'){
+    if (className === 'placement-square-hovered'){
       className = "placement-square-empty";
       e.target.className = className;
     };

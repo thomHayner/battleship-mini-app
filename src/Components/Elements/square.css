@@ -16,6 +16,13 @@
   background-color: pink;
 }
 
+.placement-square-hovered {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: rgb(25, 209, 9);
+}
+
 .placement-square-empty {
   height: 23px;
   width: 23px;
