@@ -140,74 +140,74 @@ class DragDiv extends React.Component {
     return(
       <div className="main-container">
         <div>
-        <div 
-          className="outer-drop-zone" 
-          onDragEnter={e=>this.handleDragEnter(e)} 
-          onDragLeave={e=>this.handleDragLeave(e)} 
-          onDragOver={e=>this.handleDragOver(e)} 
-          onDrop={e=>this.handleDrop(e)} 
-        >
-          <div
-            draggable="true" 
-            id="draggable-ship-piece"
-            ref={this.carrierRef} 
-            className="ship" 
-          >
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-          </div>
-
           <div 
-            draggable="true" 
-            ref={this.battleshipRef} 
-            className="ship" 
-            // onDragStart={e=>this.handleDragStart} 
-            // onDrop={e=>this.handleDrop(e)} 
+            className="outer-drop-zone" 
+            onDragEnter={e=>this.handleDragEnter(e)} 
+            onDragLeave={e=>this.handleDragLeave(e)} 
+            onDragOver={e=>this.handleDragOver(e)} 
+            onDrop={e=>this.handleDrop(e)} 
           >
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-          </div>
+            <div
+              draggable="true" 
+              id="draggable-ship-piece"
+              ref={this.carrierRef} 
+              className="ship" 
+            >
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+            </div>
 
-          <div
-            draggable="true" 
-            ref={this.cruiserRef} 
-            className="ship" 
-            // onDragStart={e=>this.handleDragStart} 
-            // onDrop={e=>this.handleDrop(e)} 
-          >
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-          </div>
+            <div 
+              draggable="true" 
+              ref={this.battleshipRef} 
+              className="ship" 
+              // onDragStart={e=>this.handleDragStart} 
+              // onDrop={e=>this.handleDrop(e)} 
+            >
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+            </div>
 
-          <div
-            draggable="true" 
-            ref={this.submarineRef} 
-            className="ship" 
-            // onDragStart={e=>this.handleDragStart} 
-            // onDrop={e=>this.handleDrop(e)} 
-          >
-            <Square value={-1} />
-            <Square value={-1} />
-            <Square value={-1} />
-          </div>
-          
-          {/* <Square value={-2} > */}
-          <div
-            draggable="true" 
-            ref={this.destroyerRef} 
-            className="ship" 
-            // onDragStart={e=>this.handleDragStart} 
-            // onDrop={e=>this.handleDrop(e)} 
-          >
-            <Square value={-1} />
-            <Square value={-1} />
-          </div>
+            <div
+              draggable="true" 
+              ref={this.cruiserRef} 
+              className="ship" 
+              // onDragStart={e=>this.handleDragStart} 
+              // onDrop={e=>this.handleDrop(e)} 
+            >
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+            </div>
+
+            <div
+              draggable="true" 
+              ref={this.submarineRef} 
+              className="ship" 
+              // onDragStart={e=>this.handleDragStart} 
+              // onDrop={e=>this.handleDrop(e)} 
+            >
+              <Square value={-1} />
+              <Square value={-1} />
+              <Square value={-1} />
+            </div>
+            
+            {/* <Square value={-2} > */}
+            <div
+              draggable="true" 
+              ref={this.destroyerRef} 
+              className="ship" 
+              // onDragStart={e=>this.handleDragStart} 
+              // onDrop={e=>this.handleDrop(e)} 
+            >
+              <Square value={-1} />
+              <Square value={-1} />
+            </div>
           {/* </Square> */}
           </div>
 
