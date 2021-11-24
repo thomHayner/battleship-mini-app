@@ -26,11 +26,17 @@ class DragDiv extends React.Component {
         ],
     };
 
+    // This dynamically creates refs, one ref for each board square
+    for (let i = 1; i <= 100; i++) {
+      this[`square_${i}`] = React.createRef();
+    }
     this.dropRef = React.createRef();
-
+    
+    // Handlers for the piece that is being dragged
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
+    // Handlers for the drop-zones
     this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
@@ -41,31 +47,24 @@ class DragDiv extends React.Component {
   handleDragStart = e => {
     console.log('Start');
     console.log(e.target);
-    // this.currentShipRef = e.target
     let tempShip = e.target;
     this.setState({ currentShipRef: tempShip });
     // This setTimeout() might help the setState happen more smoothly
     // (saw this in a tutorial, not 100% sure if that is what it was for)
     setTimeout(()=>{}, 0);
-    // console.log("currentShipRef ");
-    // console.log(this.currentShipRef);
-    // console.log('Start-Fin');
   };
 
   handleDrag = e => {
-    // console.log('Drag');
   };
   
   handleDragEnd = e => {
-    console.log('End');
   };
 
   // Handlers for the drop-zones
-  handleDragEnter = (e, row, col) => {
+  handleDragEnter = (e, squareId) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('Enter');
-    this.setState({ currentRow: row, currentCol: col })
     let className = e.target.className;
     setTimeout(()=>{}, 0);
     if (className === 'placement-square-empty'){
@@ -79,13 +78,12 @@ class DragDiv extends React.Component {
     e.stopPropagation();
     console.log('Leave');
     let className = e.target.className;
+    setTimeout(()=>{}, 0);
     if (className === 'placement-square-hovered'){
       className = "placement-square-empty";
       e.target.className = className;
     };
     // console.log(e);
-    // console.log(e.target);
-    // console.log(e.currentTarget);
   };
 
   handleDragOver = e => {
@@ -149,6 +147,7 @@ class DragDiv extends React.Component {
                 <Square 
                   key={`PlacementBoard_[${row}, ${col}]ID`} 
                   id={`PlacementBoard_[${row * col}`} 
+                  ref={this[`square_${row * col}`]}
                   value={this.state.board[row][col]} 
                   row={row} 
                   col={col} 
