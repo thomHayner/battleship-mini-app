@@ -1,0 +1,45 @@
+.index-square {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: lightsalmon;
+  top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placement-square-fill {
+  height: 21px;
+  width: 21px;
+  border: solid 1px black;
+  background-color: pink;
+}
+
+.placement-square-empty {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: purple;
+}
+
+.confirmed-hit {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: red;
+}
+
+.confirmed-miss {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: whitesmoke;
+}
+
+.square {
+  height: 23px;
+  width: 23px;
+  border: solid 1px black;
+  background-color: lightskyblue;
+}
