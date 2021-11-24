@@ -1,15 +1,12 @@
 import React from 'react';
 
 const Square = ({ value, ...props }) => {
+  const StandardGameBoardSquareDiv = (tempClassName) => <div className={tempClassName} onClick={ (e) => props.handleFire(props.row, props.col, props.playerId) } />;
+  
   if (typeof value === 'string') {
     return <div className="index-square" >{value}</div>
   } else if (value === -1) {
-    return(
-      <div 
-        className="placement-square-fill" 
-        // onDragStart={e=>props.onDragStart(e)} 
-      />
-    )
+    return <div className="placement-square-fill" />
   } else if (value === -2) {
     return(
       <div 
@@ -22,13 +19,11 @@ const Square = ({ value, ...props }) => {
       />
     )
   } else if (value === -3) {
-    return <div className="confirmed-hit" onClick={ (e) => props.handleFire(props.row, props.col, props.playerId) } />
+    return StandardGameBoardSquareDiv("confirmed-hit")
   } else if (value === -4) {
-    return <div className="confirmed-miss" onClick={ (e) => props.handleFire(props.row, props.col, props.playerId) } />
-  } else if (value === -5) {
-    return <div className="placement-square-draggable" />
+    return StandardGameBoardSquareDiv("confirmed-miss")
   } else {
-    return <div className="square" onClick={ (e) => props.handleFire(props.row, props.col, props.playerId) } />
+    return StandardGameBoardSquareDiv("square")
   }
 };
 
