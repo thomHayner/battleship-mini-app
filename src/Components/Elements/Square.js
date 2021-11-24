@@ -9,20 +9,23 @@ const Square = ({ value, ...props }) => {
   } else if (value === -1) {
     return <div className="placement-square-fill" />
   } else if (value === -2) {
+      let squareId = props.row * props.col;
     return(
       <div 
         className="placement-square-empty" 
         // onClick={ (e) => props.handleChangeDirection } 
-        onDragEnter={e=>props.onDragEnter(e, props.id)} 
-        onDragLeave={e=>props.onDragLeave(e, props.id)} 
+        onDragEnter={e=>props.onDragEnter(e, squareId)} 
+        onDragLeave={e=>props.onDragLeave(e, squareId)} 
         onDragOver={e=>props.onDragOver(e)} 
-        onDrop={e=>props.onDrop(e)} 
+        onDrop={e=>props.onDrop(e, squareId)} 
       />
     )
   } else if (value === -3) {
     return StandardGameBoardSquareDiv("confirmed-hit")
   } else if (value === -4) {
     return StandardGameBoardSquareDiv("confirmed-miss")
+  } else if (value > 0 && props.gameStart === false) {
+    return StandardGameBoardSquareDiv("ship")
   } else {
     return StandardGameBoardSquareDiv("square")
   }
