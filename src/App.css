@@ -43,37 +43,6 @@ ul {
   justify-content: center;
 }
 
-.index-square {
-  height: 25px;
-  width: 25px;
-  border: solid 1px black;
-  background-color: lightsalmon;
-  top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.square {
-  height: 25px;
-  width: 25px;
-  border: solid 1px black;
-  background-color: lightskyblue;
-}
-
-.confirmed-hit {
-  height: 25px;
-  width: 25px;
-  border: solid 1px black;
-  background-color: red;
-}
-
-.confirmed-miss {
-  height: 25px;
-  width: 25px;
-  border: solid 1px black;
-  background-color: whitesmoke;
-}
 
 .scorecard {
   margin: 15px 0px;
