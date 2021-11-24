@@ -13,8 +13,8 @@ const Square = ({ value, ...props }) => {
       <div 
         className="placement-square-empty" 
         // onClick={ (e) => props.handleChangeDirection } 
-        onDragEnter={e=>props.onDragEnter(e)} 
-        onDragLeave={e=>props.onDragLeave(e)} 
+        onDragEnter={e=>props.onDragEnter(e, props.row, props.col)} 
+        onDragLeave={e=>props.onDragLeave(e, props.row, props.col)} 
         onDragOver={e=>props.onDragOver(e)} 
         onDrop={e=>props.onDrop(e)} 
       />
