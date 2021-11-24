@@ -38,10 +38,11 @@
 }
 
 .outer-drop-zone {
-  width: 250px;
-  height: 250px;
+  width: 129px;
+  height: 129px;
   display: inline-flex;
   justify-content: space-around;
-  margin: auto;
-  background-color: black;
+  /* margin: 5px; */
+  background-color: whitesmoke;
+  border: solid blue 1px
 }
