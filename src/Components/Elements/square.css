@@ -57,3 +57,7 @@
   border: solid 1px black;
   background-color: yellowgreen;
 }
+
+.ship {
+  background-color: tomato;
+}
