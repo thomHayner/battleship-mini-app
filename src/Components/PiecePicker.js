@@ -112,7 +112,7 @@ class DragDiv extends React.Component {
       div.addEventListener('dragleave', this.handleDragLeave);
       div.addEventListener('drop', this.handleDrop);
     }
-    
+
     let ships = document.querySelectorAll('.ship');
     ships.forEach(ship => {
       ship.addEventListener('dragstart', this.handleDragStart);
@@ -139,8 +139,14 @@ class DragDiv extends React.Component {
   render() {
     return(
       <div className="main-container">
-        <div className="outer-drop-zone" >
-          
+        <div>
+        <div 
+          className="outer-drop-zone" 
+          onDragEnter={e=>this.handleDragEnter(e)} 
+          onDragLeave={e=>this.handleDragLeave(e)} 
+          onDragOver={e=>this.handleDragOver(e)} 
+          onDrop={e=>this.handleDrop(e)} 
+        >
           <div
             draggable="true" 
             id="draggable-ship-piece"
@@ -190,7 +196,8 @@ class DragDiv extends React.Component {
             <Square value={-1} />
             <Square value={-1} />
           </div>
-
+          
+          {/* <Square value={-2} > */}
           <div
             draggable="true" 
             ref={this.destroyerRef} 
@@ -200,6 +207,8 @@ class DragDiv extends React.Component {
           >
             <Square value={-1} />
             <Square value={-1} />
+          </div>
+          {/* </Square> */}
           </div>
 
         </div>
