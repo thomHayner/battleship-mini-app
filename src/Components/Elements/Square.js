@@ -1,4 +1,5 @@
 import React from 'react';
+import './square.css';
 
 const Square = ({ value, ...props }) => {
   const StandardGameBoardSquareDiv = (tempClassName) => <div className={tempClassName} onClick={ (e) => props.handleFire(props.row, props.col, props.playerId) } />;
