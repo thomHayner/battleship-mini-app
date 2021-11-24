@@ -8,10 +8,23 @@ class DragDiv extends React.Component {
     super(props);
     this.state = {
       currentShipRef: React.createRef(),
-      currentRow: 1,
-      currentCol: 1,
+      currentLength: 0,
       shipsArr: [ [1,1,1,1,1], [2,2,2,2], [3,3,3], [4,4,4], [5,5] ],
-      board: [
+      board: 
+      // [
+      //     ["","1","2","3","4","5","6","7","8","9","10",],
+      //     ["A",0,0,0,0,0,0,0,0,0,0],
+      //     ["B",0,0,0,0,0,0,0,0,0,0],
+      //     ["C",0,0,0,0,0,0,0,0,0,0],
+      //     ["D",0,0,0,0,0,0,0,0,0,0],
+      //     ["E",0,0,0,0,0,0,0,0,0,0],
+      //     ["F",0,0,0,0,0,0,0,0,0,0],
+      //     ["G",0,0,0,0,0,0,0,0,0,0],
+      //     ["H",0,0,0,0,0,0,0,0,0,0],
+      //     ["I",0,0,0,0,0,0,0,0,0,0],
+      //     ["J",0,0,0,0,0,0,0,0,0,0],
+      //   ],
+        [
           ["","1","2","3","4","5","6","7","8","9","10",],
           ["A",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
           ["B",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
@@ -27,9 +40,9 @@ class DragDiv extends React.Component {
     };
 
     // This dynamically creates refs, one ref for each board square
-    for (let i = 1; i <= 100; i++) {
-      this[`square_${i}`] = React.createRef();
-    }
+    // for (let i = 1; i <= 100; i++) {
+    //   this[`square_${i}`] = React.createRef();
+    // }
     this.dropRef = React.createRef();
     
     // Handlers for the piece that is being dragged
@@ -45,13 +58,16 @@ class DragDiv extends React.Component {
 
   // Handlers for the piece that is being dragged
   handleDragStart = e => {
-    console.log('Start');
-    console.log(e.target);
+    // console.log('Start');
     let tempShip = e.target;
-    this.setState({ currentShipRef: tempShip });
+    let tempLength = e.target.children.length;
+
+    this.setState({ currentShipRef: tempShip, currentLength: tempLength });
+
     // This setTimeout() might help the setState happen more smoothly
     // (saw this in a tutorial, not 100% sure if that is what it was for)
     setTimeout(()=>{}, 0);
+
   };
 
   handleDrag = e => {
@@ -62,58 +78,79 @@ class DragDiv extends React.Component {
 
   // Handlers for the drop-zones
   handleDragEnter = (e, squareId) => {
+    // console.log('Enter');
     e.preventDefault();
     e.stopPropagation();
-    console.log('Enter');
-    let className = e.target.className;
+    // let className = e.target.className;
+    // let plusTen = squareId + 10;
+    // let next = document.getElementById(`PlacementBoard_${plusTen}`)
     setTimeout(()=>{}, 0);
-    if (className === 'placement-square-empty'){
-      className = "placement-square-hovered";
-      e.target.className = className;
-    };
+    // if (className === 'placement-square-empty'){
+    // if (className === 'square'){
+    //   className = "placement-square-hovered";
+    //   e.target.className = className;
+    //   // next.className = className
+    // };
   };
 
   handleDragLeave = (e, squareId) => {
+    // console.log('Leave');
     e.preventDefault();
     e.stopPropagation();
-    console.log('Leave');
-    let className = e.target.className;
+    // let className = e.target.className;
     setTimeout(()=>{}, 0);
-    if (className === 'placement-square-hovered'){
-      className = "placement-square-empty";
-      e.target.className = className;
-    };
+    // if (className === 'placement-square-hovered') {
+    //   // className = "placement-square-empty";
+    //   className = "square";
+    //   e.target.className = className;
+    // };
     // console.log(e);
   };
 
   handleDragOver = e => {
+    // console.log('Over');
     e.preventDefault();
     e.stopPropagation();
-    // console.log('Over');
+    // let className = e.target.className;
+    // if (className !== 'outer-drop-zone') {
+    //   let className = "placement-square-hovered";
+    //   e.target.className = className;
+    // }
   };
 
-  handleDrop = e => {
+  handleDrop = (e, row, col) => {
+    // console.log('Drop');
     e.preventDefault();
     e.stopPropagation();
-    console.log(e);
-    let parent = e.target;
-    parent.value = -1;
 
-    let kiddo = this.state.currentShipRef;
-    // console.log(this.currentShipRef);
-    console.log('Drop');
-    parent.append(kiddo);
+    let board = [
+      ["","1","2","3","4","5","6","7","8","9","10",],
+      ["A",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["B",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["C",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["D",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["E",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["F",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["G",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["H",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["I",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+      ["J",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+    ];
+    
+    for (let i = 0; i < this.state.currentLength; i++) {
+      board[row + i][col] = -1;
+    }
+    this.setState({ board: board })
   };
 
   componentDidMount() {
-    if (this.dropRef.current) {
-      let div = this.dropRef.current;
-      div.addEventListener('dragover', this.handleDragOver);
-      div.addEventListener('dragenter', this.handleDragEnter);
-      div.addEventListener('dragleave', this.handleDragLeave);
-      div.addEventListener('drop', this.handleDrop);
-    }
-
+    let squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+        square.addEventListener('dragover', this.handleDragOver);
+        square.addEventListener('dragenter', this.handleDragEnter);
+        square.addEventListener('dragleave', this.handleDragLeave);
+        square.addEventListener('drop', this.handleDrop);
+    })
     let ships = document.querySelectorAll('.ship');
     ships.forEach(ship => {
       ship.addEventListener('dragstart', this.handleDragStart);
@@ -123,13 +160,14 @@ class DragDiv extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.dropRef.current) {
-      let div = this.dropRef.current;
-      div.removeEventListener('dragover', this.handleDragOver);
-      div.removeEventListener('dragenter', this.handleDragEnter);
-      div.removeEventListener('dragleave', this.handleDragLeave);
-      div.removeEventListener('drop', this.handleDrop);
-    };
+    let squares = document.querySelectorAll('.square')
+    squares.forEach(square => {
+      square.removeEventListener('dragover', this.handleDragOver);
+      square.removeEventListener('dragenter', this.handleDragEnter);
+      square.removeEventListener('dragleave', this.handleDragLeave);
+      square.removeEventListener('drop', this.handleDrop);
+
+    });
     let ships = document.querySelectorAll('.ship');
     ships.forEach(ship => {
       ship.removeEventListener('dragstart', this.handleDragStart);
@@ -146,16 +184,15 @@ class DragDiv extends React.Component {
             this.state.board.map( (j, col) => (
                 <Square 
                   key={`PlacementBoard_[${row}, ${col}]ID`} 
-                  id={`PlacementBoard_[${row * col}`} 
-                  ref={this[`square_${row * col}`]}
+                  id={`PlacementBoard_${row * col}`} 
                   value={this.state.board[row][col]} 
                   row={row} 
                   col={col} 
                   playerId={0} 
-                  onDragEnter={e=>this.handleDragEnter(e)} 
-                  onDragLeave={e=>this.handleDragLeave(e)} 
+                  onDragEnter={(e, squareId) => this.handleDragEnter(e, squareId)} 
+                  onDragLeave={(e, squareId)=>this.handleDragLeave(e, squareId)} 
                   onDragOver={e=>this.handleDragOver(e)} 
-                  onDrop={e=>this.handleDrop(e)} 
+                  onDrop={(e, squareId)=>this.handleDrop(e, row, col)} 
                 />
             ))
           )}
@@ -172,6 +209,7 @@ class DragDiv extends React.Component {
               <div
                 draggable="true" 
                 className="ship" 
+                longness={5}
               >
                 <Square value={-1} />
                 <Square value={-1} />
