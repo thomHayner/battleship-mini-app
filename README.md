@@ -22,16 +22,19 @@
 - [src/Logic/shipPlacer.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/shipPlacer.js) has a Recursive Function.
 <br>
 
+- There is an additional conditional recursion that will sometimes prevent the computer from firing on the same tile multiple times during the same game (95% of the time the function will recurse and pick a new tile to fire upon, the other 5% of the time it will allow the computer to waste it's turn 'accidentally').  It currently happens between two files, App.js and XXXXX.js
+<br>
+
 - [src/Logic/computerTurn.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/Logic/computerTurn.js) has an Asynchronous Promise (the promise is consumed in the function fireControllHandler() in [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), error handling is done correctly and apropriately.
 <br>
 
 - The main component, [src/App.js](https://github.com/thomHayner/battleship-mini-app/blob/master/src/App.js), is a statefull class component which uses the super constructor, all of the other components and elements are stateless functional components.
 <br>
 
-- Components are destructured, Elements use 'props', mostly just because it's an organized way to present a variety of techniques.
+- Components are destructured, Elements use 'props', mostly just because it's an organized way to present a variety of techniques.  The spread operator is used throughout, in App.js is used for setting nested state, and in Square.js it is used as a rest operator.  Checkboard.js is a pure function and also a switch statement in it.  
 <br>
 
-- There are also examples of pure functions, higher order functions, there is an additional recursion that will prevent the computer from firing on the same tile multiple times (95% of the time it will recurse and pick a new tile to fire upon, the other 5% of the time it will allow the computer to waste it's turn 'accidentally')
+- There are also pure functions and higher order functions throughout the project.
 <br>
 
 ### Tech Stack
@@ -58,11 +61,11 @@
 </p>
 
 <p>
-  The app is mostly vanilla JavaScript, with a little bit of React to make the UI.  As I went through the refactoring process and started adding features I realized that this app was a great opportunity to show knowledge of fundamentals such as classes, asyncronous programming, and recursion, as well as newer concepts like destructuring and the spread operator.  Thus, even though it is a simple app, I decided to make it a portfolio piece.
+  The app is mostly JavaScript, with a little bit of React to make the UI.  As I went through the refactoring process and started adding features I realized that this app was a great opportunity to show fundamentals such as classes, asyncronous operations, and recursion, as well as newer concepts like destructuring and the spread operator.  Thus, even though it is a simple app, I decided to make it a portfolio piece.
 </p>
 
 <p>
-  Since there is no back end, I decided to just host it on Heroku as a front end only app.  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in the middle and then come back to it later, however, I doubt that many people will ever play this, so I will probably just leave it as a portfolio project displaying an app with vanilla JavaScript and React classes.
+  Since there is no back end, I decided to just host it on Heroku as a front end only app.  I could try and make it full stack, possibly by making some sort of arcade game style score board component that saves high scores, or a way to save a game in the middle and then come back to it later, however, I doubt that many people will ever play this, so I will probably just leave it as a portfolio project displaying an app with JavaScript and React's super constructor method.
 </p>
 
 <br>
