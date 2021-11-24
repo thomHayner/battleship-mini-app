@@ -1,5 +1,8 @@
 .main-container {
-  background-color: darkseagreen
+  background-color: darkseagreen;
+  display: inline-flex;
+  padding: 20px;
+  margin: auto;
 }
 
 .empty {
@@ -35,8 +38,10 @@
 }
 
 .outer-drop-zone {
-  display: inline-flex;
   width: 250px;
   height: 250px;
+  display: inline-flex;
+  justify-content: space-around;
+  margin: auto;
   background-color: black;
 }
