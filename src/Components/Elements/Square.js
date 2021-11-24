@@ -17,7 +17,7 @@ const Square = ({ value, ...props }) => {
         onDragEnter={e=>props.onDragEnter(e, squareId)} 
         onDragLeave={e=>props.onDragLeave(e, squareId)} 
         onDragOver={e=>props.onDragOver(e)} 
-        onDrop={e=>props.onDrop(e, squareId)} 
+        onDrop={e=>props.onDrop(e, props.row, props.col)} 
       />
     )
   } else if (value === -3) {
