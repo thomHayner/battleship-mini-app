@@ -10,9 +10,9 @@
 }
 
 .placement-square-fill {
-  height: 21px;
-  width: 21px;
-  border: solid 1px black;
+  height: 25px;
+  width: 25px;
+  border: solid 0px black;
   background-color: pink;
 }
 
@@ -42,4 +42,11 @@
   width: 23px;
   border: solid 1px black;
   background-color: lightskyblue;
+}
+
+.placement-square-draggable {
+  height: 25px;
+  width: 25px;
+  border: solid 1px black;
+  background-color: yellowgreen;
 }
