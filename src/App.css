@@ -38,6 +38,7 @@ ul {
 .board {
   width: 350px;
   margin: 0px;
+  padding: 0px;
   display: grid;
   grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
   justify-content: center;
