@@ -65,6 +65,7 @@ class App extends React.Component {
       highScores: [],
       turnNumber: 0,
       isComputerFiring: false,
+      gameStart: false,
       gameOver: false
     };
     this.fireControlHandler = this.fireControlHandler.bind(this);
@@ -152,7 +153,7 @@ class App extends React.Component {
       // a -1 value)).  When the tracker function runs it count's all of the squares with a 2 value on
       // the board and it store that sum in the 1 index of the tracker return array, that is the check
       // for a battleship, if the 1 index of the tracker return array is 0, that means that there are 
-      // no more 2 value squares on the board, thus there is no battleshipand it can be marked as sunk.
+      // no moreof the 'value = 2' squares on the board, thus there is no battleshipand it can be marked as sunk.
       let tracker = checkBoard(roundBoard);
       if (tracker[0] === 0 && carrier === true) {
         playerScore += 3;
@@ -296,7 +297,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <PiecePicker />
+        <PiecePicker gameStart={this.state.gameStart} />
         <CodeLinkButton />
       </div>
     );
