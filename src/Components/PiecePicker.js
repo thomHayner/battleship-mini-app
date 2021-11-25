@@ -7,9 +7,33 @@ class DragDiv extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      gameStart: props.gameStart,
       currentShipRef: React.createRef(),
       currentLength: 0,
-      shipsArr: [ [1,1,1,1,1], [2,2,2,2], [3,3,3], [4,4,4], [5,5] ],
+      ships: [
+        {
+          name: "carrier",
+          value: 1,
+          shipArr: [1,1,1,1,1],
+          // shipArr: [ [1,1,1,1,1], [2,2,2,2], [3,3,3], [4,4,4], [5,5] ],
+        },{
+          name: "battleship",
+          value: 2,
+          shipArr: [2,2,2,2],
+        },{
+          name: "cruiser",
+          value: 3,
+          shipArr: [3,3,3],
+        },{
+          name: "submarine",
+          value: 4,
+          shipArr: [4,4,4],
+        },{
+          name: "destroyer",
+          value: 5,
+          shipArr: [5,5],
+        },
+      ],
       board: 
       // If you change the board values, the squares' className will change and it may affect drop-zones
         [
