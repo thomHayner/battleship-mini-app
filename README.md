@@ -34,7 +34,7 @@
 - Components are destructured, Elements use 'props', mostly just because it's an organized way to present a variety of techniques.  The spread operator is used throughout, in App.js is used for setting nested state, and in Square.js it is used as a rest operator.  Checkboard.js is a pure function and also a switch statement in it.  
 <br>
 
-- There are also pure functions and higher order functions throughout the project.
+- There are also pure functions and higher order functions throughout the project.  Event listeners and handlers for clicking and dragging, and plenty of examples of other aspects of software development.
 <br>
 
 ### Tech Stack
