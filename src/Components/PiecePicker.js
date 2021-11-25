@@ -11,19 +11,7 @@ class DragDiv extends React.Component {
       currentLength: 0,
       shipsArr: [ [1,1,1,1,1], [2,2,2,2], [3,3,3], [4,4,4], [5,5] ],
       board: 
-      // [
-      //     ["","1","2","3","4","5","6","7","8","9","10",],
-      //     ["A",0,0,0,0,0,0,0,0,0,0],
-      //     ["B",0,0,0,0,0,0,0,0,0,0],
-      //     ["C",0,0,0,0,0,0,0,0,0,0],
-      //     ["D",0,0,0,0,0,0,0,0,0,0],
-      //     ["E",0,0,0,0,0,0,0,0,0,0],
-      //     ["F",0,0,0,0,0,0,0,0,0,0],
-      //     ["G",0,0,0,0,0,0,0,0,0,0],
-      //     ["H",0,0,0,0,0,0,0,0,0,0],
-      //     ["I",0,0,0,0,0,0,0,0,0,0],
-      //     ["J",0,0,0,0,0,0,0,0,0,0],
-      //   ],
+      // If you change the board values, the squares' className will change and it may affect drop-zones
         [
           ["","1","2","3","4","5","6","7","8","9","10",],
           ["A",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
@@ -124,10 +112,15 @@ class DragDiv extends React.Component {
     e.stopPropagation();
 
     let board = this.state.board;
-    
-    for (let i = 0; i < this.state.currentLength; i++) {
-      board[row + i][col] = -1;
-    }
+    // if (vertical) {
+      for (let i = 0; i < this.state.currentLength; i++) {
+        board[row + i][col] = -1;
+      }
+    // else {
+    //   for (let i = 0; i < this.state.currentLength; i++) {
+    //     board[row][col + i] = -1;
+    //   }
+    // }
     this.setState({ board: board })
   };
 
