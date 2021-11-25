@@ -10,27 +10,31 @@ class DragDiv extends React.Component {
       gameStart: props.gameStart,
       currentShipRef: React.createRef(),
       currentLength: 0,
-      // shipArr: [ [1,1,1,1,1], [2,2,2,2], [3,3,3], [4,4,4], [5,5] ],
       ships: [
         {
           name: "carrier",
           value: 1,
+          longness: 5,
           shipArr: [1,1,1,1,1],
         },{
           name: "battleship",
           value: 2,
+          longness: 4,
           shipArr: [2,2,2,2],
         },{
           name: "cruiser",
           value: 3,
+          longness: 3,
           shipArr: [3,3,3],
         },{
           name: "submarine",
           value: 4,
+          longness: 3,
           shipArr: [4,4,4],
         },{
           name: "destroyer",
           value: 5,
+          longness: 2,
           shipArr: [5,5],
         },
       ],
@@ -206,6 +210,7 @@ class DragDiv extends React.Component {
           <div>
             {this.state.ships.map((ship, i) => (
               <div 
+                key={`${ship.name}_start_block`}
                 className="outer-drop-zone" 
                 onDragEnter={e=>this.handleDragEnter(e)} 
                 onDragLeave={e=>this.handleDragLeave(e)} 
@@ -218,7 +223,7 @@ class DragDiv extends React.Component {
                   longness={ship.shipArr.length}
                 >
                   {ship.shipArr.map((square, j) => (
-                  <Square value={ship.value} gameStart={this.state.gameStart} />
+                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} />
                   ))}
                 </div>
               </div>
