@@ -17,22 +17,31 @@ class DragDiv extends React.Component {
           name: "carrier",
           value: 1,
           shipArr: [1,1,1,1,1],
-        },{
+          vert: true,
+        },
+        {
           name: "battleship",
           value: 2,
           shipArr: [2,2,2,2],
-        },{
+          vert: true,
+        },
+        {
           name: "cruiser",
           value: 3,
           shipArr: [3,3,3],
-        },{
+          vert: true,
+        },
+        {
           name: "submarine",
           value: 4,
           shipArr: [4,4,4],
-        },{
+          vert: true,
+        },
+        {
           name: "destroyer",
           value: 5,
           shipArr: [5,5],
+          vert: true,
         },
       ],
       board: 
@@ -67,7 +76,7 @@ class DragDiv extends React.Component {
         ],
     };
 
-    this.handleOrientation = this.handleOrientation.bind(this)
+    this.handleClickOrientation = this.handleClickOrientation.bind(this)
     // Handlers for the piece that is being dragged
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
@@ -80,25 +89,33 @@ class DragDiv extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
   };
 
-  handleOrientation = (e, length) => {
+  handleClickOrientation = (e, length, value, vert) => {
     e.stopPropagation();
-    let vert = this.state.currentVert
-    if (vert === true) {
-      e.target.style = { width: length, height: '25px', display: 'inline', flexDirection: 'row', backgroundColor: '#fff' }
-    } else {
-      e.target.style = { width: '25px', height: length }
-    }
-    this.setState({ currentVert: !vert })
+
+    // if (vert === true) {
+      //   e.target.style = { width: length, height: '25px', display: 'inline', flexDirection: 'row', backgroundColor: '#fff' }
+      // } else {
+        //   e.target.style = { width: '25px', height: length }
+        // }
+    console.log(e)
+    this.setState({ currentVert: vert });
+    this.setState({ 
+      ships: [
+        ...this.state.ships,
+        
+      ] 
+    })
   }
 
   // Handlers for the piece that is being dragged
-  handleDragStart = (e, tempValue) => {
+  handleDragStart = (e, tempValue, tempVert) => {
     let tempShip = e.target;
     let tempLength = e.target.children.length;
     this.setState({ 
       currentShipRef: tempShip,
       currentLength: tempLength,
       currentValue: tempValue,
+      currentVert: tempVert,
     });
   };
 
@@ -115,8 +132,8 @@ class DragDiv extends React.Component {
   };
 
   handleDragLeave = (e, row, col) => {
-    e.preventDefault();
-    e.stopPropagation();
+    // e.preventDefault();
+    // e.stopPropagation();
   };
 
   handleDragOver = e => {
@@ -139,28 +156,31 @@ class DragDiv extends React.Component {
 
       board.map((i,k) => (i.map((j,l) => board[k][l] === value ? board[k][l] = -2 : j )))
       // If vertical:
-      if (row === row) {
-        // if (row + length) is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+      if (this.state.ships[value - 1].vert) {
+        // if (row + length) is greater than 10, that means the piece will hit the edge of the wall,
+        // so we need to correct for that possibility.
         if (row > 11 - length) { 
           row = 11 - length;
         };
-        // set the 'ship' squares for the column
+        // set the 'ship' squares for the column of ship pieces
         for (let i = 0; i < this.state.currentLength; i++) {
           board[row + i][col] = value;
         };
       // Else, if horizontal:
-      } else if (col !== col) {
-        // if (col + length) is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+      } else {
+        // if (col + length) is greater than 10, that means the piece will hit the edge of the wall,
+        // so, we need to correct for that possibility.
         if (col > 11 - length) { 
           col = 11 - length;
         };
-        // set the 'ship' squares for the row
+        // set the 'ship' squares for the row of ship pieces
         for (let i = 1; i < this.state.currentLength; i++) {
           board[row][col + i] = value;
         };
       }
       // Set the state to save the board
       this.setState({ board: board, lastBoard: board });
+      console.log(board)
 
       // Append the 'ship' to the board
       // e.target.append(this.state.currentShipRef);
@@ -180,7 +200,7 @@ class DragDiv extends React.Component {
       ship.addEventListener('dragstart', this.handleDragStart);
       ship.addEventListener('dragend', this.handleDragEnd);
       ship.addEventListener('drag', this.handleDrag);
-      ship.addEventListener('click', this.handleOrientation);
+      ship.addEventListener('click', this.handleClickOrientation);
     })
   }
 
@@ -198,7 +218,7 @@ class DragDiv extends React.Component {
       ship.removeEventListener('dragstart', this.handleDragStart);
       ship.removeEventListener('dragend', this.handleDragEnd);
       ship.removeEventListener('drag', this.handleDrag);
-      ship.removeEventListener('click', this.handleOrientation);
+      ship.removeEventListener('click', this.handleClickOrientation);
     });
   };
 
@@ -238,9 +258,11 @@ class DragDiv extends React.Component {
                 <div
                   draggable="true" 
                   className="ship-outer-div" 
-                  onDragStart={e=>this.handleDragStart(e, ship.value)} 
-                  onClick={e=>this.handleOrientation(e, ship.shipArr.length * 25)} 
                   length={ship.shipArr.length} 
+                  value={ship.value}
+                  vert={ship.vert} 
+                  onDragStart={e=>this.handleDragStart(e, ship.value, ship.vert)} 
+                  onClick={e=>this.handleOrientation(e, ship.shipArr.length * 25, ship.value, ship.vert)} 
                   style={{ height: `${ship.shipArr.length * 25}px`, width: `25px` }}  // e.target.style = 
                 >
                   {ship.shipArr.map((square, j) => (
