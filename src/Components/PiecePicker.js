@@ -55,16 +55,11 @@ class DragDiv extends React.Component {
         ],
     };
 
-    // This dynamically creates refs, one ref for each board square
-    // for (let i = 1; i <= 100; i++) {
-    //   this[`square_${i}`] = React.createRef();
-    // }
-    this.dropRef = React.createRef();
-    
     // Handlers for the piece that is being dragged
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
+
     // Handlers for the drop-zones
     this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
@@ -93,24 +88,21 @@ class DragDiv extends React.Component {
   };
 
   // Handlers for the drop-zones
-  handleDragEnter = (e, squareId) => {
-    // console.log('Enter');
-    e.preventDefault();
-    e.stopPropagation();
-    // let className = e.target.className;
-    // let plusTen = squareId + 10;
-    // let next = document.getElementById(`PlacementBoard_${plusTen}`)
-    // setTimeout(()=>{}, 0);
-    // if (className === 'placement-square-empty'){
-    // if (className === 'square'){
-    //   className = "placement-square-hovered";
-    //   e.target.className = className;
-    //   // next.className = className
-    // };
+  handleDragEnter = (e, row, col) => {
+    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill") {
+      e.preventDefault();
+      e.stopPropagation();
+      let board = this.state.board;
+      // if (vertical) {}
+      for (let i = 1; i < this.state.currentLength; i++) {
+        board[row + i][col] = -1;
+      }
+      this.setState({ board: board });
+      setTimeout(()=>{}, 0);
+    }
   };
 
-  handleDragLeave = (e, squareId) => {
-    // console.log('Leave');
+  handleDragLeave = (e, row, col) => {
     e.preventDefault();
     e.stopPropagation();
     // let className = e.target.className;
@@ -124,7 +116,6 @@ class DragDiv extends React.Component {
   };
 
   handleDragOver = e => {
-    // console.log('Over');
     e.preventDefault();
     e.stopPropagation();
     // let className = e.target.className;
@@ -135,7 +126,6 @@ class DragDiv extends React.Component {
   };
 
   handleDrop = (e, row, col) => {
-    // console.log('Drop');
     e.preventDefault();
     e.stopPropagation();
 
@@ -149,7 +139,8 @@ class DragDiv extends React.Component {
     //     board[row][col + i] = -1;
     //   }
     // }
-    this.setState({ board: board })
+    this.setState({ board: board });
+    e.target.append(this.state.currentShipRef)
   };
 
   componentDidMount() {
@@ -210,7 +201,7 @@ class DragDiv extends React.Component {
           <div>
             {this.state.ships.map((ship, i) => (
               <div 
-                key={`${ship.name}_start_block`}
+                key={`${ship.name}_outer_drop_zone`}
                 className="outer-drop-zone" 
                 onDragEnter={e=>this.handleDragEnter(e)} 
                 onDragLeave={e=>this.handleDragLeave(e)} 
