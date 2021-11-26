@@ -12,7 +12,7 @@
 
 ### Current location
 
-- [https://th-battleship.herokuapp.com/](https://th-battleship.herokuapp.com/)
+- [http://battleship.ThomasHayner.com/](http://battleship.ThomasHayner.com/)
 - Heroku free-tier hosting, since it is free the app automatically shuts down after 30 minutes of non-use, so, it will take a few seconds to load when you first visit the page.
 <br>
 
