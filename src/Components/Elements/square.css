@@ -56,4 +56,7 @@
   width: 23px;
   border: solid 1px black;
   background-color: tomato;
+  /* this next line disables clicking on the square so that the click event points to the larger
+  group of squares representing the ship*/
+  pointer-events: none;
 }
