@@ -15,27 +15,22 @@ class DragDiv extends React.Component {
         {
           name: "carrier",
           value: 1,
-          longness: 5,
           shipArr: [1,1,1,1,1],
         },{
           name: "battleship",
           value: 2,
-          longness: 4,
           shipArr: [2,2,2,2],
         },{
           name: "cruiser",
           value: 3,
-          longness: 3,
           shipArr: [3,3,3],
         },{
           name: "submarine",
           value: 4,
-          longness: 3,
           shipArr: [4,4,4],
         },{
           name: "destroyer",
           value: 5,
-          longness: 2,
           shipArr: [5,5],
         },
       ],
@@ -84,12 +79,14 @@ class DragDiv extends React.Component {
   };
 
   // Handlers for the piece that is being dragged
-  handleDragStart = e => {
+  handleDragStart = (e, tempValue) => {
     let tempShip = e.target;
     let tempLength = e.target.children.length;
-    let tempValue = e.target.value
-    console.log(e.target.longness)
-    this.setState({ currentShipRef: tempShip, currentLength: tempLength });
+    this.setState({ 
+      currentShipRef: tempShip,
+      currentLength: tempLength,
+      currentValue: tempValue,
+    });
 
     // This setTimeout() might help the setState happen more smoothly
     // (saw this in a tutorial, not 100% sure if that is what it was for)
@@ -104,33 +101,34 @@ class DragDiv extends React.Component {
 
   // Handlers for the drop-zones
   handleDragEnter = (e, row, col) => {
-    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill") {
+    if (e.target.className !== "ship" && e.target.className !== "outer-drop-zone") {
       e.preventDefault();
       e.stopPropagation();
       let board = this.state.board;
       let length = this.state.currentLength;
       // if (vertical) {
         // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
-        if (row > 10 - length) { 
+        if (row > 11 - length) { 
         row = 11 - length;
-          for (let i = 1; i < this.state.currentLength; i++) {
-            board[row + i][col] = -1;
-          };
         };
+        for (let i = 1; i < this.state.currentLength; i++) {
+          board[row + i][col] = -1;
+        };
+        // } else if (horizontal) {}
         this.setState({ board: board });
-      // } else if (horizontal) {}
-      // setTimeout(()=>{}, 0);
+      setTimeout(()=>{}, 0);
     };
   };
 
   handleDragLeave = (e, row, col) => {
-    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill") {
+    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill" || e.target.className === "square") {
       e.preventDefault();
       e.stopPropagation();
-      let board = this.state.lastBoard;
-      // It doesn't matter if this is ert or horiz, this just returns the last board to preserve previous ship placements
-      this.setState({ board: board });
-      // setTimeout(()=>{}, 0);
+      // let board = this.state.board;
+      // let length = this.state.currentLength;
+      // It doesn't matter if this is vert or horiz, this just returns the last board to preserve previous ship placements
+      this.setState({ board: this.state.lastBoard });
+      setTimeout(()=>{}, 0);
     };
   };
 
@@ -140,21 +138,33 @@ class DragDiv extends React.Component {
   };
 
   handleDrop = (e, row, col) => {
+    if (row === undefined || col === undefined) { return }
     e.preventDefault();
     e.stopPropagation();
     let board = this.state.board;
-    let ship = this.state.currentShipRef
     let length = this.state.currentLength;
+    let value = this.state.currentValue
+
+    board.map((i,k) => (i.map((j,l) => board[k][l] === value ? board[k][l] = -2 : j )))
+
+    // If the piece is vertically oriented
     // if (vertical) {
-    // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
-    if (row > 10 - length) { 
-      row = 11 - length;
-      for (let i = 1; i < this.state.currentLength; i++) {
-        board[row + i][col] = ship.value;
+      // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+      if (row > 11 - length) { 
+        row = 11 - length;
       };
-    };
-    console.log(this.state.currentShipRef)
-    // } else if (horizontal) {}
+      for (let i = 1; i < this.state.currentLength; i++) {
+        board[row + i][col] = value;
+      };
+    // } else if (horizontal) {
+    //   if (row > 11 - length) { 
+    //     row = 11 - length;
+    //   };
+    //   console.log(ship)
+    //   for (let i = 1; i < this.state.currentLength; i++) {
+    //     board[row + i][col] = ship.value;
+    //   };
+    // }
     this.setState({ board: board, lastBoard: board });
     e.target.append(this.state.currentShipRef);
     // setTimeout(()=>{}, 0);
@@ -206,6 +216,7 @@ class DragDiv extends React.Component {
                   row={row} 
                   col={col} 
                   playerId={0} 
+                  gameStart={this.state.gameStart} 
                   onDragEnter={(e, row, col) => this.handleDragEnter(e, row, col)} 
                   onDragLeave={(e, row, col)=>this.handleDragLeave(e, row, col)} 
                   onDragOver={e=>this.handleDragOver(e)} 
@@ -228,8 +239,7 @@ class DragDiv extends React.Component {
                 <div
                   draggable="true" 
                   className="ship-outer-div" 
-                  longness={ship.shipArr.length}
-                  value={ship.value}
+                  onDragStart={e=>this.handleDragStart(e, ship.value)}
                 >
                   {ship.shipArr.map((square, j) => (
                   <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" />
