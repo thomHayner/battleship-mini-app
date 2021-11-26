@@ -73,7 +73,7 @@ class App extends React.Component {
   };
 
   fireControlHandler = (row, col, playerId) => {
-    if (this.state.gameOver === false && this.state.isComputerFiring === false && playerId === 1) {
+    if (this.state.gameStart === true && this.state.gameOver === false && this.state.isComputerFiring === false && playerId === 1) {
       computerTurn(row, col, this.subController)
         .then(res => this.subController(res[1], res[0]))
         .catch(err => {
