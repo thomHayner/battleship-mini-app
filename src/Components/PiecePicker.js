@@ -9,6 +9,7 @@ class DragDiv extends React.Component {
     this.state = {
       gameStart: props.gameStart,
       currentShipRef: React.createRef(),
+      currentValue: 0,
       currentLength: 0,
       ships: [
         {
@@ -53,6 +54,21 @@ class DragDiv extends React.Component {
           ["I",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
           ["J",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
         ],
+      lastBoard: 
+      // If you change the board values, the squares' className will change and it may affect drop-zones
+        [
+          ["","1","2","3","4","5","6","7","8","9","10",],
+          ["A",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["B",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["C",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["D",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["E",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["F",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["G",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["H",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["I",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+          ["J",-2,-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        ],
     };
 
     // Handlers for the piece that is being dragged
@@ -71,7 +87,8 @@ class DragDiv extends React.Component {
   handleDragStart = e => {
     let tempShip = e.target;
     let tempLength = e.target.children.length;
-
+    let tempValue = e.target.value
+    console.log(e.target.longness)
     this.setState({ currentShipRef: tempShip, currentLength: tempLength });
 
     // This setTimeout() might help the setState happen more smoothly
@@ -91,18 +108,30 @@ class DragDiv extends React.Component {
       e.preventDefault();
       e.stopPropagation();
       let board = this.state.board;
-      // if (vertical) {}
-      for (let i = 1; i < this.state.currentLength; i++) {
-        board[row + i][col] = -1;
-      }
-      this.setState({ board: board });
-      setTimeout(()=>{}, 0);
-    }
+      let length = this.state.currentLength;
+      // if (vertical) {
+        // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+        if (row > 10 - length) { 
+        row = 11 - length;
+          for (let i = 1; i < this.state.currentLength; i++) {
+            board[row + i][col] = -1;
+          };
+        };
+        this.setState({ board: board });
+      // } else if (horizontal) {}
+      // setTimeout(()=>{}, 0);
+    };
   };
 
   handleDragLeave = (e, row, col) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill") {
+      e.preventDefault();
+      e.stopPropagation();
+      let board = this.state.lastBoard;
+      // It doesn't matter if this is ert or horiz, this just returns the last board to preserve previous ship placements
+      this.setState({ board: board });
+      // setTimeout(()=>{}, 0);
+    };
   };
 
   handleDragOver = e => {
@@ -113,19 +142,22 @@ class DragDiv extends React.Component {
   handleDrop = (e, row, col) => {
     e.preventDefault();
     e.stopPropagation();
-
     let board = this.state.board;
+    let ship = this.state.currentShipRef
+    let length = this.state.currentLength;
     // if (vertical) {
-      for (let i = 0; i < this.state.currentLength; i++) {
-        board[row + i][col] = -1;
-      }
-    // else {
-    //   for (let i = 0; i < this.state.currentLength; i++) {
-    //     board[row][col + i] = -1;
-    //   }
-    // }
-    this.setState({ board: board });
-    e.target.append(this.state.currentShipRef)
+    // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+    if (row > 10 - length) { 
+      row = 11 - length;
+      for (let i = 1; i < this.state.currentLength; i++) {
+        board[row + i][col] = ship.value;
+      };
+    };
+    console.log(this.state.currentShipRef)
+    // } else if (horizontal) {}
+    this.setState({ board: board, lastBoard: board });
+    e.target.append(this.state.currentShipRef);
+    // setTimeout(()=>{}, 0);
   };
 
   componentDidMount() {
@@ -174,10 +206,10 @@ class DragDiv extends React.Component {
                   row={row} 
                   col={col} 
                   playerId={0} 
-                  onDragEnter={(e, squareId) => this.handleDragEnter(e, squareId)} 
-                  onDragLeave={(e, squareId)=>this.handleDragLeave(e, squareId)} 
+                  onDragEnter={(e, row, col) => this.handleDragEnter(e, row, col)} 
+                  onDragLeave={(e, row, col)=>this.handleDragLeave(e, row, col)} 
                   onDragOver={e=>this.handleDragOver(e)} 
-                  onDrop={(e, squareId)=>this.handleDrop(e, row, col)} 
+                  onDrop={(e, row, col)=>this.handleDrop(e, row, col)} 
                 />
             ))
           )}
@@ -197,6 +229,7 @@ class DragDiv extends React.Component {
                   draggable="true" 
                   className="ship-outer-div" 
                   longness={ship.shipArr.length}
+                  value={ship.value}
                 >
                   {ship.shipArr.map((square, j) => (
                   <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" />
