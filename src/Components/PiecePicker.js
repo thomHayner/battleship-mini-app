@@ -66,6 +66,7 @@ class DragDiv extends React.Component {
         ],
     };
 
+    this.handleOrientation = this.handleOrientation.bind(this)
     // Handlers for the piece that is being dragged
     this.handleDrag = this.handleDrag.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
@@ -77,6 +78,16 @@ class DragDiv extends React.Component {
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
   };
+
+  handleOrientation = e => {
+    if (e.target.vert === "true") {
+      e.target.vert = "false"
+    }
+    if (e.target.vert === "false") {
+      e.target.vert = "true"
+    }
+    console.log(e.target.className)
+  }
 
   // Handlers for the piece that is being dragged
   handleDragStart = (e, tempValue) => {
@@ -104,7 +115,7 @@ class DragDiv extends React.Component {
     if (e.target.className !== "ship" && e.target.className !== "outer-drop-zone") {
       e.preventDefault();
       e.stopPropagation();
-      let board = this.state.board;
+      let board = this.state.lastBoard;
       let length = this.state.currentLength;
       // if (vertical) {
         // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
@@ -116,20 +127,20 @@ class DragDiv extends React.Component {
         };
         // } else if (horizontal) {}
         this.setState({ board: board });
-      setTimeout(()=>{}, 0);
+      // setTimeout(()=>{}, 0);
     };
   };
 
   handleDragLeave = (e, row, col) => {
-    if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill" || e.target.className === "square") {
+    // if (e.target.className === "placement-square-empty" || e.target.className === "placement-square-fill" || e.target.className === "square") {
       e.preventDefault();
       e.stopPropagation();
-      // let board = this.state.board;
+      // let board = this.state.lastBoard;
       // let length = this.state.currentLength;
       // It doesn't matter if this is vert or horiz, this just returns the last board to preserve previous ship placements
-      this.setState({ board: this.state.lastBoard });
-      setTimeout(()=>{}, 0);
-    };
+      // this.setState({ board: this.state.lastBoard });
+      // setTimeout(()=>{}, 0);
+    // };
   };
 
   handleDragOver = e => {
@@ -138,36 +149,41 @@ class DragDiv extends React.Component {
   };
 
   handleDrop = (e, row, col) => {
-    if (row === undefined || col === undefined) { return }
-    e.preventDefault();
-    e.stopPropagation();
-    let board = this.state.board;
-    let length = this.state.currentLength;
-    let value = this.state.currentValue
+    if (row === undefined || col === undefined) {
+      return
+    }
 
-    board.map((i,k) => (i.map((j,l) => board[k][l] === value ? board[k][l] = -2 : j )))
+    if (e.target.className === "placement-square-empty" || e.target.className === "ship") {
+      e.preventDefault();
+      e.stopPropagation();
+      let board = this.state.board;
+      let length = this.state.currentLength;
+      let value = this.state.currentValue
 
-    // If the piece is vertically oriented
-    // if (vertical) {
-      // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
-      if (row > 11 - length) { 
-        row = 11 - length;
-      };
-      for (let i = 1; i < this.state.currentLength; i++) {
-        board[row + i][col] = value;
-      };
-    // } else if (horizontal) {
-    //   if (row > 11 - length) { 
-    //     row = 11 - length;
-    //   };
-    //   console.log(ship)
-    //   for (let i = 1; i < this.state.currentLength; i++) {
-    //     board[row + i][col] = ship.value;
-    //   };
-    // }
-    this.setState({ board: board, lastBoard: board });
-    e.target.append(this.state.currentShipRef);
-    // setTimeout(()=>{}, 0);
+      board.map((i,k) => (i.map((j,l) => board[k][l] === value ? board[k][l] = -2 : j )))
+
+      // If the piece is vertically oriented
+      // if (vertical) {
+        // if (row + length is greater than 10, that means the piece will hit the edge of the wall, so we need to correct for that possibility
+        if (row > 11 - length) { 
+          row = 11 - length;
+        };
+        for (let i = 1; i < this.state.currentLength; i++) {
+          board[row + i][col] = value;
+        };
+      // } else if (horizontal) {
+      //   if (row > 11 - length) { 
+      //     row = 11 - length;
+      //   };
+      //   console.log(ship)
+      //   for (let i = 1; i < this.state.currentLength; i++) {
+      //     board[row + i][col] = ship.value;
+      //   };
+      // }
+      this.setState({ board: board, lastBoard: board });
+      e.target.append(this.state.currentShipRef);
+      // setTimeout(()=>{}, 0);
+    };
   };
 
   componentDidMount() {
@@ -239,10 +255,12 @@ class DragDiv extends React.Component {
                 <div
                   draggable="true" 
                   className="ship-outer-div" 
-                  onDragStart={e=>this.handleDragStart(e, ship.value)}
+                  vert="true" 
+                  onDragStart={e=>this.handleDragStart(e, ship.value)} 
+                  onClick={e=>this.handleOrientation(e)} 
                 >
                   {ship.shipArr.map((square, j) => (
-                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" />
+                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" onClick={()=>{}} />
                   ))}
                 </div>
               </div>
