@@ -9,6 +9,13 @@
   justify-content: center;
 }
 
+.placement-square-hovered-ship {
+  height: 23px;
+  width: 23px;
+  border: solid 0px black;
+  background-color: pink;
+}
+
 .placement-square-fill {
   height: 23px;
   width: 23px;

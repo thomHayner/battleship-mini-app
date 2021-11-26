@@ -27,6 +27,7 @@ const Square = ({ value, row, col, ...props }) => {
     return(
         <div 
             className="ship" 
+            value={props.value}
             // onClick={ (e) => props.handleChangeDirection } 
         />
     )
