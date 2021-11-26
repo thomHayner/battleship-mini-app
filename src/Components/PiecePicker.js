@@ -136,7 +136,7 @@ class DragDiv extends React.Component {
         square.addEventListener('dragleave', this.handleDragLeave);
         square.addEventListener('drop', this.handleDrop);
     })
-    let ships = document.querySelectorAll('.ship');
+    let ships = document.querySelectorAll('.ship-outer-div');
     ships.forEach(ship => {
       ship.addEventListener('dragstart', this.handleDragStart);
       ship.addEventListener('dragend', this.handleDragEnd);
@@ -153,7 +153,7 @@ class DragDiv extends React.Component {
       square.removeEventListener('drop', this.handleDrop);
 
     });
-    let ships = document.querySelectorAll('.ship');
+    let ships = document.querySelectorAll('.ship-outer-div');
     ships.forEach(ship => {
       ship.removeEventListener('dragstart', this.handleDragStart);
       ship.removeEventListener('dragend', this.handleDragEnd);
@@ -195,11 +195,11 @@ class DragDiv extends React.Component {
               >
                 <div
                   draggable="true" 
-                  className="ship" 
+                  className="ship-outer-div" 
                   longness={ship.shipArr.length}
                 >
                   {ship.shipArr.map((square, j) => (
-                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} />
+                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" />
                   ))}
                 </div>
               </div>
