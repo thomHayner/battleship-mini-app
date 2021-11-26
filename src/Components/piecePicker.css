@@ -5,38 +5,6 @@
   margin: auto;
 }
 
-.empty {
-  display: inline-block;
-  height: 160px;
-  width: 160px;
-  margin: 10px;
-  border: 3px lawngreen solid;
-  background-color: whitesmoke;
-}
-
-.fill {
-  background-image: url('http://source.unsplash.com/random/150x150');
-  position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
-}
-
-.hold {
-  border: solid cornflowerblue 4px;
-}
-
-.hovered {
-  background: magenta;
-  border-style: dashed;
-}
-
-.invisible {
-  display: none;
-}
-
 .outer-drop-zone {
   width: 129px;
   height: 129px;
