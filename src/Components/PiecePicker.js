@@ -69,7 +69,6 @@ class DragDiv extends React.Component {
 
   // Handlers for the piece that is being dragged
   handleDragStart = e => {
-    // console.log('Start');
     let tempShip = e.target;
     let tempLength = e.target.children.length;
 
@@ -78,7 +77,6 @@ class DragDiv extends React.Component {
     // This setTimeout() might help the setState happen more smoothly
     // (saw this in a tutorial, not 100% sure if that is what it was for)
     setTimeout(()=>{}, 0);
-
   };
 
   handleDrag = e => {
@@ -105,24 +103,11 @@ class DragDiv extends React.Component {
   handleDragLeave = (e, row, col) => {
     e.preventDefault();
     e.stopPropagation();
-    // let className = e.target.className;
-    // setTimeout(()=>{}, 0);
-    // if (className === 'placement-square-hovered') {
-    //   // className = "placement-square-empty";
-    //   className = "square";
-    //   e.target.className = className;
-    // };
-    // console.log(e);
   };
 
   handleDragOver = e => {
     e.preventDefault();
     e.stopPropagation();
-    // let className = e.target.className;
-    // if (className !== 'outer-drop-zone') {
-    //   let className = "placement-square-hovered";
-    //   e.target.className = className;
-    // }
   };
 
   handleDrop = (e, row, col) => {
