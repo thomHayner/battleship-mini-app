@@ -2,6 +2,7 @@ import React from "react";
 import './piecePicker.css';
 import '../App.css';
 import Square from "./Elements/Square";
+import shipPlacer from '../Logic/shipPlacer';
 
 class DragDiv extends React.Component {
   constructor(props) {
@@ -89,22 +90,35 @@ class DragDiv extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
   };
 
-  handleClickOrientation = (e, length, value, vert) => {
+  // When you click a piece (and the piece is inside it's starting container), it should change that
+  //  piece's state.ships[value-1].vert value
+  handleClickOrientation = (e, tempValue, vert) => {
     e.stopPropagation();
+    let tempShip = e.target
+
+    // First bring in the whole ships object
+    let tempShips = this.state.ships;
+    let shipIndex = tempValue
+    let ship = tempShips[shipIndex]
+    setTimeout(()=>{}, 0)
+    // Next, edit the values in the tempObject
+    // ship.vert = !ship.vert
+    // Then, set the stateObject to the value of the tempObject
+    this.setState({ ships: tempShips })
+    console.log(this.state.ships)
+    console.log(tempShips)
+    console.log(shipIndex)
+    console.log(this.state.ships[shipIndex])
+    console.log(e.target.children[0].value)
+
 
     // if (vert === true) {
       //   e.target.style = { width: length, height: '25px', display: 'inline', flexDirection: 'row', backgroundColor: '#fff' }
       // } else {
         //   e.target.style = { width: '25px', height: length }
         // }
-    console.log(e)
-    this.setState({ currentVert: vert });
-    this.setState({ 
-      ships: [
-        ...this.state.ships,
-        
-      ] 
-    })
+    // this.setState({ currentVert: vert });
+    
   }
 
   // Handlers for the piece that is being dragged
@@ -188,7 +202,7 @@ class DragDiv extends React.Component {
   };
 
   componentDidMount() {
-    let squares = document.querySelectorAll('.square');
+    let squares = document.querySelectorAll('.placement-square-empty');
     squares.forEach(square => {
         square.addEventListener('dragover', this.handleDragOver);
         square.addEventListener('dragenter', this.handleDragEnter);
@@ -205,7 +219,7 @@ class DragDiv extends React.Component {
   }
 
   componentWillUnmount() {
-    let squares = document.querySelectorAll('.square')
+    let squares = document.querySelectorAll('.placement-square-empty')
     squares.forEach(square => {
       square.removeEventListener('dragover', this.handleDragOver);
       square.removeEventListener('dragenter', this.handleDragEnter);
@@ -244,33 +258,39 @@ class DragDiv extends React.Component {
             ))
           )}
         </div>
-        <div>
-          <div>
-            {this.state.ships.map((ship, i) => (
-              <div 
-                key={`${ship.name}_outer_drop_zone`}
-                className="outer-drop-zone" 
-                onDragEnter={e=>this.handleDragEnter(e)} 
-                onDragLeave={e=>this.handleDragLeave(e)} 
-                onDragOver={e=>this.handleDragOver(e)} 
-                onDrop={e=>this.handleDrop(e)} 
-              >
-                <div
-                  draggable="true" 
-                  className="ship-outer-div" 
-                  length={ship.shipArr.length} 
-                  value={ship.value}
-                  vert={ship.vert} 
-                  onDragStart={e=>this.handleDragStart(e, ship.value, ship.vert)} 
-                  onClick={e=>this.handleOrientation(e, ship.shipArr.length * 25, ship.value, ship.vert)} 
-                  style={{ height: `${ship.shipArr.length * 25}px`, width: `25px` }}  // e.target.style = 
+        <div className="outer-drop-and-button-area-column" >
+          <div className="outer-drop-zones-area-row" >
+            <div>
+              {this.state.ships.map((ship, i) => (
+                <div 
+                  key={`${ship.name}_outer_drop_zone`}
+                  className="outer-drop-zone" 
+                  onDragEnter={e=>this.handleDragEnter(e)} 
+                  onDragLeave={e=>this.handleDragLeave(e)} 
+                  onDragOver={e=>this.handleDragOver(e)} 
+                  onDrop={e=>this.handleDrop(e)} 
+                  ship={ship}
                 >
-                  {ship.shipArr.map((square, j) => (
-                  <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart} draggable="false" />
-                  ))}
+                  <div
+                    draggable="true" 
+                    className="ship-outer-div" 
+                    length={ship.shipArr.length} 
+                    value={ship.value} 
+                    vert={ship.vert} 
+                    onDragStart={e=>this.handleDragStart(e, ship.value, ship.vert)} 
+                    onClick={e=>this.handleOrientation(e, i, ship.vert)} 
+                    style={{ width: `${ship.shipArr.length * 25}px`, height: `25px` }}  // e.target.style = 
+                  >
+                    {ship.shipArr.map((square, j) => (
+                    <Square key={`${ship.name}_${j}`} value={ship.value} gameStart={this.state.gameStart}/* vert={ship.vert} ship={ship} draggable="false" *//>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+          <div>
+            <button href="#" onClick={shipPlacer()}>Random</button>
           </div>
         </div>
       </div>
