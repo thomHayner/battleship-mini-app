@@ -2,7 +2,12 @@ import React from 'react';
 import './square.css';
 
 const Square = ({ value, row, col, ...props }) => {
-  const StandardGameBoardSquareDiv = (tempClassName) => <div className={tempClassName} onClick={ (e) => props.handleFire(row, col, props.playerId) } />;
+  const StandardGameBoardSquareDiv = (tempClassName) => (
+    <div
+      className={tempClassName}
+      onClick={ (e) => props.handleFire(row, col, props.playerId) }
+    />
+  );
   
   if (typeof value === 'string') {
     return <div className="index-square" >{value}</div>
@@ -29,7 +34,7 @@ const Square = ({ value, row, col, ...props }) => {
             className="ship" 
             value={value} 
             vert={props.vert} 
-            // onClick={ (e) => props.handleChangeDirection } 
+            onClick={ (e) => props.handleChangeDirection } 
         />
     )
   } else {
