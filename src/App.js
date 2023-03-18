@@ -4,8 +4,8 @@ import checkBoard from './utils/checkBoard';
 import computerTurn from './utils/computerTurn';
 import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
-import PiecePicker from './Components/PiecePicker';
-import CodeLinkButton from './Components/CodeLinkButton';
+import PiecePicker from './Features/PiecePicker';
+import CodeLinkButton from './Components/Elements/CodeLinkButton';
 import './App.css';
 import squareCoordsPicker from './utils/squareCoordsPicker';
 
