@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerName from "../Components/Elements/DisplayMessages/PlayerName";
+import PlayerName from "../Components/playerDashboard/Elements/DisplayMessages/PlayerName";
 import Board from "../Components/playerDashboard/Board";
 import ScoreCard from '../Components/playerDashboard/ScoreCard';
 import '../';
@@ -10,7 +10,7 @@ export default function PlayerDashboard({ playerData, opponentShips, handleFire 
   return (
     <div className="player-dashboard" >
       <PlayerName name={playerData.name} />
-      <Board board={playerData.board} playerId={playerData.id} handleFire={handleFire} />
+      <Board matrix={playerData.matrix} playerId={playerData.id} handleFire={handleFire} />
       <ScoreCard playerData={playerData} opponentShips={opponentShips} />
     </div>
   )

@@ -2,10 +2,10 @@ import React from 'react';
 import shipPlacer from './utils/shipPlacer';
 import checkBoard from './utils/checkBoard';
 import computerTurn from './utils/computerTurn';
-import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
+import WhoseTurnIsItAnyway from './Components/playerDashboard/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Features/PlayerDashboard';
 import PiecePicker from './Features/PiecePicker';
-import CodeLinkButton from './Components/Elements/CodeLinkButton';
+import CodeLinkButton from './Components/CodeLinkButton';
 import './App.css';
 import squareCoordsPicker from './utils/squareCoordsPicker';
 
@@ -16,7 +16,7 @@ class App extends React.Component {
       redPlayer: {
         id: 1,
         name: "Player",
-        board: shipPlacer(),
+        matrix: shipPlacer(),
         /* *
         * replacing `board` with the matrix below will give you test games 
         * where the computer's gameplay board is always the same ship placement 
@@ -51,7 +51,7 @@ class App extends React.Component {
       bluePlayer: {
         id: 2,
         name: "Computer",
-        board: shipPlacer(),
+        matrix: shipPlacer(),
         messages: {
           score: 0,
           shot: "The Enemy is targeting us, Sir!",
@@ -98,12 +98,12 @@ class App extends React.Component {
   subController = (row, col) => {
     if (this.state.gameOver === false) {
       let newTurnNumber = this.state.turnNumber + 1;
-      let roundBoard = this.state.redPlayer.board.slice();
+      let roundBoard = this.state.redPlayer.matrix.slice();
       let turnPlayerShips = this.state.redPlayer.ships;
       let turnPlayerMessages = this.state.redPlayer.messages;
       let opponentMessages = this.state.bluePlayer.messages;
       if (this.state.isComputerFiring) {
-        roundBoard = this.state.bluePlayer.board.slice();
+        roundBoard = this.state.bluePlayer.matrix.slice();
         turnPlayerShips = this.state.bluePlayer.ships;
         turnPlayerMessages = this.state.bluePlayer.messages;
         opponentMessages = this.state.redPlayer.messages;
@@ -215,7 +215,7 @@ class App extends React.Component {
           bluePlayer: {
             // When updating some nested props but not all nested props, you need to use spread operator.
             ...this.state.bluePlayer,
-            board: roundBoard,
+            matrix: roundBoard,
             messages: {
               shot: playerShot,
               sinking: playerSinking,
@@ -245,7 +245,7 @@ class App extends React.Component {
         this.setState({
           redPlayer: {
             ...this.state.redPlayer,
-            board: roundBoard,
+            matrix: roundBoard,
             messages: {
               shot: playerShot,
               sinking: playerSinking,
@@ -285,7 +285,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App" >
+      <div className="app" >
         <header className="container-equivalent App-header" >
           <h1 className="row-equivalent" >Battleship</h1>
           <h2 className="row-equivalent" >Based on the Classic Board Game</h2>

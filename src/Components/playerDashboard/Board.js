@@ -1,13 +1,13 @@
 import React from 'react';
-import Square from '../Elements/Square';
+import Square from './Elements/Square';
 
-const Board = ({ board, playerId, handleFire }) => 
-    <div className="board" >
-        {board.map( (i, row) => 
-            board.map( (j, col) => (
+const Board = ({ matrix, playerId, handleFire }) => 
+    <div className="matrix">
+        {matrix.map( (i, row) => 
+            matrix.map( (j, col) => (
                 <Square 
                     key={[row, col]} 
-                    value={board[row][col]} 
+                    value={matrix[row][col]} 
                     row={row} 
                     col={col} 
                     playerId={playerId} 
