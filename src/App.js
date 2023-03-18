@@ -1,13 +1,13 @@
 import React from 'react';
-import shipPlacer from './Logic/shipPlacer';
-import checkBoard from './Logic/checkBoard';
-import computerTurn from './Logic/computerTurn';
+import shipPlacer from './utils/shipPlacer';
+import checkBoard from './utils/checkBoard';
+import computerTurn from './utils/computerTurn';
 import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
 import PlayerDashboard from './Components/PlayerDashboard';
 import PiecePicker from './Components/PiecePicker';
 import CodeLinkButton from './Components/CodeLinkButton';
 import './App.css';
-import squareCoordsPicker from './Logic/squareCoordsPicker';
+import squareCoordsPicker from './utils/squareCoordsPicker';
 
 class App extends React.Component {
   constructor(props) {

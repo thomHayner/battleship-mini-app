@@ -2,7 +2,7 @@ import React from "react";
 import './piecePicker.css';
 import '../App.css';
 import Square from "./Elements/Square";
-import shipPlacer from '../Logic/shipPlacer';
+import shipPlacer from '../utils/shipPlacer';
 
 class DragDiv extends React.Component {
   constructor(props) {
