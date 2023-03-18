@@ -1,7 +1,7 @@
 import React from "react";
 import MessageBoard from "./MessageBoard";
 import ShipList from "./ShipList";
-import '../App.css';
+import '../../App.css';
 
 export default function ScoreCard({ playerData, opponentShips }) {
   return (

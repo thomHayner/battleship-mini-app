@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from './Elements/Square';
+import Square from '../Elements/Square';
 
 const Board = ({ board, playerId, handleFire }) => 
     <div className="board" >

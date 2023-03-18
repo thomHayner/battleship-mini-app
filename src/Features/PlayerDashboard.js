@@ -1,8 +1,8 @@
 import React from 'react';
-import PlayerName from "./Elements/DisplayMessages/PlayerName";
-import Board from "./Board";
-import ScoreCard from './ScoreCard';
-import '../App.css';
+import PlayerName from "../Components/Elements/DisplayMessages/PlayerName";
+import Board from "../Components/playerDashboard/Board";
+import ScoreCard from '../Components/playerDashboard/ScoreCard';
+import '../';
 
 // Takes in a player object (redPlayer or BluePlayer) and outputs a game board stacked on top of a scorecard
 

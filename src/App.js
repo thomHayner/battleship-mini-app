@@ -3,7 +3,7 @@ import shipPlacer from './utils/shipPlacer';
 import checkBoard from './utils/checkBoard';
 import computerTurn from './utils/computerTurn';
 import WhoseTurnIsItAnyway from './Components/Elements/DisplayMessages/WhoseTurnIsItAnyway';
-import PlayerDashboard from './Components/PlayerDashboard';
+import PlayerDashboard from './Features/PlayerDashboard';
 import PiecePicker from './Features/PiecePicker';
 import CodeLinkButton from './Components/Elements/CodeLinkButton';
 import './App.css';
@@ -17,6 +17,10 @@ class App extends React.Component {
         id: 1,
         name: "Player",
         board: shipPlacer(),
+        /* *
+        * replacing `board` with the matrix below will give you test games 
+        * where the computer's gameplay board is always the same ship placement 
+        * */
         // [
         //   ["","1","2","3","4","5","6","7","8","9","10",],
         //   ["A",2,0,0,0,0,0,0,4,4,4],
