@@ -1,7 +1,7 @@
 import React from "react";
 import './piecePicker.css';
 import '../App.css';
-import Square from "../Components/Elements/Square";
+import Square from "../Components/playerDashboard/Elements/Square";
 import shipPlacer from '../utils/shipPlacer';
 
 class DragDiv extends React.Component {
@@ -45,7 +45,7 @@ class DragDiv extends React.Component {
           vert: true,
         },
       ],
-      board: 
+      matrix: 
       // If you change the board values, the squares' className will change and it may affect drop-zones
         [
           ["","1","2","3","4","5","6","7","8","9","10",],
@@ -164,11 +164,11 @@ class DragDiv extends React.Component {
     if (e.target.className === "placement-square-empty" || e.target.className === "ship") {
       e.preventDefault();
       e.stopPropagation();
-      let board = this.state.board;
+      let matrix = this.state.matrix;
       let length = this.state.currentLength;
       let value = this.state.currentValue
 
-      board.map((i,k) => (i.map((j,l) => board[k][l] === value ? board[k][l] = -2 : j )))
+      matrix.map((i,k) => (i.map((j,l) => matrix[k][l] === value ? matrix[k][l] = -2 : j )))
       // If vertical:
       if (this.state.ships[value - 1].vert) {
         // if (row + length) is greater than 10, that means the piece will hit the edge of the wall,
@@ -178,7 +178,7 @@ class DragDiv extends React.Component {
         };
         // set the 'ship' squares for the column of ship pieces
         for (let i = 0; i < this.state.currentLength; i++) {
-          board[row + i][col] = value;
+          matrix[row + i][col] = value;
         };
       // Else, if horizontal:
       } else {
@@ -189,12 +189,12 @@ class DragDiv extends React.Component {
         };
         // set the 'ship' squares for the row of ship pieces
         for (let i = 1; i < this.state.currentLength; i++) {
-          board[row][col + i] = value;
+          matrix[row][col + i] = value;
         };
       }
       // Set the state to save the board
-      this.setState({ board: board, lastBoard: board });
-      console.log(board)
+      this.setState({ matrix: matrix, lastBoard: matrix });
+      console.log(matrix)
 
       // Append the 'ship' to the board
       // e.target.append(this.state.currentShipRef);
@@ -239,13 +239,13 @@ class DragDiv extends React.Component {
   render() {
     return(
       <div className="main-container">
-        <div className="board" >
-          {this.state.board.map( (i, row) => 
-            this.state.board.map( (j, col) => (
+        <div className="matrix" >
+          {this.state.matrix.map( (i, row) => 
+            this.state.matrix.map( (j, col) => (
                 <Square 
                   key={`PlacementBoard_[${row}, ${col}]ID`} 
                   id={`PlacementBoard_${row * col}`} 
-                  value={this.state.board[row][col]} 
+                  value={this.state.matrix[row][col]} 
                   row={row} 
                   col={col} 
                   playerId={0} 
